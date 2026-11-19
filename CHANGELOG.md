@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.3] - 2026-11-18
+
+### 🐛 Corregido
+- En el diseño JomaShop se oculta la imagen de logo heredada de Martfury (idéntica en las carpetas `martfury` y `grupsity-theme-master`) y se usa el nombre del sitio como wordmark: Inter 30 px en negrita, eslogan en gris y cabecera de 104 px.
+
 ## [1.0.2] - 2026-11-18
 
 ### 🐛 Corregido

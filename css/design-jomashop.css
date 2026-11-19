@@ -98,23 +98,52 @@ body.grupsity-design-jomashop .site-header {
 }
 
 body.grupsity-design-jomashop .site-header .header-main {
-	padding: 18px 0;
+	padding: 26px 0;
 }
 
 body.grupsity-design-jomashop .site-header .header-row {
 	align-items: center;
 }
 
+/* Grupsity: la imagen de logo que trae el sitio es la del tema Martfury original
+   (está repetida en las carpetas martfury y grupsity-theme-master). En el diseño
+   JomaShop se sustituye por el nombre del sitio como wordmark, como hace JomaShop. */
+body.grupsity-design-jomashop .site-header .header-logo .logo,
 body.grupsity-design-jomashop .site-header .header-logo .logo img.site-logo,
 body.grupsity-design-jomashop .site-header .header-logo .logo img.sticky-logo {
-	max-height: 52px;
-	width: auto;
+	display: none !important;
 }
 
-body.grupsity-design-jomashop .site-header .site-title {
-	font-size: 28px;
-	font-weight: 700;
-	letter-spacing: -0.03em;
+body.grupsity-design-jomashop .site-header .header-logo .site-title {
+	display: block !important;
+	height: auto !important;
+	max-height: none !important;
+	margin: 0 !important;
+	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+	font-size: 30px !important;
+	font-weight: 700 !important;
+	line-height: 1.1 !important;
+	letter-spacing: -0.04em !important;
+	text-transform: none !important;
+}
+
+body.grupsity-design-jomashop .site-header .header-logo .site-title a {
+	color: var(--joma-ink) !important;
+	text-decoration: none !important;
+}
+
+body.grupsity-design-jomashop .site-header .header-logo .site-description {
+	display: block !important;
+	height: auto !important;
+	max-height: none !important;
+	margin: 4px 0 0 !important;
+	color: var(--joma-gray) !important;
+	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+	font-size: 11px !important;
+	font-weight: 400 !important;
+	line-height: 1.3 !important;
+	letter-spacing: 0.04em !important;
+	text-transform: uppercase !important;
 }
 
 body.grupsity-design-jomashop .site-header .header-extras {
