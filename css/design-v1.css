@@ -1306,6 +1306,427 @@ body.grupsity-design-v1 .back-to-top {
 
 
 /* ==========================================================================
+   Portada: carrusel «Ofertas del día» (widget Product Deals Carousel de Martfury,
+   sección Elementor 6a0f3d03)
+   - Sin el fondo de la sección (se queda en el blanco del container).
+   - Tarjetas como las de TeDotamos; al pasar el ratón la tarjeta sube con sombra y las
+     acciones salen en una cápsula flotante sobre la foto (antes, una franja blanca que
+     tapaba media imagen). El slick-list tenía overflow: hidden sin aire, y cortaba la
+     sombra y la subida: se le da relleno arriba y abajo.
+   ========================================================================== */
+
+body.grupsity-design-v1 .elementor-section.elementor-element-6a0f3d03,
+body.grupsity-design-v1 .elementor-section:has(> .elementor-container .mf-product-deals-day) {
+	background: transparent !important;
+	background-image: none !important;
+	box-shadow: none !important;
+}
+
+body.grupsity-design-v1 .elementor-section.elementor-element-6a0f3d03 > .elementor-background-overlay,
+body.grupsity-design-v1 .elementor-section:has(> .elementor-container .mf-product-deals-day) > .elementor-background-overlay {
+	display: none !important;
+}
+
+body.grupsity-design-v1 .elementor-section:has(> .elementor-container .mf-product-deals-day) > .elementor-container > .elementor-column > .elementor-widget-wrap {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Cabecera: título, cuenta atrás y «Ver todo» */
+body.grupsity-design-v1 .mf-product-deals-day .cat-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	margin: 0 0 8px;
+	padding: 0 0 14px;
+	border: 0 !important;
+	border-bottom: 1px solid var(--g-line) !important;
+	background: transparent !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .header-content {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px 18px;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .cat-header .cat-title {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	color: var(--g-ink) !important;
+	font-size: 28px !important;
+	font-weight: 700 !important;
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+}
+
+/* Etiqueta verde delante del título (como el ícono de «Ofertas» de TeDotamos) */
+body.grupsity-design-v1 .mf-product-deals-day .cat-header .cat-title::before {
+	content: "";
+	flex: 0 0 auto;
+	width: 30px;
+	height: 30px;
+	background-color: var(--g-green-ink);
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z'/%3E%3Ccircle cx='7.5' cy='7.5' r='1'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z'/%3E%3Ccircle cx='7.5' cy='7.5' r='1'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .header-countdown {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	padding: 6px 12px;
+	border-radius: 50px;
+	background: var(--g-green-soft) !important;
+	color: var(--g-green-ink) !important;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .header-countdown .ends-text {
+	margin: 0;
+	padding: 0;
+	background: transparent !important;
+	color: var(--g-green-ink) !important;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .header-countdown .martfury-countdown {
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .header-countdown .martfury-countdown .digits {
+	padding: 2px 6px;
+	border-radius: 6px;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .header-link a,
+body.grupsity-design-v1 .mf-product-deals-day .cat-header .header-link a {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: var(--g-ink) !important;
+	font-size: 14px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .header-link a::after {
+	content: "→";
+	font-weight: 400;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .header-link a:hover {
+	color: var(--g-green-ink) !important;
+}
+
+/* Aire para que la tarjeta suba y la sombra se vea entera */
+body.grupsity-design-v1 .mf-product-deals-day .products-content {
+	position: relative;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products {
+	margin: 0 -8px;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products .slick-list {
+	margin: 0;
+	padding: 14px 0 26px !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products .slick-track {
+	display: flex;
+}
+
+/* Todas las tarjetas a la misma altura: el <li> es el slide y se estira con el flex del track */
+body.grupsity-design-v1 .mf-product-deals-day ul.products .slick-slide {
+	float: none;
+	height: auto !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products .slick-slide > div {
+	height: 100%;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product {
+	margin: 0 !important;
+	padding: 0 8px !important;
+}
+
+/* Tarjeta */
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .product-inner {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0 !important;
+	padding: 12px 12px 16px !important;
+	border: 1px solid var(--g-line) !important;
+	border-radius: 12px;
+	background: var(--g-paper);
+	box-shadow: none !important;
+	transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .product-inner:hover {
+	border-color: #d3dab8 !important;
+	box-shadow: 0 12px 24px rgba(17, 24, 39, 0.12) !important;
+	transform: translateY(-4px);
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail {
+	position: relative;
+	margin: 0 0 14px !important;
+	padding: 10px;
+	border-radius: 10px;
+	background: var(--g-thumb);
+	overflow: hidden;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	border: 0 !important;
+	mix-blend-mode: multiply;
+	transition: transform 0.3s;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .product-inner:hover .mf-product-thumbnail img {
+	transform: scale(1.04);
+}
+
+/* Acciones: cápsula flotante centrada abajo de la foto */
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button {
+	left: 50% !important;
+	right: auto !important;
+	bottom: 4px !important;
+	display: flex;
+	gap: 2px;
+	width: auto;
+	padding: 4px !important;
+	border-radius: 50px;
+	background: rgba(255, 255, 255, 0.96) !important;
+	box-shadow: 0 6px 16px rgba(17, 24, 39, 0.16);
+	opacity: 0;
+	transform: translateX(-50%);
+	transition: opacity 0.2s, bottom 0.2s;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .product-inner:hover .mf-product-thumbnail .footer-button,
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .product-inner:focus-within .mf-product-thumbnail .footer-button {
+	bottom: 12px !important;
+	opacity: 1;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button > a,
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button .mf-compare-button a,
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button .added_to_cart {
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 36px !important;
+	height: 36px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 50% !important;
+	background: transparent !important;
+	color: var(--g-ink) !important;
+	min-height: 0 !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button a .p-icon {
+	display: flex !important;
+	height: 36px;
+	font-size: 17px;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button a .add-to-cart-text,
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button .wcboost-wishlist-button__text,
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button .wcboost-products-compare-button__text {
+	display: none !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button > a:hover,
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button .mf-compare-button a:hover {
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button svg {
+	width: 16px;
+	height: 16px;
+}
+
+/* Precio: actual en negrita, anterior tachado y % en píldora verde */
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .price {
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: baseline !important;
+	gap: 4px 0;
+	margin: 0 0 6px !important;
+	font-size: 0 !important;
+	line-height: 1.3;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .price ins {
+	order: 1;
+	margin: 0 8px 0 0 !important;
+	color: var(--g-ink) !important;
+	font-size: 18px !important;
+	font-weight: 800 !important;
+	text-decoration: none !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .price del {
+	order: 2;
+	margin: 0 8px 0 0 !important;
+	padding: 0 !important;
+	color: var(--g-gray) !important;
+	font-size: 13px !important;
+	font-weight: 400 !important;
+}
+
+/* Martfury mete un <ins> dentro del <del>: sin negrita ni color propio ahí */
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .price del ins {
+	margin: 0 !important;
+	color: inherit !important;
+	font-size: inherit !important;
+	font-weight: inherit !important;
+	text-decoration: line-through !important;
+}
+
+/* El % ya sale en la etiqueta de la foto: no repetirlo junto al precio */
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .price .sale {
+	display: none !important;
+	order: 3;
+	padding: 2px 8px;
+	border-radius: 50px;
+	background: var(--g-green-soft);
+	color: var(--g-green-ink) !important;
+	font-size: 11px !important;
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .woo-loop-product__title {
+	display: -webkit-box;
+	margin: 0 !important;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .woo-loop-product__title a {
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .woo-loop-product__title a:hover {
+	color: var(--g-green-ink) !important;
+}
+
+/* Barra de vendidos al final de la tarjeta */
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .deal-progress {
+	margin-top: auto;
+	padding-top: 12px;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .deal-progress .progress-bar {
+	height: 6px;
+	border-radius: 50px;
+	background: var(--g-line);
+	overflow: hidden;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .deal-progress .progress-value {
+	height: 6px;
+	border-radius: 50px;
+	background: var(--g-green) !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .deal-progress .progress-text {
+	margin-top: 6px;
+	color: var(--g-gray) !important;
+	font-size: 12px;
+}
+
+/* Flechas: botones redondos blancos a los lados */
+body.grupsity-design-v1 .mf-product-deals-day .slick-arrow {
+	position: absolute;
+	top: 38% !important;
+	z-index: 5;
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	margin: 0;
+	border: 1px solid var(--g-line);
+	border-radius: 50%;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 18px;
+	line-height: 1;
+	box-shadow: 0 6px 16px rgba(17, 24, 39, 0.12);
+	cursor: pointer;
+	transform: translateY(-50%);
+	transition: background 0.2s, color 0.2s;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .slick-arrow:hover {
+	border-color: var(--g-green);
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .slick-prev-arrow,
+body.grupsity-design-v1 .mf-product-deals-day .slick-prev {
+	left: -14px !important;
+	right: auto !important;
+}
+
+body.grupsity-design-v1 .mf-product-deals-day .slick-next-arrow,
+body.grupsity-design-v1 .mf-product-deals-day .slick-next {
+	right: -14px !important;
+	left: auto !important;
+}
+
+/* El divisor de Elementor debajo del carrusel sobra con la línea de la cabecera */
+body.grupsity-design-v1 .elementor-section:has(> .elementor-container .mf-product-deals-day) .elementor-widget-divider {
+	display: none;
+}
+
+@media (max-width: 767px) {
+	body.grupsity-design-v1 .mf-product-deals-day .cat-header .cat-title {
+		font-size: 22px !important;
+	}
+
+	body.grupsity-design-v1 .mf-product-deals-day .cat-header {
+		flex-wrap: wrap;
+	}
+
+	/* Sin hover en el celular: la cápsula de acciones no se muestra */
+	body.grupsity-design-v1 .mf-product-deals-day ul.products li.product .mf-product-thumbnail .footer-button {
+		display: none !important;
+	}
+}
+
+/* ==========================================================================
    Móvil y tablet
    ========================================================================== */
 

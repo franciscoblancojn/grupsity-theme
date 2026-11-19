@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.6] - 2026-11-19
+
+### 🎨 Cambiado
+- Portada, diseño V1: el carrusel **«Ofertas del día»** (sección de Elementor `6a0f3d03`) va sin fondo y con tarjetas como las de TeDotamos, todas de la misma altura: foto sobre gris claro, precio en negrita con el anterior tachado y barra de vendidos en verde. Al pasar el ratón la tarjeta sube con sombra y las acciones (carrito, vista rápida, deseos, comparar) salen en una cápsula flotante que ya no tapa media foto. El hover se ve completo, porque el slider ya no corta la sombra. Título con ícono, cuenta atrás en píldora verde, «Ver todo →» y flechas redondas.
+
 ## [1.0.5] - 2026-11-19
 
 ### ✨ Añadido
