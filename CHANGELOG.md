@@ -4,7 +4,7 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
-## [Sin publicar]
+## [1.0.4] - 2026-11-19
 
 ### 🎨 Cambiado
 - El diseño JomaShop ahora usa los **colores de Grupsity** (verde `#93b700`, tinta y blanco) con la forma de jomashop.com: franja superior oscura, cabecera verde (layout 4) o blanca (layout 1), buscador de 52 px, menú en mayúsculas, filtros laterales sin cajas, tarjetas de producto sin bordes con el precio en negrita y footer oscuro con acentos verdes. Contraste AA: sobre verde el texto va en tinta.
