@@ -105,6 +105,15 @@ No modifica `theme_mods_*`, así que volver a Martfury deja el sitio exactamente
 Para añadir un diseño: registrarlo en `Grupsity_Designs::DESIGNS`, crear su CSS y, si hace
 falta lógica, una clase propia cargada desde `bootstrap.php`.
 
+### Nota sobre el sitio en producción
+
+En grupsity.com la carpeta activa es **`grupsity-theme-master`** (no `grupsity`). El body
+tiene `wp-theme-grupsity-theme-master` y, con el diseño activo, `grupsity-design-jomashop`;
+la hoja se sirve desde `/wp-content/themes/grupsity-theme-master/css/design-jomashop.css`.
+Si el CSS no se ve, comprobar esos tres puntos antes de mirar la caché. La home es una
+plantilla de Elementor: el diseño JomaShop es una capa de estilos sobre ese HTML, no una
+sustitución de la portada.
+
 ## Personalizaciones del sitio
 
 El tema es nuestro: las personalizaciones se hacen **directamente** en sus archivos.

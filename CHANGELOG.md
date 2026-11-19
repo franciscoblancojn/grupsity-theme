@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.2] - 2026-11-18
+
+### 🐛 Corregido
+- El diseño JomaShop se cargaba (body class y CSS 200) pero apenas se veía en la home de producción: se añadieron los selectores reales de ese montaje (`.products-cats-menu`, `.header-bar.topbar`, precios/etiquetas del loop y títulos/botones de Elementor) para que el cambio sea visible.
+
 ## [1.0.1] - 2026-11-18
 
 ### ✨ Añadido

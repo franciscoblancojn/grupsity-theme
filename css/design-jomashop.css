@@ -268,10 +268,42 @@ body.grupsity-design-jomashop .site-header .primary-nav.nav .icon-angle-down {
 	font-size: 10px;
 }
 
+/* Grupsity: este home no tiene #topbar ni #top-promotion (están desactivados en el
+   Customizer). La barra que sí existe es la del teléfono dentro del menú: la pintamos
+   negra, como la franja superior de JomaShop, para que el cambio sea visible. */
 body.grupsity-design-jomashop .site-header .header-bar.topbar {
-	background: var(--joma-paper);
-	color: var(--joma-ink);
-	border: 0;
+	background: var(--joma-ink) !important;
+	color: var(--joma-paper) !important;
+	border: 0 !important;
+	padding: 6px 0;
+	font-size: 12px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-jomashop .site-header .header-bar.topbar a,
+body.grupsity-design-jomashop .site-header .header-bar.topbar .topbar-sidebar,
+body.grupsity-design-jomashop .site-header .header-bar.topbar span {
+	color: var(--joma-paper) !important;
+	font-size: 12px;
+}
+
+/* Grupsity: el menú "Comprar por departamento" no usa .primary-nav, sino
+   .products-cats-menu; sin estos selectores seguía con el estilo original. */
+body.grupsity-design-jomashop .products-cats-menu .toggle-product-cats.nav > ul > li > a,
+body.grupsity-design-jomashop .products-cats-menu ul.menu > li > a,
+body.grupsity-design-jomashop .site-header .products-cats-menu a.dropdown-toggle {
+	color: var(--joma-ink) !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	letter-spacing: 0.04em !important;
+	text-transform: uppercase !important;
+}
+
+body.grupsity-design-jomashop .products-cats-menu ul.dropdown-submenu a,
+body.grupsity-design-jomashop .products-cats-menu li.menu-item a {
+	font-size: 12px !important;
+	text-transform: uppercase !important;
 }
 
 /* Grupsity: títulos y migas de pan */
@@ -479,6 +511,68 @@ body.grupsity-design-jomashop .btn.btn-secondary {
 	border-radius: var(--joma-radius);
 	background: transparent;
 	color: var(--joma-ink);
+}
+
+/* Grupsity: precios y etiquetas del loop (Martfury usa reglas muy específicas) */
+body.grupsity-design-jomashop ul.products li.product .price,
+body.grupsity-design-jomashop .mf-product-deals-day .price {
+	display: flex !important;
+	align-items: baseline !important;
+	flex-wrap: wrap !important;
+	gap: 8px;
+	color: var(--joma-ink) !important;
+	font-size: 18px !important;
+	font-weight: 700 !important;
+}
+
+body.grupsity-design-jomashop ul.products li.product .price ins,
+body.grupsity-design-jomashop ul.products li.product .price > .amount,
+body.grupsity-design-jomashop .mf-product-deals-day .price ins {
+	color: var(--joma-sale) !important;
+	text-decoration: none !important;
+}
+
+body.grupsity-design-jomashop ul.products li.product .price del {
+	color: var(--joma-gray) !important;
+	font-size: 13px !important;
+	font-weight: 400 !important;
+}
+
+body.grupsity-design-jomashop ul.products li.product .ribbons .ribbon.onsale,
+body.grupsity-design-jomashop .mf-product-deals-day .ribbons .ribbon.onsale {
+	background: var(--joma-sale) !important;
+	border-radius: 0 0 var(--joma-radius) 0 !important;
+	color: var(--joma-paper) !important;
+	font-size: 11px !important;
+	font-weight: 600 !important;
+	text-transform: uppercase !important;
+}
+
+/* Grupsity: la home de producción es Elementor; sus títulos y botones también
+   deben seguir la paleta JomaShop (negro, blanco y rojo de oferta). */
+body.grupsity-design-jomashop .elementor-heading-title,
+body.grupsity-design-jomashop .elementor-widget-heading h2,
+body.grupsity-design-jomashop .elementor-widget-heading h3 {
+	color: var(--joma-ink) !important;
+	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+	font-weight: 600 !important;
+	letter-spacing: -0.01em !important;
+}
+
+body.grupsity-design-jomashop .elementor-button,
+body.grupsity-design-jomashop .elementor-button-wrapper .elementor-button {
+	min-height: 48px;
+	border: 1px solid var(--joma-ink) !important;
+	border-radius: var(--joma-radius) !important;
+	background: var(--joma-ink) !important;
+	color: var(--joma-paper) !important;
+	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+}
+
+body.grupsity-design-jomashop .elementor-button:hover {
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* Grupsity: footer negro con enlaces blancos y newsletters claros */
