@@ -22,6 +22,9 @@ class Grupsity_Admin {
 		'cache_hours'   => 6, // cada cuánto se consulta GitHub
 		'update_notice' => 1, // aviso en el escritorio cuando hay versión nueva
 		'design'        => 'martfury', // diseño activo (ver Grupsity_Designs::DESIGNS)
+		'v1_topbar'     => '', // diseño V1: vacío = Grupsity_Design_V1::DEFAULTS
+		'v1_nav'        => '',
+		'v1_hotline'    => '',
 	);
 
 	public static function init() {
@@ -66,6 +69,9 @@ class Grupsity_Admin {
 			'cache_hours'   => min( 24, max( 1, $hours ) ),
 			'update_notice' => empty( $input['update_notice'] ) ? 0 : 1,
 			'design'        => isset( $input['design'], Grupsity_Designs::DESIGNS[ $input['design'] ] ) ? $input['design'] : 'martfury',
+			'v1_topbar'     => isset( $input['v1_topbar'] ) ? sanitize_textarea_field( $input['v1_topbar'] ) : '',
+			'v1_nav'        => isset( $input['v1_nav'] ) ? sanitize_textarea_field( $input['v1_nav'] ) : '',
+			'v1_hotline'    => isset( $input['v1_hotline'] ) ? sanitize_text_field( $input['v1_hotline'] ) : '',
 		);
 
 		// Si cambia la frecuencia, que la próxima consulta use el nuevo valor.
@@ -284,8 +290,23 @@ class Grupsity_Admin {
 							forma de <a href="https://www.jomashop.com/" target="_blank" rel="noopener">jomashop.com</a>
 							(franja superior oscura, buscador grande, menú en mayúsculas, filtros limpios, tarjetas sin cajas y
 							footer oscuro, tipografía Inter) con los colores de Grupsity (verde #93b700, tinta y blanco). No cambia el contenido ni la configuración del
-							Customizer; al volver a Martfury el sitio queda como estaba. Al cambiar de diseño se purga la caché.
+							Customizer; al volver a Martfury el sitio queda como estaba. <strong>V1</strong> usa la estructura del tema TeDotamos (franja con avisos, buscador, barra con
+							«Categorías», enlaces y teléfono, contenido en container de 1320 px) con los colores y fuentes de
+							Grupsity; sus textos se configuran abajo. Al cambiar de diseño se purga la caché.
 						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Diseño V1</th>
+					<td>
+						<p><label for="grupsity-v1-topbar"><strong>Franja superior</strong> — una línea por aviso: <code>ícono|texto|enlace</code> (el enlace es opcional)</label></p>
+						<textarea id="grupsity-v1-topbar" name="<?php echo esc_attr( $name ); ?>[v1_topbar]" rows="3" class="large-text code" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_topbar'] ); ?>"><?php echo esc_textarea( self::get_option( 'v1_topbar' ) ); ?></textarea>
+						<p class="description">Íconos: <?php echo esc_html( Grupsity_Design_V1::icon_names() ); ?>. Vacío = los avisos de ejemplo.</p>
+						<p><label for="grupsity-v1-nav"><strong>Barra de menú</strong> — una línea por enlace: <code>texto|enlace</code> (<code>/hombre/</code> o una URL completa)</label></p>
+						<textarea id="grupsity-v1-nav" name="<?php echo esc_attr( $name ); ?>[v1_nav]" rows="5" class="large-text code" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_nav'] ); ?>"><?php echo esc_textarea( self::get_option( 'v1_nav' ) ); ?></textarea>
+						<p><label for="grupsity-v1-hotline"><strong>Teléfono</strong> (al final de la barra)</label></p>
+						<input type="text" id="grupsity-v1-hotline" name="<?php echo esc_attr( $name ); ?>[v1_hotline]" value="<?php echo esc_attr( self::get_option( 'v1_hotline' ) ); ?>" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_hotline'] ); ?>" class="regular-text">
+						<p class="description">Solo se usan con el diseño V1. El desplegable «Categorías» se arma solo con las categorías de producto.</p>
 					</td>
 				</tr>
 				<tr>

@@ -823,6 +823,9 @@ if ( ! function_exists( 'martfury_extra_department' ) ) :
 					$martfury_department_menu = wp_nav_menu( $options );
 				}
 
+				// Grupsity: un diseño (p. ej. V1) puede reemplazar la lista del desplegable.
+				$martfury_department_menu = apply_filters( 'grupsity_department_menu', $martfury_department_menu );
+
 				echo ! empty( $martfury_department_menu ) ? $martfury_department_menu : '';
 				?>
             </div>

@@ -4,6 +4,19 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.5] - 2026-11-19
+
+### ✨ Añadido
+- **Diseño V1** (Apariencia → Grupsity → General → Diseño): la estructura del tema TeDotamos V1 con los colores y fuentes de Grupsity (verde `#93b700`, Work Sans).
+  - Franja superior oscura con 3 avisos con ícono (en el celular, solo el primero).
+  - Header blanco: logo, buscador con borde y botón «Buscar» verde, deseos, carrito y cuenta.
+  - Barra de menú gris clara: «Categorías» con desplegable de categorías de producto (ícono + panel de subcategorías con conteo y «Ver todo»), enlaces y teléfono.
+  - Todo el contenido en un container de 1320 px, también la portada de Elementor (las secciones «estiradas» se quedan dentro).
+  - Footer oscuro con acentos verdes; se oculta el bloque del boletín si su shortcode (`[mc4wp_form]`) no tiene plugin activo, y la caja de información vacía.
+  - Textos de la franja, enlaces del menú y teléfono configurables en la pestaña General.
+  - Sin theme_mods, cambia «Shop By Department», «I'm shopping for…» y «Search» por «Categorías», «Busca tu marca favorita» y «Buscar».
+- Ganchos `grupsity_header_nav` (en `template-parts/headers/layout-1.php`) y `grupsity_department_menu` (en `martfury_extra_department()`).
+
 ## [1.0.4] - 2026-11-19
 
 ### 🎨 Cambiado

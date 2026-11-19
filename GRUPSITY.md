@@ -23,6 +23,9 @@ Se actualiza solo desde nuestro repo: `https://github.com/franciscoblancojn/grup
 | `inc/grupsity/class-admin.php` | Página Apariencia → Grupsity: actualizaciones, diseño, migración, información y avisos |
 | `inc/grupsity/class-designs.php` | Registro del selector de diseño, `body_class`, carga condicional del CSS y purga de caché |
 | `css/design-jomashop.css` | Diseño con la forma de JomaShop y los colores de Grupsity (verde `#93b700`, tinta, blanco; Inter; footer oscuro) |
+| `inc/grupsity/class-design-v1.php` + `css/design-v1.css` | Diseño V1: estructura de TeDotamos V1 (franja, header, buscador, barra de menú, desplegable de categorías, container de 1320 px) con colores y fuentes de Grupsity |
+| `template-parts/headers/layout-1.php` | Gancho `grupsity_header_nav`: un diseño (V1) puede reemplazar el menú y el Header Bar |
+| `inc/functions/header.php` | Filtro `grupsity_department_menu` en `martfury_extra_department()`: un diseño (V1) puede reemplazar la lista del desplegable «Categorías» |
 | `inc/grupsity/class-migration.php` | Copia la configuración del Customizer de Martfury al activar y botones con nonce en la pestaña Migración |
 | `.github/workflows/release.yml` | Construye `grupsity.zip` y crea la release al subir un tag |
 | `CHANGELOG.md` | Registro de cambios (Keep a Changelog) |
@@ -101,6 +104,15 @@ Todo se guarda en `grupsity_options` (`Grupsity_Admin::OPTION`). Opciones nuevas
   Contraste: sobre verde el texto va en tinta (el blanco da 2,3:1); el verde como texto sobre
   blanco usa `#5c7300`. Cubre el layout 4 (configuración de Grupsity) y el layout 1 (el que sale
   si faltan los theme_mods).
+
+- `v1`: la estructura del tema **TeDotamos V1** (repo `tedotamos`, `css/templates/v1.css`) con los
+  colores y fuentes de Grupsity. Fuerza el header layout 1 de Martfury y desactiva su
+  topbar/promoción en tiempo de ejecución (filtro `martfury_get_option`, sin tocar los theme_mods).
+  Pinta la franja superior, la barra de menú (`grupsity_header_nav`) y el desplegable de
+  categorías (`grupsity_department_menu`: categorías de producto con ícono; si solo hay una raíz,
+  p. ej. «Relojes», muestra sus hijas). Container de 1320 px en todo el sitio y en la portada de
+  Elementor. Textos, enlaces y teléfono en la pestaña General. Catálogo, tarjetas y footer: igual
+  que JomaShop (copiado en `design-v1.css`).
 
 `Grupsity_Designs` añade la clase `grupsity-design-<id>` al `body` y carga
 `css/design-<id>.css` con prioridad 100 (después de Martfury, WooCommerce, Elementor y

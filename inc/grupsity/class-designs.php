@@ -22,6 +22,7 @@ class Grupsity_Designs {
 	const DESIGNS = array(
 		'martfury'  => 'Martfury (diseño actual)',
 		'jomashop'  => 'JomaShop (forma de jomashop.com, colores de Grupsity)',
+		'v1'        => 'V1 (estructura de TeDotamos, colores y fuentes de Grupsity)',
 	);
 
 	/**

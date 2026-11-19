@@ -1,0 +1,1404 @@
+/*!
+ * Grupsity: diseño "V1".
+ *
+ * Estructura del tema TeDotamos V1 (franja superior con 3 avisos, header blanco con logo,
+ * buscador con borde y botón de color, carrito y cuenta; barra de menú gris clara con
+ * «Categorías» + desplegable con íconos y panel de subcategorías, enlaces y teléfono;
+ * contenido en un container de 1320 px) con los COLORES y FUENTES de Grupsity: verde
+ * #93b700 y la tipografía que ya trae el sitio (Work Sans de Martfury; en la portada, las
+ * fuentes de Elementor). Se aplica con body.grupsity-design-v1 (Apariencia → Grupsity).
+ *
+ * Contraste: sobre el verde el texto va en tinta (#111); el verde como texto sobre blanco
+ * usa --g-green-ink (#5c7300).
+ * El HTML de la franja, la barra de menú y el desplegable sale de inc/grupsity/class-design-v1.php.
+ */
+
+body.grupsity-design-v1 {
+	--g-green: #93b700;
+	--g-green-hover: #a6cc0f;
+	--g-green-ink: #5c7300;
+	--g-green-soft: #f1f7dc;
+	--g-ink: #1f2329;
+	--g-ink-2: #1c2014;
+	--g-muted: #4a5260;
+	--g-gray: #6b7280;
+	--g-line: #e6e8ec;
+	--g-surface: #f5f6f8;
+	--g-thumb: #f7f7f7;
+	--g-paper: #ffffff;
+	--g-radius: 10px;
+	--g-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+	--g-container: 1320px;
+
+	--mf-primary-color: var(--g-green);
+	--mf-background-primary-color: var(--g-green);
+	--mf-border-primary-color: var(--g-green);
+	--mf-background-primary-text-color: var(--g-ink);
+
+	color: var(--g-ink);
+	background: var(--g-paper);
+}
+
+body.grupsity-design-v1 a:hover {
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 :focus-visible {
+	outline: 2px solid var(--g-green-ink);
+	outline-offset: 2px;
+}
+
+body.grupsity-design-v1 .gv1-icon {
+	width: 1.25em;
+	height: 1.25em;
+	flex: 0 0 auto;
+	vertical-align: middle;
+}
+
+/* ------------------------------------------------------------------ container de 1320 px */
+
+body.grupsity-design-v1 .gv1-container {
+	max-width: var(--g-container);
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+@media (min-width: 1200px) {
+	body.grupsity-design-v1 .container,
+	body.grupsity-design-v1 .martfury-container {
+		width: auto;
+		max-width: var(--g-container);
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+/* Portada (Elementor en .container-fluid): todo dentro del container, como TeDotamos.
+   Las secciones "estiradas" reciben width/left en línea desde el JS de Elementor. */
+body.grupsity-design-v1.home .site-content > .container-fluid,
+body.grupsity-design-v1.page-template-template-homepage .site-content > .container-fluid,
+body.grupsity-design-v1.page-template-template-home-full-width .site-content > .container-fluid {
+	max-width: var(--g-container);
+	margin: 0 auto;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+body.grupsity-design-v1.home .site-content > .container-fluid > .row,
+body.grupsity-design-v1.page-template-template-homepage .site-content > .container-fluid > .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+body.grupsity-design-v1.home .elementor-section.elementor-section-stretched,
+body.grupsity-design-v1.page-template-template-homepage .elementor-section.elementor-section-stretched {
+	left: auto !important;
+	width: auto !important;
+	max-width: 100%;
+}
+
+body.grupsity-design-v1.home .elementor > .e-con.e-con-full,
+body.grupsity-design-v1.home .elementor > .elementor-section {
+	max-width: 100%;
+}
+
+body.grupsity-design-v1.home .elementor > .e-con,
+body.grupsity-design-v1.home .elementor > .elementor-section {
+	margin-bottom: 24px;
+}
+
+/* Imágenes y sliders de la portada con las esquinas del container */
+body.grupsity-design-v1.home .elementor-widget-image img,
+body.grupsity-design-v1.home .elementor-slides-wrapper,
+body.grupsity-design-v1.home .swiper {
+	border-radius: var(--g-radius);
+}
+
+/* ------------------------------------------------------------------ franja superior */
+
+body.grupsity-design-v1 .gv1-topbar {
+	background: var(--g-ink-2);
+	color: #fff;
+	font-size: 13px;
+}
+
+body.grupsity-design-v1 .gv1-topbar__items {
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body.grupsity-design-v1 .gv1-topbar__items li {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	padding: 10px 12px;
+}
+
+body.grupsity-design-v1 .gv1-topbar__items li + li {
+	border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.grupsity-design-v1 .gv1-topbar__item {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	color: #fff;
+	line-height: 1.3;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1 a.gv1-topbar__item:hover {
+	color: var(--g-green);
+}
+
+body.grupsity-design-v1 .gv1-topbar .gv1-icon {
+	width: 18px;
+	height: 18px;
+	color: var(--g-green);
+}
+
+/* ------------------------------------------------------------------ header (Martfury layout 1) */
+
+body.grupsity-design-v1 #site-header,
+body.grupsity-design-v1 #site-header .header-main {
+	background: #fff !important;
+	color: var(--g-ink);
+}
+
+body.grupsity-design-v1 #site-header .header-main {
+	padding: 18px 0;
+	border-bottom: 1px solid var(--g-line);
+}
+
+body.grupsity-design-v1 #site-header .header-row {
+	display: flex;
+	align-items: center;
+}
+
+body.grupsity-design-v1 #site-header .header-logo .logo img {
+	max-height: 64px;
+	width: auto;
+}
+
+/* Logo genérico de Martfury (sale cuando faltan los theme_mods): nombre del sitio en su lugar. */
+body.grupsity-design-v1 .site-header .d-logo:has(img[src*="/images/logo/logo"]) .logo {
+	display: none !important;
+}
+
+body.grupsity-design-v1 .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title {
+	display: block !important;
+	margin: 0 !important;
+	text-indent: 0 !important;
+	font-size: 26px !important;
+	font-weight: 700 !important;
+	line-height: 1.15 !important;
+	letter-spacing: -0.02em;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1 .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title a {
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title a::after {
+	content: "";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin-left: 3px;
+	border-radius: 50%;
+	background: var(--g-green);
+}
+
+body.grupsity-design-v1 #site-header .header-main a,
+body.grupsity-design-v1 #site-header .extras-menu > li > a,
+body.grupsity-design-v1 #site-header .extras-menu .extra-icon,
+body.grupsity-design-v1 #site-header .extras-menu i {
+	color: var(--g-ink);
+}
+
+body.grupsity-design-v1 #site-header .extras-menu > li > a:hover,
+body.grupsity-design-v1 #site-header .extras-menu > li > a:hover i {
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 #site-header .extras-menu .mini-item-counter {
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1 #site-header .extras-menu .login-text {
+	font-weight: 600;
+}
+
+/* Buscador: campo con borde y botón de color (como TeDotamos).
+   Sin overflow: hidden (recortaría el desplegable de resultados): las esquinas van en el
+   campo y en el botón. */
+body.grupsity-design-v1 #site-header .header-extras {
+	display: flex;
+	align-items: center;
+	gap: 32px;
+}
+
+body.grupsity-design-v1 #site-header .header-extras .product-extra-search {
+	flex: 1 1 auto;
+	min-width: 0;
+	max-width: 760px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+body.grupsity-design-v1 #site-header ul.extras-menu {
+	display: flex;
+	align-items: center;
+	gap: 22px;
+	flex: 0 0 auto;
+	margin: 0;
+}
+
+body.grupsity-design-v1 #site-header ul.extras-menu > li {
+	float: none;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1 .product-extra-search .hot-words-wrapper {
+	display: none !important;
+}
+
+body.grupsity-design-v1 #site-header .products-search .psearch-content {
+	display: flex;
+	align-items: stretch;
+	height: 44px;
+	border: 1.5px solid var(--g-line);
+	border-radius: 8px;
+	background: #fff;
+}
+
+body.grupsity-design-v1 #site-header .products-search .psearch-content:focus-within {
+	border-color: var(--g-green);
+}
+
+body.grupsity-design-v1 #site-header .header-main .products-search .product-cat {
+	display: none;
+}
+
+body.grupsity-design-v1 #site-header .products-search .search-wrapper {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+body.grupsity-design-v1 #site-header .products-search .search-field {
+	width: 100%;
+	height: 41px;
+	line-height: 41px;
+	padding: 0 20px;
+	border: 0;
+	border-radius: 6.5px 0 0 6.5px;
+	background: transparent;
+	color: var(--g-ink);
+	font-size: 14px;
+	box-shadow: none;
+}
+
+body.grupsity-design-v1 #site-header .products-search .search-field::placeholder {
+	color: var(--g-gray);
+	opacity: 1;
+}
+
+body.grupsity-design-v1 #site-header .products-search .search-submit {
+	flex: 0 0 auto;
+	height: 41px;
+	min-width: 100px;
+	padding: 0 26px;
+	border: 0;
+	border-radius: 6.5px;
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1 #site-header .products-search .search-submit:hover {
+	background: var(--g-green-hover) !important;
+}
+
+body.grupsity-design-v1 #site-header .products-search .search-wrapper .search-results {
+	top: calc(100% + 6px);
+	left: -1.5px;
+	border: 1px solid var(--g-line);
+	border-radius: 10px;
+	box-shadow: var(--g-shadow);
+}
+
+/* ------------------------------------------------------------------ barra de menú */
+
+body.grupsity-design-v1 #site-header .main-menu {
+	background: var(--g-surface);
+	border-top: 0;
+	border-bottom: 1px solid var(--g-line);
+}
+
+body.grupsity-design-v1 #site-header .main-menu .header-row {
+	min-height: 0;
+}
+
+body.grupsity-design-v1 #site-header .main-menu .products-cats-menu .cats-menu-title,
+body.grupsity-design-v1 #site-header .main-menu .products-cats-menu .cats-menu-title .text,
+body.grupsity-design-v1 #site-header .main-menu .products-cats-menu .cats-menu-title i {
+	background: transparent !important;
+	color: var(--g-green-ink) !important;
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: none;
+}
+
+body.grupsity-design-v1 #site-header .main-menu .products-cats-menu .cats-menu-title {
+	padding-left: 0;
+}
+
+/* El ícono ☰ de Martfury no está en TeDotamos: solo el texto y la flecha. */
+body.grupsity-design-v1 #site-header .main-menu .products-cats-menu .cats-menu-title .icon-menu {
+	display: none;
+}
+
+body.grupsity-design-v1 .gv1-nav ul {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 6px 28px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body.grupsity-design-v1 .gv1-nav a {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 14px 0;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 600;
+}
+
+body.grupsity-design-v1 .gv1-nav a:hover {
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 .gv1-nav__hotline {
+	margin-left: auto;
+}
+
+body.grupsity-design-v1 .gv1-nav__hotline a {
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 .gv1-nav__hotline .gv1-icon {
+	width: 18px;
+	height: 18px;
+}
+
+/* ------------------------------------------------------------------ desplegable "Categorías" */
+
+body.grupsity-design-v1 .site-header .products-cats-menu .toggle-product-cats {
+	border: 0;
+	box-shadow: none;
+	background: transparent;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .toggle-product-cats .menu.gv1-dcats {
+	position: relative;
+	padding: 8px 0;
+	border: 1px solid var(--g-line);
+	border-radius: 0 0 12px 12px;
+	background: #fff;
+	box-shadow: 0 12px 30px rgba(17, 24, 39, 0.12);
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .menu.gv1-dcats > li {
+	position: static;
+	padding: 0 8px;
+	border: 0;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .menu.gv1-dcats > li > a {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 7px 8px;
+	border-radius: 10px;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.25;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .menu.gv1-dcats > li:hover > a {
+	background: var(--g-surface);
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 34px;
+	height: 34px;
+	border-radius: 10px;
+	background: var(--g-green-soft);
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__icon .gv1-icon {
+	width: 19px;
+	height: 19px;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__name {
+	flex: 1;
+	min-width: 0;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__chevron {
+	width: 16px;
+	height: 16px;
+	color: #a0a4ab;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats > li:hover .gv1-dcats__chevron {
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats > .gv1-dcats__all {
+	margin-top: 6px;
+	padding-top: 6px;
+	border-top: 1px solid #eef0f2;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats > .gv1-dcats__all > a {
+	color: var(--g-green-ink);
+	font-weight: 600;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats > .gv1-dcats__all .gv1-dcats__icon {
+	background: var(--g-green);
+	color: var(--g-ink);
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__panel {
+	position: absolute;
+	top: -1px;
+	left: calc(100% - 4px);
+	z-index: 9999;
+	min-width: 520px;
+	min-height: calc(100% + 2px);
+	padding: 18px 22px;
+	border: 1px solid var(--g-line);
+	border-radius: 0 12px 12px 0;
+	background: #fff;
+	box-shadow: 12px 12px 30px rgba(17, 24, 39, 0.12);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(8px);
+	transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats > li:hover > .gv1-dcats__panel {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__panel-title {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 16px;
+	margin: 0 0 12px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eef0f2;
+	color: var(--g-ink);
+	font-size: 16px;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__panel-title span {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	color: var(--g-green-ink);
+	font-size: 13px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__panel-title .gv1-icon {
+	width: 14px;
+	height: 14px;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__links {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 2px 20px;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__links a {
+	display: block;
+	padding: 6px 0;
+	color: #444;
+	font-size: 14px;
+	line-height: 1.35;
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__links a:hover {
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__count {
+	color: #9aa0a6;
+	font-size: 12px;
+}
+
+/* Header fijo (sticky): mismo fondo blanco */
+body.grupsity-design-v1 .site-header.minimized .header-main,
+body.grupsity-design-v1 #site-header.minimized {
+	background: #fff !important;
+}
+
+
+/* ==========================================================================
+   Migas de pan y títulos
+   ========================================================================== */
+
+body.grupsity-design-v1 .page-header-catalog,
+body.grupsity-design-v1 .page-header .page-breadcrumbs {
+	background: var(--g-paper) !important;
+	border: 0;
+}
+
+body.grupsity-design-v1 .page-header .page-breadcrumbs {
+	padding: 18px 0 6px;
+}
+
+body.grupsity-design-v1 ul.breadcrumbs,
+body.grupsity-design-v1 .breadcrumbs {
+	font-size: 12px;
+	color: var(--g-gray);
+}
+
+body.grupsity-design-v1 .breadcrumbs a,
+body.grupsity-design-v1 .breadcrumbs .sep {
+	color: var(--g-gray);
+}
+
+body.grupsity-design-v1 .breadcrumbs li:last-child a {
+	color: var(--g-ink);
+	font-weight: 600;
+}
+
+body.grupsity-design-v1 .page-header .entry-title,
+body.grupsity-design-v1 .mf-catalog-title,
+body.grupsity-design-v1 .page-title h1 {
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+}
+
+body.grupsity-design-v1 .cat-header h2,
+body.grupsity-design-v1 .tabs-header h2,
+body.grupsity-design-v1 .mf-category-box .cat-header .cat-name {
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 1.25;
+	letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   Catálogo: barra de herramientas, filtros laterales y paginación
+   ========================================================================== */
+
+body.grupsity-design-v1 .site-content {
+	padding-top: 16px;
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar.shop-toolbar {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin-bottom: 24px;
+	padding: 0 0 14px;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	background: transparent;
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar .products-found {
+	float: none;
+	margin-right: auto;
+	color: var(--g-muted);
+	font-size: 14px;
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar .products-found strong {
+	margin-right: 4px;
+	color: var(--g-ink);
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar .shop-view,
+body.grupsity-design-v1 #mf-catalog-toolbar .woocommerce-ordering {
+	float: none;
+	order: 2;
+	margin: 0;
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar .woocommerce-ordering {
+	order: 1;
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar .woocommerce-ordering > li > span {
+	height: 40px;
+	line-height: 38px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	color: var(--g-ink);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar .shop-view span {
+	color: var(--g-gray);
+	font-size: 13px;
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar .shop-view a {
+	color: var(--g-gray);
+}
+
+body.grupsity-design-v1 #mf-catalog-toolbar .shop-view a.current {
+	color: var(--g-ink);
+}
+
+/* Barra lateral: secciones abiertas con línea, sin cajas grises (estilo JomaShop) */
+body.grupsity-design-v1 .catalog-sidebar .widget {
+	margin: 0 0 4px;
+	padding: 18px 0 22px;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	border-radius: 0;
+	background: transparent !important;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .widget:first-child {
+	padding-top: 0;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .widget-title {
+	margin: 0 0 14px;
+	padding: 0;
+	border: 0;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .widget::after,
+body.grupsity-design-v1 .catalog-sidebar .widget-title::after {
+	display: none !important;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .product-categories li a,
+body.grupsity-design-v1 .catalog-sidebar .woocommerce-widget-layered-nav-list li a {
+	color: var(--g-ink);
+	font-size: 14px;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .product-categories li {
+	padding: 5px 0;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .product-categories li.current-cat > a,
+body.grupsity-design-v1 .catalog-sidebar .woocommerce-widget-layered-nav-list li.chosen a {
+	color: var(--g-green-ink);
+	font-weight: 700;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .woocommerce-widget-layered-nav-list .count {
+	color: var(--g-gray);
+	font-size: 12px;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .mf-input-search-nav {
+	width: 100%;
+	height: 40px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	background: var(--g-paper);
+}
+
+/* Casillas de las marcas en verde al pasar / marcar */
+body.grupsity-design-v1 .catalog-sidebar .woocommerce-widget-layered-nav-list li a::before {
+	border-color: #c4c8bf;
+	border-radius: 4px;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .woocommerce-widget-layered-nav-list li.chosen a::before,
+body.grupsity-design-v1 .catalog-sidebar .woocommerce-widget-layered-nav-list li a:hover::before {
+	border-color: var(--g-green-ink);
+}
+
+/* Las listas con scroll de Martfury (max-height 130 px) cortaban la última fila:
+   se deja aire y se marca el desplazamiento. */
+body.grupsity-design-v1 .catalog-sidebar .mf-widget-layered-nav-scroll {
+	padding-right: 6px;
+	padding-bottom: 6px;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: #c4c8bf transparent;
+}
+
+body.grupsity-design-v1 .catalog-sidebar .show-swatch .swatch-color .sub-swatch {
+	box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.15);
+}
+
+/* Filtro de precio: dos campos en fila y botón a todo el ancho */
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	margin: 0;
+	text-align: left;
+}
+
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount input[type="text"] {
+	float: none !important;
+	display: block !important;
+	width: 100% !important;
+	height: 40px;
+	margin: 0 !important;
+	padding: 0 10px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	background: var(--g-paper);
+	font-size: 13px;
+}
+
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount .button {
+	grid-column: 1 / -1;
+	float: none !important;
+	width: 100%;
+	height: 42px;
+	margin: 4px 0 0 !important;
+	padding: 0 16px;
+	border: 1px solid var(--g-ink);
+	border-radius: 8px;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount .button:hover {
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
+}
+
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount .clear,
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount .price_label {
+	grid-column: 1 / -1;
+}
+
+/* Botón del plugin PDF Catalog: estaba fuera de la columna, encima del sidebar */
+body.grupsity-design-v1 .woocommerce-pdf-catalog.link-wrapper {
+	clear: left;
+	float: left;
+	width: 25%;
+	margin: 16px 0 0;
+	padding: 0 15px;
+}
+
+body.grupsity-design-v1 .woocommerce-pdf-catalog.link-wrapper .woocommerce_pdf_catalog_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	width: 100%;
+	min-height: 44px;
+	margin: 0;
+	padding: 10px 16px;
+	border: 1px solid var(--g-line) !important;
+	border-radius: 8px;
+	background: var(--g-surface) !important;
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	font-weight: 600;
+	box-shadow: none;
+}
+
+body.grupsity-design-v1 .woocommerce-pdf-catalog.link-wrapper .woocommerce_pdf_catalog_button:hover {
+	border-color: var(--g-ink) !important;
+}
+
+/* Paginación: cuadros pequeños, el actual en verde */
+body.grupsity-design-v1 .woocommerce-pagination ul.page-numbers,
+body.grupsity-design-v1 nav.woocommerce-pagination ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	margin: 32px 0 0;
+	padding: 0;
+	border: 0 !important;
+}
+
+body.grupsity-design-v1 nav.woocommerce-pagination ul li {
+	float: none;
+	margin: 0;
+	border: 0 !important;
+}
+
+body.grupsity-design-v1 nav.woocommerce-pagination ul li .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 40px;
+	height: 40px;
+	padding: 0 12px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+}
+
+body.grupsity-design-v1 nav.woocommerce-pagination ul li .page-numbers:hover {
+	border-color: var(--g-ink);
+}
+
+body.grupsity-design-v1 nav.woocommerce-pagination ul li .page-numbers.current {
+	border-color: var(--g-green);
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 .term-description {
+	margin-top: 32px;
+	padding-top: 24px;
+	border-top: 1px solid var(--g-line);
+	color: var(--g-muted);
+	font-size: 13px;
+}
+
+/* ==========================================================================
+   Tarjetas de producto (grid): imagen sobre gris claro, sin cajas, precio en negrita
+   ========================================================================== */
+
+body.grupsity-design-v1 ul.products li.product {
+	padding-left: 8px !important;
+	padding-right: 8px !important;
+	margin-bottom: 28px;
+	border: 0 !important;
+	background: transparent;
+}
+
+body.grupsity-design-v1 ul.products li.product .product-inner {
+	height: 100%;
+	margin: 0;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: var(--g-radius);
+	background: var(--g-paper);
+	box-shadow: none !important;
+	transition: box-shadow 0.2s;
+}
+
+body.grupsity-design-v1 ul.products li.product:hover .product-inner {
+	box-shadow: 0 6px 18px rgba(17, 17, 17, 0.1) !important;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-thumbnail {
+	position: relative;
+	margin: 0 !important;
+	padding: 14px;
+	border-radius: var(--g-radius);
+	background: var(--g-thumb);
+	overflow: hidden;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-thumbnail img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	mix-blend-mode: multiply;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-details,
+body.grupsity-design-v1 ul.products li.product .mf-product-content {
+	padding: 0;
+	background: transparent;
+	text-align: left;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-details {
+	padding: 14px 12px 16px;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-price-box {
+	margin: 0;
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1 ul.products li.product .meta-brand,
+body.grupsity-design-v1 ul.products li.product .mf-vendor-name {
+	margin-bottom: 4px;
+	color: var(--g-ink);
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1 ul.products li.product .woo-loop-product__title {
+	display: -webkit-box;
+	min-height: 0;
+	margin: 0 0 10px;
+	padding: 0;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+body.grupsity-design-v1 ul.products li.product .woo-loop-product__title a {
+	color: var(--g-ink) !important;
+	letter-spacing: 0;
+}
+
+body.grupsity-design-v1 ul.products li.product .woo-loop-product__title a:hover {
+	color: var(--g-green-ink) !important;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+body.grupsity-design-v1 ul.products li.product .woocommerce-product-details__short-description {
+	display: none;
+}
+
+body.grupsity-design-v1 .mf-rating,
+body.grupsity-design-v1 .mf-rating .count {
+	color: var(--g-muted);
+	font-size: 12px;
+}
+
+/* Precio: actual en tinta y negrita; el anterior tachado en gris (JomaShop) */
+body.grupsity-design-v1 ul.products li.product .price,
+body.grupsity-design-v1 .mf-product-deals-day .price {
+	display: flex !important;
+	align-items: baseline !important;
+	flex-wrap: wrap !important;
+	gap: 2px 0;
+	margin: 0 !important;
+	color: var(--g-ink) !important;
+	/* WooCommerce separa <del> e <ins> con un &nbsp;: en flex es un elemento más (y con
+	   gap deja un hueco al inicio). Tamaño 0 y separación con márgenes. */
+	font-size: 0 !important;
+	font-weight: 800 !important;
+	line-height: 1.25;
+}
+
+body.grupsity-design-v1 ul.products li.product .price ins,
+body.grupsity-design-v1 ul.products li.product .price > .amount,
+body.grupsity-design-v1 .mf-product-deals-day .price ins {
+	order: 1;
+	margin: 0 !important;
+	color: var(--g-ink) !important;
+	text-decoration: none !important;
+	font-size: 18px !important;
+	font-weight: 800 !important;
+}
+
+body.grupsity-design-v1 ul.products li.product .price del {
+	order: 2;
+	margin: 0 0 0 8px !important;
+	color: var(--g-gray) !important;
+	font-size: 13px !important;
+	font-weight: 400 !important;
+	opacity: 1;
+}
+
+body.grupsity-design-v1 ul.products li.product .price .sale,
+body.grupsity-design-v1 .price .sale {
+	order: 3;
+	margin-left: 8px;
+	padding: 2px 8px;
+	border-radius: 50px;
+	background: var(--g-green-soft);
+	color: var(--g-green-ink);
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+/* Etiquetas: píldoras arriba a la izquierda */
+body.grupsity-design-v1 ul.products li.product .ribbons {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	z-index: 2;
+}
+
+body.grupsity-design-v1 .ribbons .ribbon {
+	position: static !important;
+	display: inline-block;
+	width: auto !important;
+	height: auto !important;
+	margin: 0 !important;
+	padding: 4px 9px !important;
+	border-radius: 50px !important;
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
+	font-size: 10px !important;
+	font-weight: 700 !important;
+	line-height: 1.3 !important;
+	letter-spacing: 0.05em;
+	text-transform: uppercase !important;
+	transform: none !important;
+}
+
+body.grupsity-design-v1 .ribbons .ribbon::before,
+body.grupsity-design-v1 .ribbons .ribbon::after {
+	display: none !important;
+}
+
+body.grupsity-design-v1 .ribbons .ribbon.featured,
+body.grupsity-design-v1 .ribbons .ribbon.onsale {
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 .ribbons .ribbon.out-of-stock {
+	background: var(--g-paper) !important;
+	color: var(--g-muted) !important;
+	box-shadow: inset 0 0 0 1px var(--g-line);
+}
+
+body.grupsity-design-v1 ul.products li.product.outofstock .mf-product-thumbnail img {
+	opacity: 0.55;
+}
+
+/* Botones del loop */
+body.grupsity-design-v1 ul.products li.product .mf-product-price-box .footer-button a.button {
+	width: 100%;
+	min-height: 42px;
+	margin-top: 12px;
+	border: 1px solid var(--g-ink);
+	border-radius: 8px;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-price-box .footer-button a.button:hover {
+	background: var(--g-green) !important;
+	border-color: var(--g-green);
+}
+
+/* ==========================================================================
+   Footer oscuro (como TeDotamos) con acentos verdes
+   ========================================================================== */
+
+body.grupsity-design-v1 .site-footer,
+body.grupsity-design-v1 .site-footer .footer-layout,
+body.grupsity-design-v1 .site-footer .footer-light {
+	background: var(--g-ink-2) !important;
+	color: rgba(255, 255, 255, 0.78) !important;
+	border: 0 !important;
+}
+
+body.grupsity-design-v1 .site-footer .footer-content {
+	padding: 56px 0 32px;
+	border: 0 !important;
+}
+
+body.grupsity-design-v1 .site-footer .footer-widgets {
+	border: 0 !important;
+	padding: 0;
+}
+
+/* Martfury dibuja una línea oscura bajo los widgets (invisible sobre su footer claro). */
+body.grupsity-design-v1 .site-footer .footer-widgets::after {
+	display: none !important;
+}
+
+body.grupsity-design-v1 .site-footer,
+body.grupsity-design-v1 .site-footer p,
+body.grupsity-design-v1 .site-footer a,
+body.grupsity-design-v1 .site-footer h3,
+body.grupsity-design-v1 .site-footer h4,
+body.grupsity-design-v1 .site-footer .textwidget {
+}
+
+/* Subrayado animado de los enlaces de Martfury: verde en lugar de negro. */
+body.grupsity-design-v1 .site-footer a::before {
+	background-color: var(--g-green) !important;
+}
+
+body.grupsity-design-v1 .site-footer .social-links-list {
+	margin-left: 0 !important;
+}
+
+body.grupsity-design-v1 .site-footer .widget-title {
+	margin: 0 0 18px !important;
+	padding: 0;
+	border: 0;
+	color: var(--g-paper) !important;
+	font-size: 13px !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1 .site-footer p,
+body.grupsity-design-v1 .site-footer .textwidget {
+	color: rgba(255, 255, 255, 0.78) !important;
+	font-size: 14px;
+	line-height: 1.7;
+}
+
+body.grupsity-design-v1 .site-footer .primary-color,
+body.grupsity-design-v1 .site-footer h3.primary-color {
+	color: var(--g-green) !important;
+	font-size: 22px !important;
+	font-weight: 800 !important;
+}
+
+body.grupsity-design-v1 .site-footer a {
+	color: rgba(255, 255, 255, 0.78) !important;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+body.grupsity-design-v1 .site-footer a:hover {
+	color: var(--g-green) !important;
+}
+
+body.grupsity-design-v1 .site-footer .widget_nav_menu li {
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+body.grupsity-design-v1 .site-footer .social-links-list a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	margin: 0 6px 0 0;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	color: var(--g-paper) !important;
+}
+
+body.grupsity-design-v1 .site-footer .social-links-list a:hover {
+	border-color: var(--g-green);
+	background: var(--g-green);
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 .site-footer .social-links-list a svg {
+	width: 14px;
+	height: 14px;
+	fill: currentColor;
+}
+
+/* Bloques de enlaces vacíos: dejaban líneas y 130 px de espacio en blanco. */
+body.grupsity-design-v1 .site-footer .footer-links:not(:has(li)),
+body.grupsity-design-v1 .site-footer .footer-info:not(:has(*)),
+body.grupsity-design-v1 .site-footer .col-footer-payments:empty {
+	display: none !important;
+}
+
+body.grupsity-design-v1 .site-footer .footer-links {
+	border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.grupsity-design-v1 .site-footer .footer-bottom {
+	margin: 0;
+	padding: 20px 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+body.grupsity-design-v1 .site-footer .footer-bottom .footer-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 0;
+	border: 0 !important;
+}
+
+body.grupsity-design-v1 .site-footer .footer-copyright,
+body.grupsity-design-v1 .site-footer .footer-bottom .text {
+	color: rgba(255, 255, 255, 0.6) !important;
+	font-size: 12px;
+}
+
+/* Iconos de medios de pago sobre fondo blanco para que se lean en el footer oscuro */
+body.grupsity-design-v1 .site-footer .footer-payments img {
+	padding: 4px 6px;
+	border-radius: 6px;
+	background: var(--g-paper);
+}
+
+/* Cajas de boletín y servicios antes del footer (layout 4) */
+body.grupsity-design-v1 .footer-newsletter input,
+body.grupsity-design-v1 .footer-newsletter .newsletter-form input {
+	height: 48px;
+	border: 1px solid var(--g-line);
+	border-radius: var(--g-radius);
+}
+
+/* Info vacía del footer (Martfury pinta su caja aunque no tenga texto) y bloque del boletín */
+body.grupsity-design-v1 .site-footer .footer-info:not(:has(.info-content *)) {
+	display: none !important;
+}
+
+body.grupsity-design-v1 .footer-newsletter {
+	border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.grupsity-design-v1 .footer-newsletter h3,
+body.grupsity-design-v1 .footer-newsletter .newsletter-content {
+	color: #fff !important;
+}
+
+/* Volver arriba */
+body.grupsity-design-v1 #scroll-top,
+body.grupsity-design-v1 .btn-scroll-to-top,
+body.grupsity-design-v1 .back-to-top {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: var(--g-ink) !important;
+	color: var(--g-green) !important;
+}
+
+
+/* ==========================================================================
+   Móvil y tablet
+   ========================================================================== */
+
+@media (max-width: 991px) {
+	body.grupsity-design-v1 #site-header .header-extras .product-extra-search {
+		display: none;
+	}
+
+	body.grupsity-design-v1 #site-header .header-extras {
+		justify-content: flex-end;
+	}
+
+	body.grupsity-design-v1 #site-header .extras-menu .login-text {
+		display: none;
+	}
+
+	body.grupsity-design-v1 .mobile-menu {
+		padding: 10px 0;
+		background: var(--g-surface);
+		border-bottom: 1px solid var(--g-line);
+	}
+
+	body.grupsity-design-v1 .mobile-menu .mobile-menu-row {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	body.grupsity-design-v1 .mobile-menu .product-extra-search {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	body.grupsity-design-v1 .mobile-menu .products-search .psearch-content {
+		display: flex;
+		height: 44px;
+		border: 1.5px solid var(--g-line);
+		border-radius: 8px;
+		background: #fff;
+	}
+
+	body.grupsity-design-v1 .mobile-menu .products-search .product-cat {
+		display: none;
+	}
+
+	body.grupsity-design-v1 .mobile-menu .products-search .search-field {
+		height: 41px;
+		line-height: 41px;
+		border: 0;
+		background: transparent;
+		font-size: 14px;
+	}
+
+	body.grupsity-design-v1 #site-header .mobile-menu .products-search .search-submit {
+		height: 41px;
+		min-width: 0;
+		padding: 0 16px;
+		border-radius: 6.5px;
+		background: var(--g-green) !important;
+		color: var(--g-ink) !important;
+	}
+
+	body.grupsity-design-v1 .woocommerce-pdf-catalog.link-wrapper {
+		float: none;
+		width: 100%;
+	}
+}
+
+@media (max-width: 767px) {
+	/* Franja superior: solo el primer aviso */
+	body.grupsity-design-v1 .gv1-topbar__items li + li {
+		display: none;
+	}
+
+	body.grupsity-design-v1 #site-header .header-main {
+		padding: 12px 0;
+	}
+
+	body.grupsity-design-v1 #site-header .header-logo .logo img {
+		max-height: 44px;
+	}
+
+	body.grupsity-design-v1 .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title {
+		font-size: 20px !important;
+	}
+
+	body.grupsity-design-v1 ul.products li.product .price ins,
+	body.grupsity-design-v1 ul.products li.product .price > .amount {
+		font-size: 16px !important;
+	}
+
+	body.grupsity-design-v1.home .site-content > .container-fluid {
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+}
