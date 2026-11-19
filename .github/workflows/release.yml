@@ -1,0 +1,36 @@
+# Publica una release del tema al subir un tag X.Y.Z.
+# El sitio (Apariencia → Grupsity) detecta la release y la instala con el actualizador de WordPress.
+#
+#   npm run push-v -- patch|minor|major   (sube la versión, commit, tag X.Y.Z y push)
+name: release
+
+on:
+  push:
+    tags: ['[0-9]*.[0-9]*.[0-9]*', 'v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verificar que el tag coincide con style.css
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VERSION="$(grep -m1 '^Version:' style.css | sed 's/Version:[[:space:]]*//' | tr -d '\r')"
+          echo "tag=$TAG style.css=$VERSION"
+          test "$TAG" = "$VERSION" || { echo "::error::El tag ($TAG) no coincide con Version de style.css ($VERSION)"; exit 1; }
+
+      - name: Construir grupsity.zip (carpeta grupsity/ en la raíz)
+        run: |
+          mkdir -p /tmp/build/grupsity
+          rsync -a --exclude '.git' --exclude '.github' --exclude '.gitignore' --exclude '/scripts' --exclude '/package.json' ./ /tmp/build/grupsity/
+          (cd /tmp/build && zip -rqX "$GITHUB_WORKSPACE/grupsity.zip" grupsity)
+
+      - name: Crear release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" grupsity.zip --title "$GITHUB_REF_NAME" --generate-notes
