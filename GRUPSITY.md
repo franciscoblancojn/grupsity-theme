@@ -22,7 +22,7 @@ Se actualiza solo desde nuestro repo: `https://github.com/franciscoblancojn/grup
 | `inc/grupsity/class-updater.php` | Actualizaciones desde GitHub Releases (token desde `wp-config.php`, nunca en el código); el intervalo de caché se configura en la página de admin |
 | `inc/grupsity/class-admin.php` | Página Apariencia → Grupsity: actualizaciones, diseño, migración, información y avisos |
 | `inc/grupsity/class-designs.php` | Registro del selector de diseño, `body_class`, carga condicional del CSS y purga de caché |
-| `css/design-jomashop.css` | Diseño inspirado en JomaShop (Inter, blanco/negro, rojo de oferta, amarillo, header y footer negros, tarjetas grises) |
+| `css/design-jomashop.css` | Diseño con la forma de JomaShop y los colores de Grupsity (verde `#93b700`, tinta, blanco; Inter; footer oscuro) |
 | `inc/grupsity/class-migration.php` | Copia la configuración del Customizer de Martfury al activar y botones con nonce en la pestaña Migración |
 | `.github/workflows/release.yml` | Construye `grupsity.zip` y crea la release al subir un tag |
 | `CHANGELOG.md` | Registro de cambios (Keep a Changelog) |
@@ -92,10 +92,15 @@ Todo se guarda en `grupsity_options` (`Grupsity_Admin::OPTION`). Opciones nuevas
 `grupsity_options['design']` admite:
 
 - `martfury` (por defecto): el sitio como está, sin CSS añadido.
-- `jomashop`: estilo inspirado en la portada de https://www.jomashop.com/ (noviembre 2026),
-  aplicado sobre el HTML de Martfury. Referencias observadas: Inter 14 px, blanco y negro,
-  gris `#424d5d`, rojo de oferta `#cc3000`, amarillo de badge `#fee801`, barra superior negra,
-  buscador de 52 px con radio 10 px, menú en mayúsculas, tarjetas sobre `#f7f7f7` y footer negro.
+- `jomashop`: la **forma** de https://www.jomashop.com/ (noviembre 2026) con los **colores de
+  Grupsity**, aplicada sobre el HTML de Martfury. De JomaShop: Inter 14 px (se encola desde
+  Google Fonts), franja superior oscura, buscador de 52 px con radio 10 px, menú en mayúsculas,
+  filtros laterales abiertos con línea, tarjetas sin bordes con imagen sobre `#f7f7f7`, precio en
+  negrita con el anterior tachado y footer oscuro. De Grupsity: verde `#93b700` (botones, página
+  actual, etiquetas «Hot», cabecera del layout 4), tinta `#111`/`#1c2014` y blanco.
+  Contraste: sobre verde el texto va en tinta (el blanco da 2,3:1); el verde como texto sobre
+  blanco usa `#5c7300`. Cubre el layout 4 (configuración de Grupsity) y el layout 1 (el que sale
+  si faltan los theme_mods).
 
 `Grupsity_Designs` añade la clase `grupsity-design-<id>` al `body` y carga
 `css/design-<id>.css` con prioridad 100 (después de Martfury, WooCommerce, Elementor y
@@ -110,7 +115,12 @@ falta lógica, una clase propia cargada desde `bootstrap.php`.
 En grupsity.com la carpeta activa es **`grupsity-theme-master`** (no `grupsity`). El body
 tiene `wp-theme-grupsity-theme-master` y, con el diseño activo, `grupsity-design-jomashop`;
 la hoja se sirve desde `/wp-content/themes/grupsity-theme-master/css/design-jomashop.css`.
-Si el CSS no se ve, comprobar esos tres puntos antes de mirar la caché. La home es una
+Si el CSS no se ve, comprobar esos tres puntos antes de mirar la caché.
+
+Cada carpeta guarda su propio `theme_mods_<carpeta>`. Si la home o las categorías salen con el
+header por defecto de Martfury (layout 1, «I'm shopping for…», «Shop By Department»,
+«Copyright © 2020», amarillo), a la carpeta activa le falta la configuración: Apariencia →
+Grupsity → Migración lo indica y permite copiarla (escritura en el sitio: confirmar antes). La home es una
 plantilla de Elementor: el diseño JomaShop es una capa de estilos sobre ese HTML, no una
 sustitución de la portada.
 

@@ -21,7 +21,15 @@ class Grupsity_Designs {
 
 	const DESIGNS = array(
 		'martfury'  => 'Martfury (diseño actual)',
-		'jomashop'  => 'JomaShop (inspirado en jomashop.com)',
+		'jomashop'  => 'JomaShop (forma de jomashop.com, colores de Grupsity)',
+	);
+
+	/**
+	 * Fuentes de Google que necesita cada diseño (el sitio ya carga otras de Google Fonts).
+	 * Sin esto el CSS pedía Inter pero el navegador caía en Arial/Helvetica.
+	 */
+	const FONTS = array(
+		'jomashop' => 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap',
 	);
 
 	public static function init() {
@@ -55,10 +63,16 @@ class Grupsity_Designs {
 			return;
 		}
 
+		$deps = array( 'grupsity' );
+		if ( isset( self::FONTS[ $design ] ) ) {
+			wp_enqueue_style( 'grupsity-design-' . $design . '-fonts', self::FONTS[ $design ], array(), null );
+			$deps[] = 'grupsity-design-' . $design . '-fonts';
+		}
+
 		wp_enqueue_style(
 			'grupsity-design-' . $design,
 			get_template_directory_uri() . '/' . $file,
-			array( 'grupsity' ),
+			$deps,
 			wp_get_theme()->get( 'Version' )
 		);
 	}

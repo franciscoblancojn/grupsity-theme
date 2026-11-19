@@ -1,41 +1,59 @@
 /*!
- * Grupsity: diseño "JomaShop" (inspirado en https://www.jomashop.com/).
+ * Grupsity: diseño "JomaShop" con los colores de Grupsity.
  *
  * Se aplica sólo cuando grupsity_options['design'] = 'jomashop' (body
- * .grupsity-design-jomashop). No copia archivos ni marcas de JomaShop: reproduce
- * las decisiones visuales observadas en su portada en noviembre de 2026:
- * tipografía Inter, blanco/negro, acentos rojo de oferta y amarillo de badge,
- * barra superior negra, buscador centrado de 52 px con esquinas redondeadas,
- * menú de categorías en mayúsculas, tarjetas de producto sobre gris claro y
- * footer negro. Todo sobre el HTML existente de Martfury 3.2.8.
+ * .grupsity-design-jomashop). Toma la FORMA de https://www.jomashop.com/ (franja
+ * superior oscura, cabecera con buscador grande redondeado, menú en mayúsculas,
+ * filtros limpios en la barra lateral, tarjetas de producto sin cajas, precio en
+ * negrita, footer oscuro) y los COLORES de Grupsity (verde #93b700 del Customizer,
+ * tinta casi negra y blanco). No copia archivos ni marcas de JomaShop.
+ *
+ * Reglas de contraste (WCAG AA):
+ * - Sobre verde #93b700 el texto va en tinta (#111), nunca en blanco (2,3:1).
+ * - Texto verde sobre blanco usa --g-green-ink (#5c7300, 5,2:1).
+ * - Sobre el footer oscuro el verde #93b700 sí se puede usar (8:1).
+ *
+ * Funciona con las dos cabeceras de Martfury que hay en el sitio: layout 4
+ * (configuración de Grupsity: logo propio, cabecera verde) y layout 1 (la que sale
+ * si faltan los theme_mods: logo genérico de Martfury, textos en inglés).
  */
 
 body.grupsity-design-jomashop {
-	/* Grupsity: paleta y tipografía del diseño JomaShop */
-	--joma-ink: #000000;
-	--joma-paper: #ffffff;
-	--joma-muted: #424d5d;
-	--joma-gray: #767676;
-	--joma-line: #e8e8e8;
-	--joma-surface: #f5f5f5;
-	--joma-thumb: #f7f7f7;
-	--joma-sale: #cc3000;
-	--joma-badge: #fee801;
-	--joma-green: #2a8217;
-	--joma-radius: 10px;
+	/* Grupsity: paleta */
+	--g-green: #93b700;
+	--g-green-hover: #a6cc0f;
+	--g-green-ink: #5c7300;
+	--g-green-soft: #f3f8e1;
+	--g-ink: #111111;
+	--g-ink-2: #1c2014;
+	--g-muted: #4a5260;
+	--g-gray: #6f747b;
+	--g-line: #e5e7e2;
+	--g-surface: #f6f7f3;
+	--g-thumb: #f7f7f7;
+	--g-paper: #ffffff;
+	--g-radius: 10px;
+	--g-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-	color: var(--joma-ink);
-	background: var(--joma-paper);
+	/* Grupsity: variables de Martfury. Si faltan los theme_mods (Customizer), Martfury
+	   vuelve a su amarillo #fcb800; así el diseño mantiene el verde de la marca. */
+	--mf-primary-color: var(--g-green);
+	--mf-background-primary-color: var(--g-green);
+	--mf-border-primary-color: var(--g-green);
+	--mf-background-primary-text-color: var(--g-ink);
+
+	font-family: var(--g-font);
+	font-size: 14px;
+	color: var(--g-ink);
+	background: var(--g-paper);
 	-webkit-font-smoothing: antialiased;
 }
 
-body.grupsity-design-jomashop,
 body.grupsity-design-jomashop button,
 body.grupsity-design-jomashop input,
 body.grupsity-design-jomashop select,
 body.grupsity-design-jomashop textarea {
-	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	font-family: var(--g-font);
 }
 
 body.grupsity-design-jomashop a {
@@ -43,105 +61,156 @@ body.grupsity-design-jomashop a {
 }
 
 body.grupsity-design-jomashop a:hover {
-	color: var(--joma-sale);
+	color: var(--g-green-ink);
 }
 
-/* Grupsity: barra superior y promoción, negras con texto blanco en mayúsculas */
+body.grupsity-design-jomashop :focus-visible {
+	outline: 2px solid var(--g-green-ink);
+	outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Franja superior (como la barra negra de JomaShop, en tinta con acento verde)
+   ========================================================================== */
+
 body.grupsity-design-jomashop #topbar.topbar,
 body.grupsity-design-jomashop .topbar.topbar-dark,
 body.grupsity-design-jomashop .topbar.topbar-light,
-body.grupsity-design-jomashop #top-promotion.top-promotion,
-body.grupsity-design-jomashop .top-promotion.style-1,
-body.grupsity-design-jomashop .top-promotion.style-2 {
-	background: var(--joma-ink) !important;
-	color: var(--joma-paper) !important;
+body.grupsity-design-jomashop .header-layout-4 .topbar:not(.header-bar),
+body.grupsity-design-jomashop #top-promotion.top-promotion {
+	background: var(--g-ink-2) !important;
+	color: var(--g-paper) !important;
 	border: 0 !important;
 }
 
-body.grupsity-design-jomashop .topbar,
-body.grupsity-design-jomashop .top-promotion {
+body.grupsity-design-jomashop #topbar .topbar-row {
+	display: flex;
+	align-items: center;
+	min-height: 36px;
+}
+
+body.grupsity-design-jomashop #topbar,
+body.grupsity-design-jomashop #top-promotion {
 	font-size: 12px;
 	line-height: 1.4;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
+	letter-spacing: 0.03em;
 }
 
-body.grupsity-design-jomashop .topbar a,
-body.grupsity-design-jomashop .topbar .topbar-row,
-body.grupsity-design-jomashop .top-promotion a,
-body.grupsity-design-jomashop .top-promotion .promo-inner,
-body.grupsity-design-jomashop .top-promotion .promotion-content,
-body.grupsity-design-jomashop .top-promotion .promo-link .link {
-	color: var(--joma-paper) !important;
+body.grupsity-design-jomashop #topbar a,
+body.grupsity-design-jomashop #topbar .widget,
+body.grupsity-design-jomashop #topbar .textwidget,
+body.grupsity-design-jomashop #top-promotion a,
+body.grupsity-design-jomashop #top-promotion .promotion-content {
+	color: var(--g-paper) !important;
+	font-size: 12px !important;
 }
 
-body.grupsity-design-jomashop .top-promotion .promotion-content {
-	min-height: 35px;
-	padding: 8px 0;
+/* El enlace a Tedotamos trae color negro en línea (style="color: black"). */
+body.grupsity-design-jomashop #topbar #lang_sel a {
+	color: var(--g-green) !important;
 }
 
-body.grupsity-design-jomashop .top-promotion .promo-link .link {
-	text-decoration: underline;
-	text-underline-offset: 3px;
+body.grupsity-design-jomashop #topbar a:hover {
+	color: var(--g-green) !important;
 }
 
-body.grupsity-design-jomashop .top-promotion .close {
-	color: var(--joma-paper);
-	opacity: 0.8;
+/* Los separadores "|" de Martfury son un ::after gris de 2 px por widget. */
+body.grupsity-design-jomashop #topbar .widget::after {
+	width: 1px;
+	background-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Grupsity: cabecera blanca, buscador centrado de 52 px y botones circulares */
-body.grupsity-design-jomashop .site-header {
-	background: var(--joma-paper);
-	border-bottom: 1px solid var(--joma-line);
-	box-shadow: none;
-}
-
-body.grupsity-design-jomashop .site-header .header-main {
-	padding: 26px 0;
-}
-
-body.grupsity-design-jomashop .site-header .header-row {
-	align-items: center;
-}
-
-/* Grupsity: la imagen de logo que trae el sitio es la del tema Martfury original
-   (está repetida en las carpetas martfury y grupsity-theme-master). En el diseño
-   JomaShop se sustituye por el nombre del sitio como wordmark, como hace JomaShop. */
-body.grupsity-design-jomashop .site-header .header-logo .logo,
-body.grupsity-design-jomashop .site-header .header-logo .logo img.site-logo,
-body.grupsity-design-jomashop .site-header .header-logo .logo img.sticky-logo {
+/* Widgets de HTML vacíos que solo dejan un separador suelto. */
+body.grupsity-design-jomashop #topbar .widget_custom_html:has(.textwidget:empty) {
 	display: none !important;
 }
 
-body.grupsity-design-jomashop .site-header .header-logo .site-title {
-	display: block !important;
-	height: auto !important;
-	max-height: none !important;
-	margin: 0 !important;
-	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-	font-size: 30px !important;
-	font-weight: 700 !important;
-	line-height: 1.1 !important;
-	letter-spacing: -0.04em !important;
-	text-transform: none !important;
+/* ==========================================================================
+   Cabecera: logo, buscador grande redondeado, iconos
+   ========================================================================== */
+
+body.grupsity-design-jomashop .site-header {
+	border-bottom: 1px solid var(--g-line);
+	box-shadow: none;
 }
 
-body.grupsity-design-jomashop .site-header .header-logo .site-title a {
-	color: var(--joma-ink) !important;
+/* Layout 4 (configuración de Grupsity): cabecera verde de la marca. */
+body.grupsity-design-jomashop .site-header.header-dark,
+body.grupsity-design-jomashop.header-layout-4 .site-header,
+body.grupsity-design-jomashop.header-layout-4 .site-header .header-main {
+	background: var(--g-green) !important;
+	border-bottom: 0;
+}
+
+/* Layout 1 (sin theme_mods): cabecera blanca. */
+body.grupsity-design-jomashop.header-layout-1 .site-header {
+	background: var(--g-paper);
+}
+
+body.grupsity-design-jomashop .site-header .header-main {
+	padding: 20px 0;
+}
+
+body.grupsity-design-jomashop .site-header .header-row {
+	display: flex;
+	align-items: center;
+}
+
+body.grupsity-design-jomashop .site-header .header-logo {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+body.grupsity-design-jomashop .site-header .header-logo .logo img {
+	max-height: 64px;
+	width: auto;
+}
+
+/* Logo genérico de Martfury (images/logo/logo.png del tema): sale cuando faltan los
+   theme_mods. Se oculta y se muestra el nombre del sitio como wordmark. El logo
+   subido a Medios (uploads/...) se respeta. */
+body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .logo {
+	display: none !important;
+}
+
+body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title,
+body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-description {
+	display: block !important;
+	text-indent: 0 !important;
+	line-height: 1.15 !important;
+	margin: 0 !important;
+}
+
+body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title {
+	font-family: var(--g-font) !important;
+	font-size: 28px !important;
+	font-weight: 800 !important;
+	letter-spacing: -0.03em !important;
+}
+
+body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title a {
+	color: var(--g-ink) !important;
 	text-decoration: none !important;
 }
 
-body.grupsity-design-jomashop .site-header .header-logo .site-description {
-	display: block !important;
-	height: auto !important;
-	max-height: none !important;
-	margin: 4px 0 0 !important;
-	color: var(--joma-gray) !important;
-	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-	font-size: 11px !important;
-	font-weight: 400 !important;
-	line-height: 1.3 !important;
+body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title a::after {
+	content: "";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin-left: 3px;
+	border-radius: 50%;
+	background: var(--g-green);
+}
+
+body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-description {
+	max-width: 260px;
+	margin-top: 4px !important;
+	color: var(--g-gray) !important;
+	font-family: var(--g-font) !important;
+	font-size: 10px !important;
+	font-weight: 500 !important;
 	letter-spacing: 0.04em !important;
 	text-transform: uppercase !important;
 }
@@ -149,13 +218,16 @@ body.grupsity-design-jomashop .site-header .header-logo .site-description {
 body.grupsity-design-jomashop .site-header .header-extras {
 	display: flex;
 	align-items: center;
-	gap: 24px;
+	gap: 28px;
 }
 
+/* Buscador: 52 px, radio 10 px, como el de JomaShop */
 body.grupsity-design-jomashop .site-header .header-extras .product-extra-search {
 	flex: 1 1 auto;
-	max-width: 840px;
-	margin: 0 auto;
+	min-width: 0;
+	max-width: 760px;
+	margin: 0;
+	padding: 0;
 }
 
 body.grupsity-design-jomashop .product-extra-search .hot-words-wrapper {
@@ -164,22 +236,38 @@ body.grupsity-design-jomashop .product-extra-search .hot-words-wrapper {
 
 body.grupsity-design-jomashop .product-extra-search .products-search .psearch-content {
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	height: 52px;
-	border: 1px solid var(--joma-ink);
-	border-radius: var(--joma-radius);
-	background: var(--joma-paper);
+	border: 2px solid var(--g-ink);
+	border-radius: var(--g-radius);
+	background: var(--g-paper);
 	overflow: hidden;
 }
 
+body.grupsity-design-jomashop.header-layout-4 .product-extra-search .products-search .psearch-content {
+	border-color: var(--g-paper);
+}
+
+body.grupsity-design-jomashop .products-search .product-cat {
+	display: flex;
+	align-items: center;
+	flex: 0 0 auto;
+	width: auto;
+	border-right: 1px solid var(--g-line) !important;
+}
+
 body.grupsity-design-jomashop .products-search .product-cat,
-body.grupsity-design-jomashop .products-search .product-cat-label,
-body.grupsity-design-jomashop .products-search .product-cat-dd {
-	background: transparent !important;
-	color: var(--joma-ink) !important;
-	border: 0 !important;
+body.grupsity-design-jomashop .products-search .product-cat-label {
+	height: 100%;
+	background: var(--g-surface) !important;
+	color: var(--g-ink) !important;
+	border-top: 0 !important;
+	border-bottom: 0 !important;
+	border-left: 0 !important;
 	box-shadow: none;
-	font-size: 14px;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 48px;
 }
 
 body.grupsity-design-jomashop .products-search .search-wrapper {
@@ -189,512 +277,1123 @@ body.grupsity-design-jomashop .products-search .search-wrapper {
 
 body.grupsity-design-jomashop .product-extra-search .search-field,
 body.grupsity-design-jomashop .products-search .search-wrapper .search-field {
-	height: 50px;
-	line-height: 50px;
+	width: 100%;
+	height: 48px;
+	line-height: 48px;
 	padding: 0 16px;
 	border: 0 !important;
 	box-shadow: none !important;
 	background: transparent !important;
-	color: var(--joma-ink) !important;
-	font-size: 16px;
+	color: var(--g-ink) !important;
+	font-size: 15px;
 }
 
 body.grupsity-design-jomashop .product-extra-search .search-field::placeholder {
-	color: var(--joma-gray);
+	color: var(--g-gray);
+	opacity: 1;
 }
 
 body.grupsity-design-jomashop .product-extra-search .search-submit {
-	width: 52px;
-	height: 50px;
-	padding: 0;
+	flex: 0 0 auto;
+	height: 48px;
+	min-width: 110px;
+	padding: 0 22px;
 	border: 0 !important;
-	border-radius: 0 var(--joma-radius) var(--joma-radius) 0;
-	background: var(--joma-ink) !important;
-	color: var(--joma-paper) !important;
-	font-size: 18px;
+	border-radius: 0;
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
 }
 
+body.grupsity-design-jomashop.header-layout-1 .product-extra-search .search-submit {
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-jomashop .product-extra-search .search-submit:hover {
+	background: var(--g-ink-2) !important;
+	color: var(--g-green) !important;
+}
+
+/* Iconos de cabecera: carrito, deseos, cuenta, teléfono */
 body.grupsity-design-jomashop .site-header ul.extras-menu {
 	display: flex;
 	align-items: center;
-	gap: 14px;
+	flex: 0 0 auto;
+	gap: 18px;
 	margin: 0 0 0 auto;
+	padding: 0;
 }
 
 body.grupsity-design-jomashop .site-header ul.extras-menu > li.extra-menu-item {
 	float: none;
-	margin: 0;
-	padding: 0;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body.grupsity-design-jomashop .site-header ul.extras-menu > li.extra-menu-item::before,
+body.grupsity-design-jomashop .site-header ul.extras-menu > li.extra-menu-item::after {
+	display: none !important;
 }
 
 body.grupsity-design-jomashop .extras-menu .extra-menu-item > a {
+	position: relative;
 	display: inline-flex;
 	align-items: center;
-	justify-content: center;
-	width: 38px;
-	height: 38px;
-	padding: 0;
-	border: 1px solid var(--joma-line);
-	border-radius: 50%;
-	background: transparent;
-	color: var(--joma-ink);
-	font-size: 16px;
+	gap: 10px;
+	color: var(--g-ink) !important;
+	line-height: 1.2;
 }
 
-body.grupsity-design-jomashop .extras-menu .extra-menu-item > a:hover {
-	border-color: var(--joma-ink);
-	background: var(--joma-surface);
-	color: var(--joma-ink);
+body.grupsity-design-jomashop .extras-menu .extra-menu-item .extra-icon {
+	font-size: 26px;
+	color: var(--g-ink) !important;
 }
 
-body.grupsity-design-jomashop .extras-menu .login-text,
-body.grupsity-design-jomashop .extras-menu .hotline-content {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	clip: rect(0 0 0 0);
+body.grupsity-design-jomashop .extras-menu .extra-menu-item > a:hover,
+body.grupsity-design-jomashop .extras-menu .extra-menu-item > a:hover .extra-icon {
+	color: var(--g-green-ink) !important;
+}
+
+body.grupsity-design-jomashop.header-layout-4 .extras-menu .extra-menu-item > a:hover,
+body.grupsity-design-jomashop.header-layout-4 .extras-menu .extra-menu-item > a:hover .extra-icon {
+	color: var(--g-paper) !important;
+}
+
+body.grupsity-design-jomashop .extras-menu .menu-item-hotline .hotline-content {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+
+body.grupsity-design-jomashop .extras-menu .menu-item-hotline .hotline-content label {
+	margin: 0;
+	color: var(--g-ink);
+	font-size: 11px;
+	font-weight: 500;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	opacity: 0.8;
+}
+
+body.grupsity-design-jomashop .extras-menu .menu-item-hotline .hotline-content span {
+	color: var(--g-ink);
+	font-size: 15px;
+	font-weight: 700;
+}
+
+body.grupsity-design-jomashop .extras-menu .login-text {
+	color: var(--g-ink);
+	font-size: 13px;
+	font-weight: 600;
 }
 
 body.grupsity-design-jomashop .extras-menu .mini-item-counter,
-body.grupsity-design-jomashop .extras-menu .mini-item-counter--wishlist,
-body.grupsity-design-jomashop .extras-menu .notification-badge {
+body.grupsity-design-jomashop .extras-menu .mini-item-counter--wishlist {
+	position: absolute;
+	top: -6px !important;
+	right: -10px !important;
+	left: auto !important;
 	min-width: 18px;
 	height: 18px;
 	padding: 0 4px;
+	border: 2px solid var(--g-paper);
 	border-radius: 50px;
-	background: var(--joma-badge) !important;
-	color: var(--joma-ink) !important;
-	font-size: 11px;
-	line-height: 18px;
-	font-weight: 600;
-}
-
-/* Grupsity: menú principal en mayúsculas, como la navegación de JomaShop */
-body.grupsity-design-jomashop .site-header .main-menu {
-	border-top: 1px solid var(--joma-line);
-	border-bottom: 1px solid var(--joma-line);
-}
-
-body.grupsity-design-jomashop .site-header .primary-nav.nav > ul > li > a,
-body.grupsity-design-jomashop .site-header .primary-nav.nav .menu-item > a {
-	padding: 14px 12px;
-	color: var(--joma-ink);
-	font-size: 13px;
-	font-weight: 600;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-}
-
-body.grupsity-design-jomashop .site-header .primary-nav.nav > ul > li > a:hover,
-body.grupsity-design-jomashop .site-header .primary-nav.nav .menu-item:hover > a {
-	color: var(--joma-ink);
-	background: var(--joma-surface);
-}
-
-body.grupsity-design-jomashop .site-header .primary-nav.nav .fa,
-body.grupsity-design-jomashop .site-header .primary-nav.nav .icon-angle-down {
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
 	font-size: 10px;
+	font-weight: 700;
+	line-height: 14px;
+	box-sizing: content-box;
 }
 
-/* Grupsity: este home no tiene #topbar ni #top-promotion (están desactivados en el
-   Customizer). La barra que sí existe es la del teléfono dentro del menú: la pintamos
-   negra, como la franja superior de JomaShop, para que el cambio sea visible. */
-body.grupsity-design-jomashop .site-header .header-bar.topbar {
-	background: var(--joma-ink) !important;
-	color: var(--joma-paper) !important;
-	border: 0 !important;
-	padding: 6px 0;
-	font-size: 12px;
-	letter-spacing: 0.04em;
+body.grupsity-design-jomashop.header-layout-1 .extras-menu .mini-item-counter,
+body.grupsity-design-jomashop.header-layout-1 .extras-menu .mini-item-counter--wishlist {
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+/* Menú de categorías (layout 4: hamburguesa junto al logo) */
+body.grupsity-design-jomashop .site-header .d-department .cats-menu-title,
+body.grupsity-design-jomashop .site-header .d-department .cats-menu-title .icon-menu {
+	color: var(--g-ink) !important;
+}
+
+/* ==========================================================================
+   Barra de navegación (layout 1): menú en mayúsculas, como JomaShop
+   ========================================================================== */
+
+body.grupsity-design-jomashop .site-header .main-menu {
+	background: var(--g-paper);
+	border-top: 1px solid var(--g-line);
+	border-bottom: 0;
+}
+
+body.grupsity-design-jomashop .site-header .main-menu .header-row {
+	min-height: 48px;
+}
+
+body.grupsity-design-jomashop .site-header .main-menu .i-product-cats {
+	align-self: stretch;
+	display: flex;
+	align-items: center;
+}
+
+body.grupsity-design-jomashop .site-header .main-menu .products-cats-menu {
+	width: 100%;
+	height: 100%;
+}
+
+body.grupsity-design-jomashop .site-header .main-menu .products-cats-menu .cats-menu-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	height: 48px;
+	padding: 0 16px;
+	background: var(--g-green);
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
 	text-transform: uppercase;
 }
 
-body.grupsity-design-jomashop .site-header .header-bar.topbar a,
-body.grupsity-design-jomashop .site-header .header-bar.topbar .topbar-sidebar,
-body.grupsity-design-jomashop .site-header .header-bar.topbar span {
-	color: var(--joma-paper) !important;
-	font-size: 12px;
+body.grupsity-design-jomashop .site-header .main-menu .products-cats-menu .cats-menu-title i,
+body.grupsity-design-jomashop .site-header .main-menu .products-cats-menu .cats-menu-title .text {
+	color: var(--g-ink) !important;
 }
 
-/* Grupsity: el menú "Comprar por departamento" no usa .primary-nav, sino
-   .products-cats-menu; sin estos selectores seguía con el estilo original. */
-body.grupsity-design-jomashop .products-cats-menu .toggle-product-cats.nav > ul > li > a,
-body.grupsity-design-jomashop .products-cats-menu ul.menu > li > a,
-body.grupsity-design-jomashop .site-header .products-cats-menu a.dropdown-toggle {
-	color: var(--joma-ink) !important;
+body.grupsity-design-jomashop .products-cats-menu .toggle-product-cats {
+	border: 1px solid var(--g-line);
+	border-top: 0;
+	border-radius: 0 0 var(--g-radius) var(--g-radius);
+	background: var(--g-paper);
+	box-shadow: 0 12px 24px rgba(17, 17, 17, 0.08);
+}
+
+body.grupsity-design-jomashop .products-cats-menu .toggle-product-cats ul.menu > li > a,
+body.grupsity-design-jomashop .products-cats-menu ul.menu > li > a {
+	color: var(--g-ink) !important;
 	font-size: 13px !important;
 	font-weight: 600 !important;
 	letter-spacing: 0.04em !important;
 	text-transform: uppercase !important;
 }
 
-body.grupsity-design-jomashop .products-cats-menu ul.dropdown-submenu a,
-body.grupsity-design-jomashop .products-cats-menu li.menu-item a {
-	font-size: 12px !important;
-	text-transform: uppercase !important;
+body.grupsity-design-jomashop .products-cats-menu ul.dropdown-submenu a {
+	color: var(--g-muted) !important;
+	font-size: 13px !important;
+	text-transform: none !important;
 }
 
-/* Grupsity: títulos y migas de pan */
+body.grupsity-design-jomashop .products-cats-menu li.menu-item a:hover {
+	color: var(--g-green-ink) !important;
+}
+
+body.grupsity-design-jomashop .site-header .primary-nav.nav > ul > li > a {
+	padding: 14px 12px;
+	color: var(--g-ink);
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	box-shadow: inset 0 -3px 0 transparent;
+}
+
+body.grupsity-design-jomashop .site-header .primary-nav.nav > ul > li > a:hover {
+	color: var(--g-ink);
+	box-shadow: inset 0 -3px 0 var(--g-green);
+}
+
+/* Barra del teléfono dentro del menú: texto plano alineado a la derecha, no una caja. */
+body.grupsity-design-jomashop .site-header .mr-header-menu {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+body.grupsity-design-jomashop .site-header .header-bar.topbar {
+	float: none;
+	margin: 0;
+	padding: 0;
+	background: transparent !important;
+	border: 0 !important;
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	text-transform: none;
+}
+
+body.grupsity-design-jomashop .site-header .header-bar.topbar .widget {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body.grupsity-design-jomashop .site-header .header-bar.topbar .item-icon {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+body.grupsity-design-jomashop .site-header .header-bar.topbar span,
+body.grupsity-design-jomashop .site-header .header-bar.topbar strong {
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	letter-spacing: 0.02em;
+}
+
+body.grupsity-design-jomashop .site-header .header-bar.topbar i {
+	color: var(--g-green-ink) !important;
+	font-size: 16px;
+}
+
+/* ==========================================================================
+   Migas de pan y títulos
+   ========================================================================== */
+
+body.grupsity-design-jomashop .page-header-catalog,
+body.grupsity-design-jomashop .page-header .page-breadcrumbs {
+	background: var(--g-paper) !important;
+	border: 0;
+}
+
+body.grupsity-design-jomashop .page-header .page-breadcrumbs {
+	padding: 18px 0 6px;
+}
+
+body.grupsity-design-jomashop ul.breadcrumbs,
+body.grupsity-design-jomashop .breadcrumbs {
+	font-size: 12px;
+	color: var(--g-gray);
+}
+
+body.grupsity-design-jomashop .breadcrumbs a,
+body.grupsity-design-jomashop .breadcrumbs .sep {
+	color: var(--g-gray);
+}
+
+body.grupsity-design-jomashop .breadcrumbs li:last-child a {
+	color: var(--g-ink);
+	font-weight: 600;
+}
+
 body.grupsity-design-jomashop .page-header .entry-title,
 body.grupsity-design-jomashop .mf-catalog-title,
 body.grupsity-design-jomashop .page-title h1 {
-	font-size: 32px;
-	font-weight: 600;
+	font-size: 30px;
+	font-weight: 700;
 	line-height: 1.2;
 	letter-spacing: -0.02em;
 }
 
 body.grupsity-design-jomashop .cat-header h2,
 body.grupsity-design-jomashop .tabs-header h2,
-body.grupsity-design-jomashop .mf-category-box .cat-header .cat-name,
-body.grupsity-design-jomashop .widget-title,
-body.grupsity-design-jomashop .elementor-heading-title {
+body.grupsity-design-jomashop .mf-category-box .cat-header .cat-name {
 	font-size: 24px;
-	font-weight: 600;
+	font-weight: 700;
 	line-height: 1.25;
 	letter-spacing: -0.01em;
 }
 
-body.grupsity-design-jomashop .page-breadcrumbs ul.breadcrumbs,
-body.grupsity-design-jomashop .breadcrumbs {
-	font-size: 12px;
-	color: var(--joma-gray);
+/* ==========================================================================
+   Catálogo: barra de herramientas, filtros laterales y paginación
+   ========================================================================== */
+
+body.grupsity-design-jomashop .site-content {
+	padding-top: 16px;
 }
 
-body.grupsity-design-jomashop .breadcrumbs a,
-body.grupsity-design-jomashop .breadcrumbs .sep {
-	color: var(--joma-gray);
+body.grupsity-design-jomashop #mf-catalog-toolbar.shop-toolbar {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin-bottom: 24px;
+	padding: 0 0 14px;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	background: transparent;
 }
 
-/* Grupsity: tarjetas de producto sobre fondo gris claro, con acento rojo en ofertas */
-body.grupsity-design-jomashop .woocommerce ul.products li.product,
-body.grupsity-design-jomashop .mf-products-carousel ul.products li.product,
-body.grupsity-design-jomashop .mf-products-tabs ul.products li.product,
-body.grupsity-design-jomashop .mf-product-deals-day ul.products li.product {
-	margin-bottom: 20px;
-	border: 1px solid var(--joma-line);
-	border-radius: var(--joma-radius);
-	background: var(--joma-paper);
-	overflow: hidden;
-	transition: box-shadow 0.25s, border-color 0.25s;
+body.grupsity-design-jomashop #mf-catalog-toolbar .products-found {
+	float: none;
+	margin-right: auto;
+	color: var(--g-muted);
+	font-size: 14px;
 }
 
-body.grupsity-design-jomashop .woocommerce ul.products li.product:hover,
-body.grupsity-design-jomashop .mf-products-carousel ul.products li.product:hover {
-	border-color: var(--joma-ink);
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+body.grupsity-design-jomashop #mf-catalog-toolbar .products-found strong {
+	margin-right: 4px;
+	color: var(--g-ink);
 }
 
-body.grupsity-design-jomashop .woocommerce ul.products li.product .product-inner {
+body.grupsity-design-jomashop #mf-catalog-toolbar .shop-view,
+body.grupsity-design-jomashop #mf-catalog-toolbar .woocommerce-ordering {
+	float: none;
+	order: 2;
 	margin: 0;
+}
+
+body.grupsity-design-jomashop #mf-catalog-toolbar .woocommerce-ordering {
+	order: 1;
+}
+
+body.grupsity-design-jomashop #mf-catalog-toolbar .woocommerce-ordering > li > span {
+	height: 40px;
+	line-height: 38px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	color: var(--g-ink);
+	font-size: 13px;
+	font-weight: 500;
+}
+
+body.grupsity-design-jomashop #mf-catalog-toolbar .shop-view span {
+	color: var(--g-gray);
+	font-size: 13px;
+}
+
+body.grupsity-design-jomashop #mf-catalog-toolbar .shop-view a {
+	color: var(--g-gray);
+}
+
+body.grupsity-design-jomashop #mf-catalog-toolbar .shop-view a.current {
+	color: var(--g-ink);
+}
+
+/* Barra lateral: secciones abiertas con línea, sin cajas grises (estilo JomaShop) */
+body.grupsity-design-jomashop .catalog-sidebar .widget {
+	margin: 0 0 4px;
+	padding: 18px 0 22px;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	border-radius: 0;
+	background: transparent !important;
+}
+
+body.grupsity-design-jomashop .catalog-sidebar .widget:first-child {
+	padding-top: 0;
+}
+
+body.grupsity-design-jomashop .catalog-sidebar .widget-title {
+	margin: 0 0 14px;
 	padding: 0;
+	border: 0;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
 }
 
-body.grupsity-design-jomashop .woocommerce ul.products li.product .mf-product-thumbnail {
-	padding: 10px;
-	background: var(--joma-thumb);
+body.grupsity-design-jomashop .catalog-sidebar .widget::after,
+body.grupsity-design-jomashop .catalog-sidebar .widget-title::after {
+	display: none !important;
 }
 
-body.grupsity-design-jomashop .woocommerce ul.products li.product .mf-product-thumbnail img {
+body.grupsity-design-jomashop .catalog-sidebar .product-categories li a,
+body.grupsity-design-jomashop .catalog-sidebar .woocommerce-widget-layered-nav-list li a {
+	color: var(--g-ink);
+	font-size: 14px;
+}
+
+body.grupsity-design-jomashop .catalog-sidebar .product-categories li {
+	padding: 5px 0;
+}
+
+body.grupsity-design-jomashop .catalog-sidebar .product-categories li.current-cat > a,
+body.grupsity-design-jomashop .catalog-sidebar .woocommerce-widget-layered-nav-list li.chosen a {
+	color: var(--g-green-ink);
+	font-weight: 700;
+}
+
+body.grupsity-design-jomashop .catalog-sidebar .woocommerce-widget-layered-nav-list .count {
+	color: var(--g-gray);
+	font-size: 12px;
+}
+
+body.grupsity-design-jomashop .catalog-sidebar .mf-input-search-nav {
 	width: 100%;
-	height: auto;
-	object-fit: contain;
+	height: 40px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	background: var(--g-paper);
 }
 
-body.grupsity-design-jomashop .woocommerce ul.products li.product .mf-product-details,
-body.grupsity-design-jomashop .woocommerce ul.products li.product .mf-product-content {
-	padding: 16px;
-	background: var(--joma-paper);
+/* Casillas de las marcas en verde al pasar / marcar */
+body.grupsity-design-jomashop .catalog-sidebar .woocommerce-widget-layered-nav-list li a::before {
+	border-color: #c4c8bf;
+	border-radius: 4px;
+}
+
+body.grupsity-design-jomashop .catalog-sidebar .woocommerce-widget-layered-nav-list li.chosen a::before,
+body.grupsity-design-jomashop .catalog-sidebar .woocommerce-widget-layered-nav-list li a:hover::before {
+	border-color: var(--g-green-ink);
+}
+
+/* Las listas con scroll de Martfury (max-height 130 px) cortaban la última fila:
+   se deja aire y se marca el desplazamiento. */
+body.grupsity-design-jomashop .catalog-sidebar .mf-widget-layered-nav-scroll {
+	padding-right: 6px;
+	padding-bottom: 6px;
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: #c4c8bf transparent;
+}
+
+body.grupsity-design-jomashop .catalog-sidebar .show-swatch .swatch-color .sub-swatch {
+	box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.15);
+}
+
+/* Filtro de precio: dos campos en fila y botón a todo el ancho */
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	margin: 0;
 	text-align: left;
 }
 
-body.grupsity-design-jomashop .woocommerce ul.products li.product .meta-brand {
-	margin-bottom: 4px;
-	color: var(--joma-gray);
-	font-size: 11px;
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount input[type="text"] {
+	float: none !important;
+	display: block !important;
+	width: 100% !important;
+	height: 40px;
+	margin: 0 !important;
+	padding: 0 10px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	background: var(--g-paper);
+	font-size: 13px;
+}
+
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .button {
+	grid-column: 1 / -1;
+	float: none !important;
+	width: 100%;
+	height: 42px;
+	margin: 4px 0 0 !important;
+	padding: 0 16px;
+	border: 1px solid var(--g-ink);
+	border-radius: 8px;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	font-weight: 700;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 }
 
-body.grupsity-design-jomashop .woocommerce ul.products li.product .woo-loop-product__title {
-	min-height: 38px;
-	margin: 0 0 8px;
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 1.35;
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .button:hover {
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
 }
 
-body.grupsity-design-jomashop .woocommerce ul.products li.product .woo-loop-product__title a {
-	color: var(--joma-ink);
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .clear,
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .price_label {
+	grid-column: 1 / -1;
+}
+
+/* Botón del plugin PDF Catalog: estaba fuera de la columna, encima del sidebar */
+body.grupsity-design-jomashop .woocommerce-pdf-catalog.link-wrapper {
+	clear: left;
+	float: left;
+	width: 25%;
+	margin: 16px 0 0;
+	padding: 0 15px;
+}
+
+body.grupsity-design-jomashop .woocommerce-pdf-catalog.link-wrapper .woocommerce_pdf_catalog_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	width: 100%;
+	min-height: 44px;
+	margin: 0;
+	padding: 10px 16px;
+	border: 1px solid var(--g-line) !important;
+	border-radius: 8px;
+	background: var(--g-surface) !important;
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	font-weight: 600;
+	box-shadow: none;
+}
+
+body.grupsity-design-jomashop .woocommerce-pdf-catalog.link-wrapper .woocommerce_pdf_catalog_button:hover {
+	border-color: var(--g-ink) !important;
+}
+
+/* Paginación: cuadros pequeños, el actual en verde */
+body.grupsity-design-jomashop .woocommerce-pagination ul.page-numbers,
+body.grupsity-design-jomashop nav.woocommerce-pagination ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+	margin: 32px 0 0;
+	padding: 0;
+	border: 0 !important;
+}
+
+body.grupsity-design-jomashop nav.woocommerce-pagination ul li {
+	float: none;
+	margin: 0;
+	border: 0 !important;
+}
+
+body.grupsity-design-jomashop nav.woocommerce-pagination ul li .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 40px;
+	height: 40px;
+	padding: 0 12px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+}
+
+body.grupsity-design-jomashop nav.woocommerce-pagination ul li .page-numbers:hover {
+	border-color: var(--g-ink);
+}
+
+body.grupsity-design-jomashop nav.woocommerce-pagination ul li .page-numbers.current {
+	border-color: var(--g-green);
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-jomashop .term-description {
+	margin-top: 32px;
+	padding-top: 24px;
+	border-top: 1px solid var(--g-line);
+	color: var(--g-muted);
+	font-size: 13px;
+}
+
+/* ==========================================================================
+   Tarjetas de producto (grid): imagen sobre gris claro, sin cajas, precio en negrita
+   ========================================================================== */
+
+body.grupsity-design-jomashop ul.products li.product {
+	padding-left: 8px !important;
+	padding-right: 8px !important;
+	margin-bottom: 28px;
+	border: 0 !important;
+	background: transparent;
+}
+
+body.grupsity-design-jomashop ul.products li.product .product-inner {
+	height: 100%;
+	margin: 0;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: var(--g-radius);
+	background: var(--g-paper);
+	box-shadow: none !important;
+	transition: box-shadow 0.2s;
+}
+
+body.grupsity-design-jomashop ul.products li.product:hover .product-inner {
+	box-shadow: 0 6px 18px rgba(17, 17, 17, 0.1) !important;
+}
+
+body.grupsity-design-jomashop ul.products li.product .mf-product-thumbnail {
+	position: relative;
+	margin: 0 !important;
+	padding: 14px;
+	border-radius: var(--g-radius);
+	background: var(--g-thumb);
+	overflow: hidden;
+}
+
+body.grupsity-design-jomashop ul.products li.product .mf-product-thumbnail img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	mix-blend-mode: multiply;
+}
+
+body.grupsity-design-jomashop ul.products li.product .mf-product-details,
+body.grupsity-design-jomashop ul.products li.product .mf-product-content {
+	padding: 0;
+	background: transparent;
+	text-align: left;
+}
+
+body.grupsity-design-jomashop ul.products li.product .mf-product-details {
+	padding: 14px 12px 16px;
+}
+
+body.grupsity-design-jomashop ul.products li.product .mf-product-price-box {
+	margin: 0;
+	padding: 0 !important;
+}
+
+body.grupsity-design-jomashop ul.products li.product .meta-brand,
+body.grupsity-design-jomashop ul.products li.product .mf-vendor-name {
+	margin-bottom: 4px;
+	color: var(--g-ink);
+	font-size: 12px;
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-jomashop ul.products li.product .woo-loop-product__title {
+	display: -webkit-box;
+	min-height: 0;
+	margin: 0 0 10px;
+	padding: 0;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+body.grupsity-design-jomashop ul.products li.product .woo-loop-product__title a {
+	color: var(--g-ink) !important;
+	letter-spacing: 0;
+}
+
+body.grupsity-design-jomashop ul.products li.product .woo-loop-product__title a:hover {
+	color: var(--g-green-ink) !important;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+body.grupsity-design-jomashop ul.products li.product .woocommerce-product-details__short-description {
+	display: none;
 }
 
 body.grupsity-design-jomashop .mf-rating,
 body.grupsity-design-jomashop .mf-rating .count {
-	color: var(--joma-muted);
+	color: var(--g-muted);
 	font-size: 12px;
 }
 
-body.grupsity-design-jomashop .mf-product-price-box .price,
-body.grupsity-design-jomashop .woocommerce ul.products li.product .price {
-	display: flex;
-	align-items: baseline;
-	flex-wrap: wrap;
-	gap: 8px;
-	margin: 0;
-	font-size: 18px;
-	font-weight: 700;
-}
-
-body.grupsity-design-jomashop .price ins,
-body.grupsity-design-jomashop .price > .amount {
-	color: var(--joma-sale);
-	text-decoration: none;
-}
-
-body.grupsity-design-jomashop .price del {
-	color: var(--joma-gray);
-	font-size: 13px;
-	font-weight: 400;
-}
-
-body.grupsity-design-jomashop .price .sale {
-	padding: 3px 8px;
-	border-radius: 50px;
-	background: rgba(204, 48, 0, 0.08);
-	color: var(--joma-sale);
-	font-size: 11px;
-	font-weight: 600;
-	line-height: 1.4;
-}
-
-body.grupsity-design-jomashop .ribbons .ribbon,
-body.grupsity-design-jomashop .ribbons .ribbon.onsale,
-body.grupsity-design-jomashop .ribbons .ribbon.featured,
-body.grupsity-design-jomashop .ribbons .ribbon.newness {
-	border-radius: 0 0 var(--joma-radius) 0;
-	background: var(--joma-sale);
-	color: var(--joma-paper);
-	font-size: 11px;
-	font-weight: 600;
-	text-transform: uppercase;
-}
-
-body.grupsity-design-jomashop .woocommerce ul.products li.product .footer-button {
-	position: static;
-	margin-top: 12px;
-	opacity: 1;
-	visibility: visible;
-	background: transparent;
-}
-
-body.grupsity-design-jomashop .woocommerce ul.products li.product .footer-button a.button,
-body.grupsity-design-jomashop .woocommerce a.button.add_to_cart_button,
-body.grupsity-design-jomashop .woocommerce button.button.alt,
-body.grupsity-design-jomashop .woocommerce input[type="submit"] {
-	width: 100%;
-	min-height: 48px;
-	padding: 12px 18px;
-	border: 1px solid var(--joma-ink);
-	border-radius: var(--joma-radius);
-	background: var(--joma-ink) !important;
-	color: var(--joma-paper) !important;
-	font-size: 16px;
-	font-weight: 600;
-	line-height: 1.5;
-	text-align: center;
-}
-
-body.grupsity-design-jomashop .woocommerce ul.products li.product .footer-button a.button:hover {
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-}
-
-body.grupsity-design-jomashop .woocommerce .joma-cash .btn.joma-cash-price,
-body.grupsity-design-jomashop .joma-cash .btn.joma-cash-price {
-	border-radius: 50px;
-	background: #eefeed;
-	color: var(--joma-green);
-	font-weight: 600;
-}
-
-/* Grupsity: botones genéricos (negros, redondeados y de 16 px semibold) */
-body.grupsity-design-jomashop .btn,
-body.grupsity-design-jomashop .button,
-body.grupsity-design-jomashop button.btn {
-	border-radius: var(--joma-radius);
-	font-size: 16px;
-	font-weight: 600;
-}
-
-body.grupsity-design-jomashop .btn.btn-primary,
-body.grupsity-design-jomashop .btn-primary:not(.search-submit) {
-	background: var(--joma-ink);
-	border-color: var(--joma-ink);
-	border-radius: var(--joma-radius);
-	color: var(--joma-paper);
-}
-
-body.grupsity-design-jomashop .btn.btn-outline-dark,
-body.grupsity-design-jomashop .btn.btn-secondary {
-	border: 1px solid var(--joma-ink);
-	border-radius: var(--joma-radius);
-	background: transparent;
-	color: var(--joma-ink);
-}
-
-/* Grupsity: precios y etiquetas del loop (Martfury usa reglas muy específicas) */
+/* Precio: actual en tinta y negrita; el anterior tachado en gris (JomaShop) */
 body.grupsity-design-jomashop ul.products li.product .price,
 body.grupsity-design-jomashop .mf-product-deals-day .price {
 	display: flex !important;
 	align-items: baseline !important;
 	flex-wrap: wrap !important;
-	gap: 8px;
-	color: var(--joma-ink) !important;
-	font-size: 18px !important;
-	font-weight: 700 !important;
+	gap: 2px 0;
+	margin: 0 !important;
+	color: var(--g-ink) !important;
+	/* WooCommerce separa <del> e <ins> con un &nbsp;: en flex es un elemento más (y con
+	   gap deja un hueco al inicio). Tamaño 0 y separación con márgenes. */
+	font-size: 0 !important;
+	font-weight: 800 !important;
+	line-height: 1.25;
 }
 
 body.grupsity-design-jomashop ul.products li.product .price ins,
 body.grupsity-design-jomashop ul.products li.product .price > .amount,
 body.grupsity-design-jomashop .mf-product-deals-day .price ins {
-	color: var(--joma-sale) !important;
+	order: 1;
+	margin: 0 !important;
+	color: var(--g-ink) !important;
 	text-decoration: none !important;
+	font-size: 18px !important;
+	font-weight: 800 !important;
 }
 
 body.grupsity-design-jomashop ul.products li.product .price del {
-	color: var(--joma-gray) !important;
+	order: 2;
+	margin: 0 0 0 8px !important;
+	color: var(--g-gray) !important;
 	font-size: 13px !important;
 	font-weight: 400 !important;
+	opacity: 1;
 }
 
-body.grupsity-design-jomashop ul.products li.product .ribbons .ribbon.onsale,
-body.grupsity-design-jomashop .mf-product-deals-day .ribbons .ribbon.onsale {
-	background: var(--joma-sale) !important;
-	border-radius: 0 0 var(--joma-radius) 0 !important;
-	color: var(--joma-paper) !important;
-	font-size: 11px !important;
-	font-weight: 600 !important;
+body.grupsity-design-jomashop ul.products li.product .price .sale,
+body.grupsity-design-jomashop .price .sale {
+	order: 3;
+	margin-left: 8px;
+	padding: 2px 8px;
+	border-radius: 50px;
+	background: var(--g-green-soft);
+	color: var(--g-green-ink);
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+/* Etiquetas: píldoras arriba a la izquierda */
+body.grupsity-design-jomashop ul.products li.product .ribbons {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	z-index: 2;
+}
+
+body.grupsity-design-jomashop .ribbons .ribbon {
+	position: static !important;
+	display: inline-block;
+	width: auto !important;
+	height: auto !important;
+	margin: 0 !important;
+	padding: 4px 9px !important;
+	border-radius: 50px !important;
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
+	font-size: 10px !important;
+	font-weight: 700 !important;
+	line-height: 1.3 !important;
+	letter-spacing: 0.05em;
 	text-transform: uppercase !important;
+	transform: none !important;
 }
 
-/* Grupsity: la home de producción es Elementor; sus títulos y botones también
-   deben seguir la paleta JomaShop (negro, blanco y rojo de oferta). */
+body.grupsity-design-jomashop .ribbons .ribbon::before,
+body.grupsity-design-jomashop .ribbons .ribbon::after {
+	display: none !important;
+}
+
+body.grupsity-design-jomashop .ribbons .ribbon.featured,
+body.grupsity-design-jomashop .ribbons .ribbon.onsale {
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-jomashop .ribbons .ribbon.out-of-stock {
+	background: var(--g-paper) !important;
+	color: var(--g-muted) !important;
+	box-shadow: inset 0 0 0 1px var(--g-line);
+}
+
+body.grupsity-design-jomashop ul.products li.product.outofstock .mf-product-thumbnail img {
+	opacity: 0.55;
+}
+
+/* Botones del loop */
+body.grupsity-design-jomashop ul.products li.product .mf-product-price-box .footer-button a.button {
+	width: 100%;
+	min-height: 42px;
+	margin-top: 12px;
+	border: 1px solid var(--g-ink);
+	border-radius: 8px;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+body.grupsity-design-jomashop ul.products li.product .mf-product-price-box .footer-button a.button:hover {
+	background: var(--g-green) !important;
+	border-color: var(--g-green);
+}
+
+/* ==========================================================================
+   Botones generales
+   ========================================================================== */
+
+body.grupsity-design-jomashop .woocommerce a.button.alt,
+body.grupsity-design-jomashop .woocommerce button.button.alt,
+body.grupsity-design-jomashop .woocommerce input.button.alt,
+body.grupsity-design-jomashop .single_add_to_cart_button,
+body.grupsity-design-jomashop .checkout-button,
+body.grupsity-design-jomashop .btn-primary:not(.search-submit),
+body.grupsity-design-jomashop .elementor-button {
+	min-height: 48px;
+	padding: 12px 24px;
+	border: 1px solid var(--g-green) !important;
+	border-radius: var(--g-radius) !important;
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+	font-family: var(--g-font) !important;
+	font-size: 15px !important;
+	font-weight: 700 !important;
+	text-shadow: none;
+}
+
+body.grupsity-design-jomashop .woocommerce a.button.alt:hover,
+body.grupsity-design-jomashop .woocommerce button.button.alt:hover,
+body.grupsity-design-jomashop .single_add_to_cart_button:hover,
+body.grupsity-design-jomashop .checkout-button:hover,
+body.grupsity-design-jomashop .btn-primary:not(.search-submit):hover,
+body.grupsity-design-jomashop .elementor-button:hover {
+	border-color: var(--g-ink) !important;
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
+}
+
+/* ==========================================================================
+   Home (Elementor)
+   ========================================================================== */
+
 body.grupsity-design-jomashop .elementor-heading-title,
 body.grupsity-design-jomashop .elementor-widget-heading h2,
 body.grupsity-design-jomashop .elementor-widget-heading h3 {
-	color: var(--joma-ink) !important;
-	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-	font-weight: 600 !important;
+	color: var(--g-ink);
+	font-family: var(--g-font) !important;
+	font-weight: 700 !important;
 	letter-spacing: -0.01em !important;
 }
 
-body.grupsity-design-jomashop .elementor-button,
-body.grupsity-design-jomashop .elementor-button-wrapper .elementor-button {
-	min-height: 48px;
-	border: 1px solid var(--joma-ink) !important;
-	border-radius: var(--joma-radius) !important;
-	background: var(--joma-ink) !important;
-	color: var(--joma-paper) !important;
-	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-	font-size: 16px !important;
-	font-weight: 600 !important;
+/* Barra de servicios (Entrega gratuita, Devoluciones…): iconos en verde de la marca */
+body.grupsity-design-jomashop .mf-icons-list .mf-icon,
+body.grupsity-design-jomashop .elementor-icon {
+	color: var(--g-green-ink);
 }
 
-body.grupsity-design-jomashop .elementor-button:hover {
-	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-}
+/* ==========================================================================
+   Footer oscuro, como JomaShop, con acentos verdes
+   ========================================================================== */
 
-/* Grupsity: footer negro con enlaces blancos y newsletters claros */
 body.grupsity-design-jomashop .site-footer,
 body.grupsity-design-jomashop .site-footer .footer-layout,
-body.grupsity-design-jomashop .footer-container {
-	background: var(--joma-ink) !important;
-	color: var(--joma-paper) !important;
+body.grupsity-design-jomashop .site-footer .footer-light {
+	background: var(--g-ink-2) !important;
+	color: rgba(255, 255, 255, 0.78) !important;
 	border: 0 !important;
 }
 
 body.grupsity-design-jomashop .site-footer .footer-content {
-	padding: 60px 0;
+	padding: 56px 0 32px;
+	border: 0 !important;
 }
 
-body.grupsity-design-jomashop .site-footer .footer-sidebar .widget-title,
-body.grupsity-design-jomashop .footer-container .footer-links-wrapper .accordion-head {
-	margin-bottom: 16px;
+body.grupsity-design-jomashop .site-footer .footer-widgets {
+	border: 0 !important;
+	padding: 0;
+}
+
+/* Martfury dibuja una línea oscura bajo los widgets (invisible sobre su footer claro). */
+body.grupsity-design-jomashop .site-footer .footer-widgets::after {
+	display: none !important;
+}
+
+body.grupsity-design-jomashop .site-footer,
+body.grupsity-design-jomashop .site-footer p,
+body.grupsity-design-jomashop .site-footer a,
+body.grupsity-design-jomashop .site-footer h3,
+body.grupsity-design-jomashop .site-footer h4,
+body.grupsity-design-jomashop .site-footer .textwidget {
+	font-family: var(--g-font) !important;
+}
+
+/* Subrayado animado de los enlaces de Martfury: verde en lugar de negro. */
+body.grupsity-design-jomashop .site-footer a::before {
+	background-color: var(--g-green) !important;
+}
+
+body.grupsity-design-jomashop .site-footer .social-links-list {
+	margin-left: 0 !important;
+}
+
+body.grupsity-design-jomashop .site-footer .widget-title {
+	margin: 0 0 18px !important;
+	padding: 0;
 	border: 0;
-	color: rgba(255, 255, 255, 0.4) !important;
-	font-size: 14px;
-	font-weight: 600;
+	color: var(--g-paper) !important;
+	font-size: 13px !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.06em;
 	text-transform: uppercase;
 }
 
-body.grupsity-design-jomashop .site-footer a,
-body.grupsity-design-jomashop .footer-container a {
-	color: var(--joma-paper) !important;
+body.grupsity-design-jomashop .site-footer p,
+body.grupsity-design-jomashop .site-footer .textwidget {
+	color: rgba(255, 255, 255, 0.78) !important;
+	font-size: 14px;
+	line-height: 1.7;
+}
+
+body.grupsity-design-jomashop .site-footer .primary-color,
+body.grupsity-design-jomashop .site-footer h3.primary-color {
+	color: var(--g-green) !important;
+	font-size: 22px !important;
+	font-weight: 800 !important;
+}
+
+body.grupsity-design-jomashop .site-footer a {
+	color: rgba(255, 255, 255, 0.78) !important;
 	font-size: 14px;
 	text-decoration: none;
 }
 
-body.grupsity-design-jomashop .site-footer a:hover,
-body.grupsity-design-jomashop .footer-container a:hover {
-	color: var(--joma-badge) !important;
+body.grupsity-design-jomashop .site-footer a:hover {
+	color: var(--g-green) !important;
 }
 
-body.grupsity-design-jomashop .footer-links li,
-body.grupsity-design-jomashop .footer-sidebar li {
-	margin-top: 11px;
+body.grupsity-design-jomashop .site-footer .widget_nav_menu li {
+	margin: 0 0 10px;
+	padding: 0;
 }
 
-body.grupsity-design-jomashop .footer-newsletter input,
-body.grupsity-design-jomashop .footer-newsletter .newsletter-form input,
-body.grupsity-design-jomashop .styled-subscription-wrapper .field-wrapper input {
-	height: 48px;
-	border: 0;
-	border-radius: var(--joma-radius);
-	background: var(--joma-paper);
-	color: var(--joma-ink);
+body.grupsity-design-jomashop .site-footer .social-links-list a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	margin: 0 6px 0 0;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	color: var(--g-paper) !important;
 }
 
-body.grupsity-design-jomashop .footer-bottom,
-body.grupsity-design-jomashop .footer-row {
-	border-top: 1px solid rgba(255, 255, 255, 0.15);
-	color: var(--joma-paper);
+body.grupsity-design-jomashop .site-footer .social-links-list a:hover {
+	border-color: var(--g-green);
+	background: var(--g-green);
+	color: var(--g-ink) !important;
 }
 
-body.grupsity-design-jomashop .footer-copyright,
-body.grupsity-design-jomashop .footer-bottom .text {
-	color: var(--joma-paper);
+body.grupsity-design-jomashop .site-footer .social-links-list a svg {
+	width: 14px;
+	height: 14px;
+	fill: currentColor;
+}
+
+/* Bloques de enlaces vacíos: dejaban líneas y 130 px de espacio en blanco. */
+body.grupsity-design-jomashop .site-footer .footer-links:not(:has(li)),
+body.grupsity-design-jomashop .site-footer .footer-info:not(:has(*)),
+body.grupsity-design-jomashop .site-footer .col-footer-payments:empty {
+	display: none !important;
+}
+
+body.grupsity-design-jomashop .site-footer .footer-links {
+	border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.grupsity-design-jomashop .site-footer .footer-bottom {
+	margin: 0;
+	padding: 20px 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+body.grupsity-design-jomashop .site-footer .footer-bottom .footer-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 0;
+	border: 0 !important;
+}
+
+body.grupsity-design-jomashop .site-footer .footer-copyright,
+body.grupsity-design-jomashop .site-footer .footer-bottom .text {
+	color: rgba(255, 255, 255, 0.6) !important;
 	font-size: 12px;
 }
 
-/* Grupsity: botón de volver arriba, como el círculo negro de JomaShop */
-body.grupsity-design-jomashop .btn-scroll-to-top,
-body.grupsity-design-jomashop .back-to-top,
-body.grupsity-design-jomashop .scroll-to-top {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	background: var(--joma-ink);
-	color: var(--joma-paper);
+/* Iconos de medios de pago sobre fondo blanco para que se lean en el footer oscuro */
+body.grupsity-design-jomashop .site-footer .footer-payments img {
+	padding: 4px 6px;
+	border-radius: 6px;
+	background: var(--g-paper);
 }
 
-/* Grupsity: móvil (barra compacta y buscador a ancho completo) */
+/* Cajas de boletín y servicios antes del footer (layout 4) */
+body.grupsity-design-jomashop .footer-newsletter input,
+body.grupsity-design-jomashop .footer-newsletter .newsletter-form input {
+	height: 48px;
+	border: 1px solid var(--g-line);
+	border-radius: var(--g-radius);
+}
+
+/* Volver arriba */
+body.grupsity-design-jomashop #scroll-top,
+body.grupsity-design-jomashop .btn-scroll-to-top,
+body.grupsity-design-jomashop .back-to-top {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: var(--g-ink) !important;
+	color: var(--g-green) !important;
+}
+
+/* ==========================================================================
+   Móvil
+   ========================================================================== */
+
 @media (max-width: 991px) {
-	body.grupsity-design-jomashop .site-header .header-extras {
-		display: block;
+	body.grupsity-design-jomashop .site-header .header-row {
+		flex-wrap: wrap;
 	}
 
 	body.grupsity-design-jomashop .site-header .header-extras .product-extra-search {
-		max-width: none;
+		display: none;
 	}
 
-	body.grupsity-design-jomashop .site-header ul.extras-menu {
-		justify-content: center;
-		margin: 12px 0 0;
+	body.grupsity-design-jomashop .site-header .header-extras {
+		justify-content: flex-end;
 	}
 
-	body.grupsity-design-jomashop .topbar .topbar-left,
-	body.grupsity-design-jomashop .topbar .topbar-right {
+	body.grupsity-design-jomashop .extras-menu .menu-item-hotline .hotline-content,
+	body.grupsity-design-jomashop .extras-menu .login-text {
+		display: none;
+	}
+
+	body.grupsity-design-jomashop #topbar .topbar-left,
+	body.grupsity-design-jomashop #topbar .topbar-right {
 		display: none !important;
+	}
+
+	body.grupsity-design-jomashop .mobile-menu {
+		padding: 10px 0;
+		border-top: 1px solid var(--g-line);
+		background: var(--g-paper);
+	}
+
+	body.grupsity-design-jomashop .mobile-menu .mobile-menu-row {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	body.grupsity-design-jomashop .mobile-menu .product-extra-search {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	body.grupsity-design-jomashop .mobile-menu .products-search .psearch-content {
+		display: flex;
+		height: 44px;
+		border: 2px solid var(--g-ink);
+		border-radius: var(--g-radius);
+		overflow: hidden;
+	}
+
+	body.grupsity-design-jomashop .mobile-menu .products-search .product-cat {
+		display: none;
+	}
+
+	body.grupsity-design-jomashop .mobile-menu .product-extra-search .search-field {
+		height: 40px;
+		line-height: 40px;
+		font-size: 14px;
+	}
+
+	body.grupsity-design-jomashop .mobile-menu .product-extra-search .search-submit {
+		height: 40px;
+		min-width: 0;
+		padding: 0 14px;
+		background: var(--g-green) !important;
+		color: var(--g-ink) !important;
+	}
+
+	body.grupsity-design-jomashop .woocommerce-pdf-catalog.link-wrapper {
+		float: none;
+		width: 100%;
 	}
 }
 
@@ -703,34 +1402,30 @@ body.grupsity-design-jomashop .scroll-to-top {
 		padding: 12px 0;
 	}
 
-	body.grupsity-design-jomashop .product-extra-search .products-search .psearch-content {
-		height: 46px;
-	}
-
-	body.grupsity-design-jomashop .product-extra-search .search-field,
-	body.grupsity-design-jomashop .products-search .search-wrapper .search-field {
-		height: 44px;
-		line-height: 44px;
-		font-size: 14px;
-	}
-
-	body.grupsity-design-jomashop .product-extra-search .search-submit {
-		width: 46px;
-		height: 44px;
+	body.grupsity-design-jomashop .site-header .header-logo .logo img {
+		max-height: 44px;
 	}
 
 	body.grupsity-design-jomashop .page-header .entry-title,
 	body.grupsity-design-jomashop .mf-catalog-title {
-		font-size: 26px;
+		font-size: 24px;
 	}
 
-	body.grupsity-design-jomashop .cat-header h2,
-	body.grupsity-design-jomashop .tabs-header h2,
-	body.grupsity-design-jomashop .elementor-heading-title {
-		font-size: 20px;
+	body.grupsity-design-jomashop ul.products li.product .price ins,
+	body.grupsity-design-jomashop ul.products li.product .price > .amount {
+		font-size: 16px !important;
+	}
+
+	body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-title {
+		font-size: 20px !important;
+		white-space: nowrap;
+	}
+
+	body.grupsity-design-jomashop .site-header .d-logo:has(img[src*="/images/logo/logo"]) .site-description {
+		display: none !important;
 	}
 
 	body.grupsity-design-jomashop .site-footer .footer-content {
-		padding: 40px 0;
+		padding: 40px 0 16px;
 	}
 }

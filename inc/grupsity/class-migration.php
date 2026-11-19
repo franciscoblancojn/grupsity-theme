@@ -36,12 +36,53 @@ class Grupsity_Migration {
 		return is_array( $mods ) ? $mods : array();
 	}
 
+	/**
+	 * Estado de la copia para la carpeta activa. Grupsity: el sitio puede instalarse como
+	 * "grupsity" o como "grupsity-theme-master" (zip de la rama), y cada carpeta tiene su
+	 * propia opción theme_mods_<carpeta>; una copia hecha en otra carpeta no cuenta.
+	 *
+	 * @return array|false
+	 */
 	public static function status() {
-		return get_option( self::FLAG );
+		$flag = get_option( self::FLAG );
+		if ( ! is_array( $flag ) ) {
+			return false;
+		}
+		if ( isset( $flag['stylesheet'] ) && get_stylesheet() !== $flag['stylesheet'] ) {
+			return false;
+		}
+
+		return $flag;
+	}
+
+	/**
+	 * Opciones de Martfury que faltan en la carpeta activa.
+	 *
+	 * Si faltan muchas, el sitio sale con el header genérico de Martfury (layout 1, logo
+	 * del tema, textos en inglés, color amarillo) en lugar de la configuración de Grupsity.
+	 *
+	 * @return string[]
+	 */
+	public static function missing_keys() {
+		$current = get_option( 'theme_mods_' . get_stylesheet() );
+
+		return array_values( array_diff( array_keys( self::source_mods() ), array_keys( is_array( $current ) ? $current : array() ) ) );
+	}
+
+	/**
+	 * true si la carpeta activa no tiene la configuración de Martfury (falta más de un 25 %).
+	 */
+	public static function needs_import() {
+		$source = self::source_mods();
+		if ( ! $source || self::SOURCE === get_stylesheet() ) {
+			return false;
+		}
+
+		return count( self::missing_keys() ) > count( $source ) * 0.25;
 	}
 
 	public static function on_activate() {
-		if ( self::status() || ! self::source_mods() ) {
+		if ( ( self::status() && ! self::needs_import() ) || ! self::source_mods() ) {
 			return;
 		}
 		self::import( 'activación automática' );
@@ -65,10 +106,11 @@ class Grupsity_Migration {
 		update_option(
 			self::FLAG,
 			array(
-				'from'  => self::SOURCE,
-				'at'    => time(),
-				'count' => count( $source ),
-				'how'   => $how,
+				'from'       => self::SOURCE,
+				'stylesheet' => get_stylesheet(),
+				'at'         => time(),
+				'count'      => count( $source ),
+				'how'        => $how,
 			),
 			false
 		);

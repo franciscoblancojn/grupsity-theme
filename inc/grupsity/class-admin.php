@@ -29,6 +29,7 @@ class Grupsity_Admin {
 		add_action( 'admin_init', array( __CLASS__, 'register_settings' ) );
 		add_action( 'admin_post_grupsity_check_updates', array( __CLASS__, 'handle_check_updates' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'update_notice' ) );
+		add_action( 'admin_notices', array( __CLASS__, 'migration_notice' ) );
 	}
 
 	public static function get_option( $key ) {
@@ -105,6 +106,28 @@ class Grupsity_Admin {
 			esc_html( $update['new_version'] ),
 			esc_html( Grupsity_Updater::installed_version() ),
 			esc_url( self::page_url() )
+		);
+	}
+
+	/**
+	 * Grupsity: aviso cuando la carpeta activa no tiene la configuración del Customizer.
+	 * No copia nada por su cuenta: solo enlaza a la pestaña Migración.
+	 */
+	public static function migration_notice() {
+		if ( ! current_user_can( 'edit_theme_options' ) || ! Grupsity_Migration::needs_import() ) {
+			return;
+		}
+		$screen = get_current_screen();
+		if ( $screen && 'appearance_page_' . self::PAGE === $screen->id ) {
+			return;
+		}
+
+		printf(
+			'<div class="notice notice-warning"><p><strong>Grupsity:</strong> la carpeta activa <code>%1$s</code> no tiene la configuración del Customizer de Martfury (faltan %2$d de %3$d opciones), por eso el sitio sale con el header, el logo y los textos por defecto. <a href="%4$s">Revisar y copiar</a></p></div>',
+			esc_html( get_stylesheet() ),
+			count( Grupsity_Migration::missing_keys() ),
+			count( Grupsity_Migration::source_mods() ),
+			esc_url( self::page_url( 'migration' ) )
 		);
 	}
 
@@ -257,10 +280,10 @@ class Grupsity_Admin {
 							<?php endforeach; ?>
 						</select>
 						<p class="description">
-							<strong>Martfury</strong> es el tema como está ahora. <strong>JomaShop</strong> aplica en todo el sitio un
-							estilo inspirado en <a href="https://www.jomashop.com/" target="_blank" rel="noopener">jomashop.com</a>
-							(barra superior negra, buscador centrado, menú de categorías, tarjetas de producto y footer oscuro,
-							tipografía Inter, acentos rojo de oferta y amarillo). No cambia el contenido ni la configuración del
+							<strong>Martfury</strong> es el tema como está ahora. <strong>JomaShop</strong> aplica en todo el sitio la
+							forma de <a href="https://www.jomashop.com/" target="_blank" rel="noopener">jomashop.com</a>
+							(franja superior oscura, buscador grande, menú en mayúsculas, filtros limpios, tarjetas sin cajas y
+							footer oscuro, tipografía Inter) con los colores de Grupsity (verde #93b700, tinta y blanco). No cambia el contenido ni la configuración del
 							Customizer; al volver a Martfury el sitio queda como estaba. Al cambiar de diseño se purga la caché.
 						</p>
 					</td>
@@ -302,7 +325,15 @@ class Grupsity_Admin {
 			<tr>
 				<th scope="row">Estado</th>
 				<td>
-					<?php if ( $status ) : ?>
+					<?php if ( Grupsity_Migration::needs_import() ) : ?>
+						<span class="dashicons dashicons-warning" style="color:#b32d2e"></span>
+						A la carpeta activa <code><?php echo esc_html( get_stylesheet() ); ?></code> le faltan
+						<strong><?php echo count( Grupsity_Migration::missing_keys() ); ?></strong> opciones de Martfury:
+						el sitio usa el header, el logo, los colores y los textos por defecto.
+						<?php if ( is_array( get_option( Grupsity_Migration::FLAG ) ) ) : ?>
+							(Ya hubo una copia, pero no cubre esta carpeta.)
+						<?php endif; ?>
+					<?php elseif ( $status ) : ?>
 						<span class="dashicons dashicons-yes-alt" style="color:#00a32a"></span>
 						Migrado el <?php echo esc_html( wp_date( $date_fmt, $status['at'] ) ); ?>
 						(<?php echo esc_html( $status['count'] ); ?> opciones, <?php echo esc_html( $status['how'] ); ?>).
@@ -314,7 +345,7 @@ class Grupsity_Admin {
 			</tr>
 			<tr>
 				<th scope="row">Opciones</th>
-				<td>Martfury: <strong><?php echo count( $source ); ?></strong> · Grupsity: <strong><?php echo count( (array) $current ); ?></strong></td>
+				<td>Martfury: <strong><?php echo count( $source ); ?></strong> · Grupsity (<code>theme_mods_<?php echo esc_html( get_stylesheet() ); ?></code>): <strong><?php echo count( (array) $current ); ?></strong></td>
 			</tr>
 		</table>
 		<?php if ( $can ) : ?>

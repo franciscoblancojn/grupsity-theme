@@ -4,6 +4,22 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [Sin publicar]
+
+### 🎨 Cambiado
+- El diseño JomaShop ahora usa los **colores de Grupsity** (verde `#93b700`, tinta y blanco) con la forma de jomashop.com: franja superior oscura, cabecera verde (layout 4) o blanca (layout 1), buscador de 52 px, menú en mayúsculas, filtros laterales sin cajas, tarjetas de producto sin bordes con el precio en negrita y footer oscuro con acentos verdes. Contraste AA: sobre verde el texto va en tinta.
+- Se respeta el logo subido a Medios; solo se cambia por el nombre del sitio cuando aparece el logo genérico de Martfury.
+
+### 🐛 Corregido
+- La fuente Inter nunca se cargaba (el CSS la pedía pero no se encolaba): ahora se carga desde Google Fonts con el diseño JomaShop.
+- Wordmark invisible (Martfury oculta `.site-title` con `text-indent: -9999px`).
+- Las tarjetas de producto no recibían estilo en categorías y marcas (los selectores dependían de un `.woocommerce` padre que ahí no existe); títulos en azul.
+- Botón «Exportar catálogo en PDF» fuera de la columna, encima del sidebar; campos de precio descolocados; líneas sueltas dentro de los widgets; separadores negros en la franja superior.
+- Precio desplazado por el `&nbsp;` que WooCommerce pone entre `<del>` e `<ins>`.
+- Footer: línea oscura bajo los widgets, bloques vacíos con separadores y fuente distinta.
+- Martfury volvía al amarillo `#fcb800` si faltaba la configuración del Customizer: el diseño fija el verde de la marca.
+- Migración: el estado se guarda por carpeta (`grupsity` / `grupsity-theme-master`) y un aviso en el escritorio indica si a la carpeta activa le falta la configuración de Martfury (es lo que hace salir el header, logo y textos por defecto). El aviso no copia nada solo.
+
 ## [1.0.3] - 2026-11-18
 
 ### 🐛 Corregido
