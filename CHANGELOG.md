@@ -4,7 +4,7 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
-## [Sin publicar]
+## [1.0.1] - 2026-11-18
 
 ### ✨ Añadido
 - Página **Apariencia → Grupsity** con pestañas de actualizaciones, general, migración e información, avisos de versión nueva y configuración del intervalo de caché de GitHub.
