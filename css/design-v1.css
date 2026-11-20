@@ -1813,6 +1813,32 @@ body.grupsity-design-v1.home .mf-images-gallery .slick-list {
 }
 
 /* ==========================================================================
+   Portada: barra de servicios (widget Icons List de Martfury: Entrega gratuita,
+   Devoluciones, Pago Seguro, Soporte). El widget de Elementor guarda su propio color
+   para los íconos en el CSS de la página: se fuerza el verde de Grupsity.
+   ========================================================================== */
+
+body.grupsity-design-v1 .mf-elementor-icons-list .box-icon,
+body.grupsity-design-v1 .mf-elementor-icons-list .box-icon i,
+body.grupsity-design-v1 .mf-elementor-icons-list .box-icon svg {
+	color: var(--g-green) !important;
+	fill: currentColor;
+}
+
+body.grupsity-design-v1 .mf-elementor-icons-list .box-title {
+	color: var(--g-ink) !important;
+	font-weight: 600;
+}
+
+body.grupsity-design-v1 .mf-elementor-icons-list .desc {
+	color: var(--g-muted) !important;
+}
+
+body.grupsity-design-v1 .mf-elementor-icons-list .separator {
+	background-color: var(--g-line) !important;
+}
+
+/* ==========================================================================
    Móvil y tablet
    ========================================================================== */
 

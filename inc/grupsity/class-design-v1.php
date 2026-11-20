@@ -79,6 +79,14 @@ class Grupsity_Design_V1 {
 			case 'promotion':
 			case 'header_hot_words_enable':
 				return 0;
+			case 'department_open_homepage':
+				// Martfury deja el desplegable "Categorías" abierto en la portada (por defecto
+				// "open"): en la barra V1 quedaba fijo encima del contenido. Se abre al pasar el
+				// ratón, igual que en el resto de páginas.
+				return 'close';
+			case 'department_space_homepage':
+			case 'department_space_2_homepage':
+				return ''; // relleno superior pensado para el menú abierto en la portada
 			case 'custom_department_text':
 				// Sin theme_mods sale el texto por defecto en inglés.
 				return ! $value || 'Shop By Department' === $value ? 'Categorías' : $value;

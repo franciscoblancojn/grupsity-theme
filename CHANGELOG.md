@@ -4,6 +4,14 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.8] - 2026-11-19
+
+### 🎨 Cambiado
+- Diseño V1: los íconos de la barra de servicios de la portada (Entrega gratuita, Devoluciones, Pago Seguro, Soporte) van en el verde de Grupsity `#93b700`; el color guardado en el widget de Elementor ya no manda. Títulos en tinta, descripción en gris y separadores suaves.
+
+### 🐛 Corregido
+- Diseño V1: en la portada el desplegable «Categorías» salía siempre abierto, encima del contenido. Martfury tiene la opción «Department Menu on Homepage» en `open` por defecto, y en la barra V1 la lista quedaba fija. Ahora en la home se abre al pasar el ratón, como en el resto de páginas, y se quita el relleno superior que acompañaba al menú abierto. No se cambia ninguna opción guardada del Customizer.
+
 ## [1.0.7] - 2026-11-19
 
 ### 🎨 Cambiado
