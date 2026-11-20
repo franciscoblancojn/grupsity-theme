@@ -4,6 +4,14 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.11] - 2026-11-20
+
+### 🐛 Corregido
+- Diseño V1, ficha de producto:
+  - **Cantidad y «Añadir al carrito»:** la fila flex estaba en el `form`, pero Elementor mete todo en `.e-atc-qty-button-holder`, así que no se alineaban. Ahora: selector − 1 + en una sola caja (sin la doble caja de Martfury ni el «Quantity:» en inglés), botón verde a la misma altura (52 px) y Wishlist/Comparar como botones de ícono. En el celular, cantidad y botón en la misma fila.
+  - **Etiqueta «¡Oferta!»:** salía como un óvalo deformado y fuera de la foto; ahora es un círculo verde dentro del marco.
+  - **Productos relacionados:** usan la misma tarjeta y el mismo hover que la tienda (borde, subida con sombra, cápsula de acciones sobre la foto), todas a la misma altura y con flechas redondas. Antes, al pasar el ratón, se abría la caja larga de Martfury.
+
 ## [1.0.10] - 2026-11-19
 
 ### ✨ Añadido

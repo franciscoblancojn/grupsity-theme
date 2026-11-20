@@ -1911,6 +1911,8 @@ body.grupsity-design-v1 .mf-elementor-icons-list .separator {
    y el mismo hover que «Ofertas del día». Martfury, al pasar el ratón, abría una segunda
    caja (.mf-product-details-hover) desplazada y con borde gris encima de la tarjeta, y una
    franja blanca que tapaba media foto: se quita la caja y las acciones van en una cápsula.
+   Las mismas reglas valen para el carrusel de «Productos relacionados» de la ficha
+   (section.related, un slick): :is(…) las comparte sin duplicarlas.
    ========================================================================== */
 
 body.grupsity-design-v1 ul.products:not(.slick-slider) {
@@ -1925,7 +1927,7 @@ body.grupsity-design-v1 ul.products:not(.slick-slider)::after {
 	display: none !important;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product {
 	float: none !important;
 	display: flex;
 	margin: 0 0 16px !important;
@@ -1933,7 +1935,7 @@ body.grupsity-design-v1 ul.products:not(.slick-slider) li.product {
 	clear: none !important;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .product-inner {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -1948,8 +1950,8 @@ body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner
 	transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product:hover .product-inner,
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:hover {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product:hover .product-inner,
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .product-inner:hover {
 	border-color: #d3dab8 !important;
 	box-shadow: 0 12px 24px rgba(17, 24, 39, 0.12) !important;
 	transform: translateY(-4px);
@@ -1992,7 +1994,7 @@ body.grupsity-design-v1 ul.products li.product .mf-product-price-box .footer-but
 	display: none !important;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail {
 	position: relative;
 	margin: 0 0 14px !important;
 	padding: 10px;
@@ -2001,7 +2003,7 @@ body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-th
 	overflow: hidden;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail img {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail img {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -2011,12 +2013,12 @@ body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-th
 	transition: transform 0.3s;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:hover .mf-product-thumbnail img {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .product-inner:hover .mf-product-thumbnail img {
 	transform: scale(1.04);
 }
 
 /* Acciones: cápsula flotante (como en «Ofertas del día») */
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button {
 	position: absolute;
 	left: 50% !important;
 	right: auto !important;
@@ -2034,15 +2036,15 @@ body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-th
 	transition: opacity 0.2s, bottom 0.2s;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:hover .mf-product-thumbnail .footer-button,
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:focus-within .mf-product-thumbnail .footer-button {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .product-inner:hover .mf-product-thumbnail .footer-button,
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .product-inner:focus-within .mf-product-thumbnail .footer-button {
 	bottom: 12px !important;
 	opacity: 1;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button > a,
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .mf-compare-button a,
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .added_to_cart {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button > a,
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button .mf-compare-button a,
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button .added_to_cart {
 	display: inline-flex !important;
 	align-items: center;
 	justify-content: center;
@@ -2057,41 +2059,41 @@ body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-th
 	color: var(--g-ink) !important;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button a .p-icon {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button a .p-icon {
 	display: flex !important;
 	height: 36px;
 	font-size: 17px;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .add-to-cart-text,
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .wcboost-wishlist-button__text,
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .wcboost-products-compare-button__text {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button .add-to-cart-text,
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button .wcboost-wishlist-button__text,
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button .wcboost-products-compare-button__text {
 	display: none !important;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button > a:hover,
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .mf-compare-button a:hover {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button > a:hover,
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button .mf-compare-button a:hover {
 	background: var(--g-green) !important;
 	color: var(--g-ink) !important;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button svg {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button svg {
 	width: 16px;
 	height: 16px;
 }
 
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .woo-loop-product__title {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .woo-loop-product__title {
 	margin: 0 0 8px !important;
 }
 
 /* Etiquetas sobre la foto, dentro del marco */
-body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .ribbons {
+body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .ribbons {
 	top: 10px;
 	left: 10px;
 }
 
 @media (max-width: 767px) {
-	body.grupsity-design-v1 ul.products:not(.slick-slider) li.product {
+	body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product {
 		padding: 0 5px !important;
 	}
 
@@ -2100,22 +2102,22 @@ body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .ribbons {
 		margin-right: -5px !important;
 	}
 
-	body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner {
+	body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .product-inner {
 		padding: 10px !important;
 	}
 
 	/* Sin hover en el celular: ni cápsula ni subida */
-	body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button {
+	body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .mf-product-thumbnail .footer-button {
 		display: none !important;
 	}
 
-	body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:hover {
+	body.grupsity-design-v1 :is(ul.products:not(.slick-slider), section.related ul.products) li.product .product-inner:hover {
 		transform: none;
 	}
 }
 
 /* Vista de lista: sin el ancho de columna del flex */
-body.grupsity-design-v1 .shop-view-list ul.products:not(.slick-slider) li.product {
+body.grupsity-design-v1 .shop-view-list :is(ul.products:not(.slick-slider), section.related ul.products) li.product {
 	width: 100%;
 }
 
@@ -2281,6 +2283,34 @@ body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-p
 	box-shadow: 0 4px 12px rgba(17, 24, 39, 0.12);
 }
 
+/* «¡Oferta!» sobre la foto: círculo verde dentro del marco. WooCommerce le da min-width/
+   min-height y line-height fijos, y el texto lo estiraba en óvalo fuera de la foto. */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-images span.onsale {
+	position: absolute !important;
+	top: 14px !important;
+	left: 14px !important;
+	right: auto !important;
+	z-index: 4;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 64px !important;
+	height: 64px !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	margin: 0 !important;
+	padding: 0 6px !important;
+	border-radius: 50% !important;
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+	font-size: 12px !important;
+	font-weight: 800 !important;
+	line-height: 1.1 !important;
+	text-align: center;
+	white-space: nowrap;
+	box-shadow: 0 4px 12px rgba(17, 24, 39, 0.12);
+}
+
 /* Título */
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-title .product_title {
 	margin: 0;
@@ -2368,32 +2398,169 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 	display: none !important;
 }
 
+/* Elementor mete cantidad, botón y Wishlist/Comparar en .e-atc-qty-button-holder: la fila
+   flex es esa caja, no el form. */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .e-atc-qty-button-holder {
+	display: flex !important;
+	flex-wrap: wrap;
+	align-items: stretch;
+	align-content: flex-start;
+	justify-content: flex-start !important;
+	gap: 10px;
+	width: 100%;
+	margin: 0 !important;
+}
+
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity {
+	float: none !important;
+	display: flex;
+	width: auto !important; /* Martfury: 100 % en el celular */
 	margin: 0 !important;
 	padding: 0 !important;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty {
+/* «Quantity:» de Martfury: sobra (el label para lectores de pantalla sigue) */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .label {
+	display: none !important;
+}
+
+/* Selector − 1 + en una sola caja, a la altura del botón */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty-box {
+	display: flex;
+	align-items: stretch;
+	height: 52px;
+	padding: 0 !important;
 	margin: 0 !important;
+	border: 1px solid var(--g-line) !important;
+	border-radius: 10px;
+	background: var(--g-paper);
+	overflow: hidden;
+	transition: border-color 0.2s;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty-box:hover,
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty-box:focus-within {
+	border-color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .decrease,
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .increase {
+	position: static !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	color: var(--g-ink) !important;
+	font-size: 16px !important;
+	transform: none !important;
+	user-select: none;
+	transition: background 0.2s;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .decrease:hover,
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .increase:hover {
+	background: var(--g-surface);
 }
 
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty {
-	width: 72px;
-	height: 52px;
-	border: 1px solid var(--g-line);
-	border-radius: 10px;
-	background: var(--g-paper);
+	width: 44px !important;
+	height: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 0;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: var(--g-ink);
 	font-size: 16px;
-	font-weight: 600;
+	font-weight: 700;
 	text-align: center;
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty::-webkit-outer-spin-button,
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty::-webkit-inner-spin-button {
+	margin: 0;
+	-webkit-appearance: none;
 }
 
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .single_add_to_cart_button {
-	flex: 1 1 200px;
+	display: flex !important;
+	flex: 1 1 160px;
+	align-items: center;
+	width: auto !important;
+	justify-content: center;
+	height: 52px !important;
 	min-height: 52px !important;
+	min-width: 0 !important;
 	margin: 0 !important;
+	padding: 0 20px !important;
+	border: 0 !important;
 	border-radius: 10px !important;
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
 	font-size: 16px !important;
+	font-weight: 700 !important;
+	line-height: 1.2 !important;
+	transition: background 0.2s, color 0.2s;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .single_add_to_cart_button:hover {
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
+}
+
+/* Wishlist y Comparar: botones cuadrados con solo el ícono */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button {
+	display: flex;
+	width: auto !important;
+	justify-content: flex-start !important;
+	gap: 10px;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button > div {
+	display: flex;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a {
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 52px !important;
+	height: 52px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 1px solid var(--g-line) !important;
+	border-radius: 10px !important;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 0 !important;
+	line-height: 1 !important;
+	transition: border-color 0.2s, background 0.2s;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a::before {
+	display: none !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a:hover {
+	border-color: var(--g-green) !important;
+	background: var(--g-green) !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a svg {
+	width: 20px;
+	height: 20px;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button .wcboost-wishlist-button__text,
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button .wcboost-products-compare-button__text {
+	display: none !important;
 }
 
 /* «Agotado» (simple.php ya lo imprime; antes el bloque salía vacío) */
@@ -2710,6 +2877,75 @@ body.grupsity-design-v1.single-product section.related.products .related-title {
 	text-align: left !important;
 }
 
+/* Carrusel: tarjetas a la misma altura (el <li> es el slide y se estira con el track) y
+   aire en el slick-list para que la subida y la sombra del hover no se corten. Las
+   tarjetas usan las reglas del catálogo. */
+body.grupsity-design-v1.single-product section.related.products ul.products {
+	margin: 0 -8px !important;
+}
+
+body.grupsity-design-v1.single-product section.related.products ul.products .slick-list {
+	margin: 0;
+	padding: 12px 0 24px !important;
+}
+
+body.grupsity-design-v1.single-product section.related.products ul.products .slick-track {
+	display: flex !important;
+}
+
+body.grupsity-design-v1.single-product section.related.products ul.products li.product.slick-slide {
+	float: none !important;
+	height: auto !important;
+	margin: 0 !important;
+}
+
+body.grupsity-design-v1.single-product section.related.products ul.products li.product .product-inner {
+	height: auto !important;
+}
+
+/* Flechas: como en «Ofertas del día» */
+body.grupsity-design-v1.single-product section.related.products .slick-arrow {
+	position: absolute;
+	top: 42% !important;
+	z-index: 5;
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	margin: 0;
+	border: 1px solid var(--g-line);
+	border-radius: 50%;
+	background: var(--g-paper) !important;
+	color: var(--g-ink) !important;
+	font-size: 18px;
+	line-height: 1;
+	box-shadow: 0 6px 16px rgba(17, 24, 39, 0.12);
+	cursor: pointer;
+	transform: translateY(-50%);
+	transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+body.grupsity-design-v1.single-product section.related.products .slick-arrow:hover {
+	border-color: var(--g-green);
+	background: var(--g-green) !important;
+}
+
+body.grupsity-design-v1.single-product section.related.products .slick-arrow.slick-disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+
+body.grupsity-design-v1.single-product section.related.products .slick-prev-arrow {
+	left: -14px !important;
+	right: auto !important;
+}
+
+body.grupsity-design-v1.single-product section.related.products .slick-next-arrow {
+	right: -14px !important;
+	left: auto !important;
+}
+
 @media (max-width: 991px) {
 	body.grupsity-design-v1.single-product .elementor-location-single > .e-con.e-parent:first-child > .e-con-inner {
 		grid-template-columns: minmax(0, 1fr);
@@ -2732,6 +2968,21 @@ body.grupsity-design-v1.single-product section.related.products .related-title {
 	body.grupsity-design-v1.single-product .elementor-location-single > .e-con-boxed > .e-con-inner {
 		padding-left: 12px;
 		padding-right: 12px;
+	}
+
+	/* Flechas del carrusel dentro de la pantalla */
+	body.grupsity-design-v1.single-product section.related.products .slick-prev-arrow {
+		left: 0 !important;
+	}
+
+	body.grupsity-design-v1.single-product section.related.products .slick-next-arrow {
+		right: 0 !important;
+	}
+
+	body.grupsity-design-v1.single-product section.related.products .slick-arrow {
+		width: 36px;
+		height: 36px;
+		font-size: 15px;
 	}
 
 	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-title .product_title {
