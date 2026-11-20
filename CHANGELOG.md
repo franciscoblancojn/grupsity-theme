@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.7] - 2026-11-19
+
+### 🎨 Cambiado
+- Portada, diseño V1: **hover en las imágenes con enlace** (categorías con texto debajo, como «Nuevos y Colecciones», y banners): la imagen hace un zoom suave dentro de su marco, el bloque sube un poco con sombra y el texto pasa a verde. Los logos del carrusel de marcas también suben y crecen un poco. Las imágenes sin enlace no cambian, y sin animación si el sistema tiene «reducir movimiento».
+
 ## [1.0.6] - 2026-11-19
 
 ### 🎨 Cambiado

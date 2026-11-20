@@ -1727,6 +1727,92 @@ body.grupsity-design-v1 .elementor-section:has(> .elementor-container .mf-produc
 }
 
 /* ==========================================================================
+   Portada: imágenes con enlace (widgets Imagen de Elementor: categorías con texto debajo
+   y banners) y logos del carrusel de marcas. Al pasar el ratón la imagen hace un zoom
+   suave dentro de su marco, el bloque sube un poco con sombra y el texto pasa a verde.
+   Solo las que tienen enlace: una imagen sin enlace no debe parecer clicable.
+   ========================================================================== */
+
+body.grupsity-design-v1.home .elementor-widget-image a {
+	position: relative;
+	display: block;
+	border-radius: var(--g-radius);
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.grupsity-design-v1.home .elementor-widget-image a img {
+	display: block;
+	width: 100%;
+	transition: transform 0.5s ease, filter 0.3s ease;
+	will-change: transform;
+}
+
+body.grupsity-design-v1.home .elementor-widget-image a:hover,
+body.grupsity-design-v1.home .elementor-widget-image a:focus-visible {
+	box-shadow: 0 14px 28px rgba(17, 24, 39, 0.16);
+	transform: translateY(-4px);
+}
+
+body.grupsity-design-v1.home .elementor-widget-image a:hover img,
+body.grupsity-design-v1.home .elementor-widget-image a:focus-visible img {
+	filter: saturate(1.08);
+	transform: scale(1.06);
+}
+
+/* Texto debajo de la imagen (figcaption): acompaña al hover */
+body.grupsity-design-v1.home .elementor-widget-image figure.wp-caption .widget-image-caption {
+	margin-top: 10px;
+	color: var(--g-ink);
+	font-weight: 600;
+	transition: color 0.2s ease, transform 0.3s ease;
+}
+
+body.grupsity-design-v1.home .elementor-widget-image figure.wp-caption:has(a:hover) .widget-image-caption,
+body.grupsity-design-v1.home .elementor-widget-image figure.wp-caption:has(a:focus-visible) .widget-image-caption {
+	color: var(--g-green-ink);
+	transform: translateY(-2px);
+}
+
+/* Logos del carrusel de marcas: suben un poco y crecen */
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link {
+	display: block;
+	border-radius: var(--g-radius);
+	transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link img {
+	transition: transform 0.4s ease;
+}
+
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:hover {
+	background-color: var(--g-paper);
+	box-shadow: 0 10px 22px rgba(17, 24, 39, 0.12);
+	transform: translateY(-3px);
+}
+
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:hover img {
+	transform: scale(1.06);
+}
+
+/* El slider de marcas recorta en vertical: aire para la subida y la sombra */
+body.grupsity-design-v1.home .mf-images-gallery .slick-list {
+	padding: 8px 0 18px !important;
+}
+
+/* Sin animaciones si el visitante las tiene desactivadas en su sistema */
+@media (prefers-reduced-motion: reduce) {
+	body.grupsity-design-v1.home .elementor-widget-image a,
+	body.grupsity-design-v1.home .elementor-widget-image a img,
+	body.grupsity-design-v1.home .elementor-widget-image .widget-image-caption,
+	body.grupsity-design-v1.home .mf-images-gallery a.img-link,
+	body.grupsity-design-v1.home .mf-images-gallery a.img-link img {
+		transition: none;
+		transform: none !important;
+	}
+}
+
+/* ==========================================================================
    Móvil y tablet
    ========================================================================== */
 
