@@ -4,6 +4,16 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.9] - 2026-11-19
+
+### ✨ Añadido
+- **Scroll infinito en el catálogo** (tienda, categorías, marcas y búsqueda), como en TeDotamos. Opción en Apariencia → Grupsity → General → **Navegación del catálogo**: scroll infinito (por defecto), números de página o lo que diga el Customizer de Martfury. Al llegar al final se cargan los productos de la página siguiente, con un botón «Cargando más productos» que también se puede tocar. Sin JavaScript, o para los buscadores, es un enlace normal a la página siguiente. Funciona con cualquier diseño.
+  - `woocommerce/loop/pagination.php`: en scroll infinito solo se imprime el enlace a la página siguiente; en la última página, el `<nav>` vacío. Antes salían también los números. Corrige el enlace de WooCommerce 11 (`%_%`), que quedaba en `…/tienda/%_%` y no cargaba nada.
+
+### 🐛 Corregido
+- Diseño V1, **tarjetas de producto en tienda y categorías**: al pasar el ratón, Martfury abría una segunda caja desplazada con borde gris y una franja blanca que tapaba media foto. Ahora son tarjetas como las de «Ofertas del día», alineadas y de la misma altura por fila: la tarjeta sube con sombra, la foto hace un zoom suave y las acciones salen en una cápsula flotante. En el celular, título y precio siempre visibles (Martfury los ocultaba) y sin cápsula.
+- **Filtro de precios** (diseños V1 y JomaShop): el texto «Precio: $x — $y» estaba encima de los campos y no dejaba usarlos. Ahora va en su propia línea, bajo el slider (verde), y los dos campos se pueden escribir: al cambiar un valor se mueve el slider (`inc/grupsity/class-catalog.php`).
+
 ## [1.0.8] - 2026-11-19
 
 ### 🎨 Cambiado

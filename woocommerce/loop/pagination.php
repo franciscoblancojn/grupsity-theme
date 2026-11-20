@@ -28,12 +28,38 @@ $next_text = sprintf( '%s <i class="icon-chevron-right"></i>', esc_html__( 'Next
 $prev_text = sprintf( '<i class="icon-chevron-left"></i> %s', esc_html__( 'Previous Page', 'martfury' ) );
 
 $type = 'list';
-if ( martfury_get_option( 'catalog_nav_type' ) == 'infinite' ) {
-	$next_text = '<span id="martfury-products-loading" class="dots-loading"><span>.</span><span>.</span><span>.</span>' . esc_html__( 'Loading', 'martfury' ) . '<span>.</span><span>.</span><span>.</span></span>';
-	$type      = 'plain';
+if ( $total <= 1 ) {
+	return;
 }
 
-if ( $total <= 1 ) {
+// Grupsity: en scroll infinito solo se imprime el enlace a la página siguiente (Martfury imprimía
+// también los números, que quedaban a la vista). El JS de Martfury (productsLoadInfinite) lo
+// pulsa al verlo en pantalla, añade los productos y reemplaza este <nav> por el de la página
+// cargada; por eso en la última página se imprime vacío (si no, volvería a cargar la última).
+// Sin JS, o para los buscadores, es un enlace normal. Mismo arreglo que el tema TeDotamos.
+if ( martfury_get_option( 'catalog_nav_type' ) == 'infinite' ) {
+	// WooCommerce 11 pasa $base con el marcador %_% y $format como "page/%#%/": si solo se
+	// sustituye %#%, el enlace queda en "…/tienda/%_%" (400). Primero se expande %_%.
+	$next_url = $base;
+	if ( false !== strpos( $next_url, '%_%' ) ) {
+		$next_format = $format;
+		if ( '' === $next_format ) {
+			global $wp_rewrite;
+			$next_format = user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' );
+		}
+		$next_url = str_replace( '%_%', $next_format, $next_url );
+	}
+	$next_url = str_replace( '%#%', $current + 1, $next_url );
+
+	printf(
+		'<nav class="woocommerce-pagination grupsity-infinite" aria-label="%s">%s</nav>',
+		esc_attr__( 'Product Pagination', 'woocommerce' ),
+		$current < $total ? sprintf(
+			'<a class="next page-numbers" href="%s"><span id="martfury-products-loading" class="grupsity-infinite__loading">%s</span></a>',
+			esc_url( $next_url ),
+			esc_html( 'Cargando más productos' )
+		) : '' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	);
 	return;
 }
 ?>

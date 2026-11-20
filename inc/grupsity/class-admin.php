@@ -25,6 +25,7 @@ class Grupsity_Admin {
 		'v1_topbar'     => '', // diseño V1: vacío = Grupsity_Design_V1::DEFAULTS
 		'v1_nav'        => '',
 		'v1_hotline'    => '',
+		'catalog_nav'   => 'infinite', // ver Grupsity_Catalog::NAV_CHOICES
 	);
 
 	public static function init() {
@@ -72,6 +73,7 @@ class Grupsity_Admin {
 			'v1_topbar'     => isset( $input['v1_topbar'] ) ? sanitize_textarea_field( $input['v1_topbar'] ) : '',
 			'v1_nav'        => isset( $input['v1_nav'] ) ? sanitize_textarea_field( $input['v1_nav'] ) : '',
 			'v1_hotline'    => isset( $input['v1_hotline'] ) ? sanitize_text_field( $input['v1_hotline'] ) : '',
+			'catalog_nav'   => isset( $input['catalog_nav'], Grupsity_Catalog::NAV_CHOICES[ $input['catalog_nav'] ] ) ? $input['catalog_nav'] : '',
 		);
 
 		// Si cambia la frecuencia, que la próxima consulta use el nuevo valor.
@@ -294,6 +296,17 @@ class Grupsity_Admin {
 							«Categorías», enlaces y teléfono, contenido en container de 1320 px) con los colores y fuentes de
 							Grupsity; sus textos se configuran abajo. Al cambiar de diseño se purga la caché.
 						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="grupsity-catalog-nav">Navegación del catálogo</label></th>
+					<td>
+						<select id="grupsity-catalog-nav" name="<?php echo esc_attr( $name ); ?>[catalog_nav]">
+							<?php foreach ( Grupsity_Catalog::NAV_CHOICES as $key => $label ) : ?>
+								<option value="<?php echo esc_attr( $key ); ?>" <?php selected( Grupsity_Catalog::nav(), $key ); ?>><?php echo esc_html( $label ); ?></option>
+							<?php endforeach; ?>
+						</select>
+						<p class="description">Tienda, categorías, marcas y búsqueda. Con scroll infinito, al llegar al final se cargan los productos de la página siguiente (sin JavaScript, o para los buscadores, es un enlace normal).</p>
 					</td>
 				</tr>
 				<tr>

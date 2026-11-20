@@ -5,3 +5,73 @@
  * Se carga desde inc/grupsity/bootstrap.php cuando se empiece a desarrollar el tema.
  * Los cambios se anotan en GRUPSITY.md con la marca "Grupsity:".
  */
+
+/* Grupsity: scroll infinito del catálogo (woocommerce/loop/pagination.php, opción
+   Apariencia → Grupsity → General → Navegación del catálogo). Solo queda el enlace a la
+   página siguiente con un indicador girando: el JS de Martfury lo pulsa al verlo en
+   pantalla, y también se puede tocar (hace de "cargar más"). */
+.woocommerce-pagination.grupsity-infinite {
+	display: flex;
+	justify-content: center;
+	margin: 28px 0 8px;
+	padding: 0;
+	border: 0;
+}
+
+.woocommerce-pagination.grupsity-infinite:empty {
+	display: none;
+}
+
+.woocommerce-pagination.grupsity-infinite a.next {
+	display: inline-flex;
+	align-items: center;
+	width: auto;
+	min-width: 0;
+	height: auto;
+	margin: 0;
+	padding: 12px 22px;
+	border: 1px solid #e6e8ec;
+	border-radius: 999px;
+	background: #fff;
+	color: #1f2329;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.2;
+	letter-spacing: normal; /* Martfury espacia mucho las letras de la paginación */
+	text-transform: none;
+}
+
+.woocommerce-pagination.grupsity-infinite a.next:hover {
+	border-color: var(--mf-primary-color, #93b700);
+	background: #fff;
+	color: #1f2329;
+}
+
+.woocommerce-pagination.grupsity-infinite .grupsity-infinite__loading {
+	letter-spacing: normal;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.woocommerce-pagination.grupsity-infinite .grupsity-infinite__loading::before {
+	content: "";
+	width: 18px;
+	height: 18px;
+	border: 2px solid var(--mf-primary-color, #93b700);
+	border-right-color: transparent;
+	border-radius: 50%;
+	animation: grupsity-spin 0.7s linear infinite;
+}
+
+@keyframes grupsity-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.woocommerce-pagination.grupsity-infinite .grupsity-infinite__loading::before {
+		animation-duration: 2s;
+	}
+}

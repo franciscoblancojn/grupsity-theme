@@ -26,6 +26,9 @@ Se actualiza solo desde nuestro repo: `https://github.com/franciscoblancojn/grup
 | `inc/grupsity/class-design-v1.php` + `css/design-v1.css` | Diseño V1: estructura de TeDotamos V1 (franja, header, buscador, barra de menú, desplegable de categorías, container de 1320 px) con colores y fuentes de Grupsity |
 | `template-parts/headers/layout-1.php` | Gancho `grupsity_header_nav`: un diseño (V1) puede reemplazar el menú y el Header Bar |
 | `inc/functions/header.php` | Filtro `grupsity_department_menu` en `martfury_extra_department()`: un diseño (V1) puede reemplazar la lista del desplegable «Categorías» |
+| `inc/grupsity/class-catalog.php` | Navegación del catálogo (`catalog_nav`: scroll infinito / números / Customizer) vía `martfury_get_option`, y script que sincroniza los campos del filtro de precios con el slider |
+| `woocommerce/loop/pagination.php` | Scroll infinito: solo el enlace a la página siguiente (`nav` vacío en la última) y `%_%` de WooCommerce 11 expandido. Mismo arreglo que TeDotamos |
+| `css/grupsity.css` | Botón «Cargando más productos» del scroll infinito (con cualquier diseño) |
 | `inc/grupsity/class-migration.php` | Copia la configuración del Customizer de Martfury al activar y botones con nonce en la pestaña Migración |
 | `.github/workflows/release.yml` | Construye `grupsity.zip` y crea la release al subir un tag |
 | `CHANGELOG.md` | Registro de cambios (Keep a Changelog) |

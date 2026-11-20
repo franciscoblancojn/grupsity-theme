@@ -747,18 +747,79 @@ body.grupsity-design-jomashop .catalog-sidebar .show-swatch .swatch-color .sub-s
 	box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.15);
 }
 
-/* Filtro de precio: dos campos en fila y botón a todo el ancho */
+/* Filtro de precio: slider, rango en texto y debajo dos campos editables + botón.
+   Martfury pone el texto «Precio: $x — $y» en position: absolute encima de los campos
+   (los tapaba y no se podían usar): pasa a ir en su propia línea. WooCommerce oculta los
+   campos cuando hay slider; aquí se muestran y, al escribir, mueven el slider
+   (inc/grupsity/class-catalog.php). */
+body.grupsity-design-jomashop .widget_price_filter .price_slider_wrapper {
+	padding-top: 6px;
+}
+
+body.grupsity-design-jomashop .widget_price_filter .price_slider.ui-slider {
+	position: relative;
+	height: 4px;
+	margin: 8px 9px 4px;
+	border: 0;
+	border-radius: 50px;
+	background: var(--g-line);
+}
+
+body.grupsity-design-jomashop .widget_price_filter .ui-slider .ui-slider-range {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	border-radius: 50px;
+	background: var(--g-green) !important;
+}
+
+body.grupsity-design-jomashop .widget_price_filter .ui-slider .ui-slider-handle {
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+	width: 18px;
+	height: 18px;
+	margin: -9px 0 0 -9px;
+	border: 2px solid var(--g-paper) !important;
+	border-radius: 50%;
+	background: var(--g-green) !important;
+	box-shadow: 0 0 0 1px var(--g-green-ink), 0 2px 6px rgba(17, 24, 39, 0.2);
+	cursor: grab;
+	outline: none;
+}
+
+body.grupsity-design-jomashop .widget_price_filter .ui-slider .ui-slider-handle:focus-visible {
+	box-shadow: 0 0 0 3px var(--g-green-soft, #f1f7dc), 0 0 0 5px var(--g-green-ink);
+}
+
 body.grupsity-design-jomashop .widget_price_filter .price_slider_amount {
+	position: static !important;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 10px;
+	height: auto !important;
+	min-height: 0 !important;
 	margin: 0;
 	text-align: left;
+}
+
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .price_label {
+	position: static !important;
+	grid-column: 1 / -1;
+	grid-row: 1;
+	display: block !important;
+	margin: 10px 0 2px;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	pointer-events: none;
 }
 
 body.grupsity-design-jomashop .widget_price_filter .price_slider_amount input[type="text"] {
 	float: none !important;
 	display: block !important;
+	grid-row: 2;
 	width: 100% !important;
 	height: 40px;
 	margin: 0 !important;
@@ -766,12 +827,20 @@ body.grupsity-design-jomashop .widget_price_filter .price_slider_amount input[ty
 	border: 1px solid var(--g-line);
 	border-radius: 8px;
 	background: var(--g-paper);
+	color: var(--g-ink);
 	font-size: 13px;
+}
+
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount input[type="text"]:focus {
+	border-color: var(--g-green);
+	outline: none;
 }
 
 body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .button {
 	grid-column: 1 / -1;
+	grid-row: 3;
 	float: none !important;
+	display: block !important;
 	width: 100%;
 	height: 42px;
 	margin: 4px 0 0 !important;
@@ -791,9 +860,8 @@ body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .button:
 	color: var(--g-paper) !important;
 }
 
-body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .clear,
-body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .price_label {
-	grid-column: 1 / -1;
+body.grupsity-design-jomashop .widget_price_filter .price_slider_amount .clear {
+	display: none;
 }
 
 /* Botón del plugin PDF Catalog: estaba fuera de la columna, encima del sidebar */

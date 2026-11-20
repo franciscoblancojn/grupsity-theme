@@ -770,18 +770,79 @@ body.grupsity-design-v1 .catalog-sidebar .show-swatch .swatch-color .sub-swatch 
 	box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.15);
 }
 
-/* Filtro de precio: dos campos en fila y botón a todo el ancho */
+/* Filtro de precio: slider, rango en texto y debajo dos campos editables + botón.
+   Martfury pone el texto «Precio: $x — $y» en position: absolute encima de los campos
+   (los tapaba y no se podían usar): pasa a ir en su propia línea. WooCommerce oculta los
+   campos cuando hay slider; aquí se muestran y, al escribir, mueven el slider
+   (inc/grupsity/class-catalog.php). */
+body.grupsity-design-v1 .widget_price_filter .price_slider_wrapper {
+	padding-top: 6px;
+}
+
+body.grupsity-design-v1 .widget_price_filter .price_slider.ui-slider {
+	position: relative;
+	height: 4px;
+	margin: 8px 9px 4px;
+	border: 0;
+	border-radius: 50px;
+	background: var(--g-line);
+}
+
+body.grupsity-design-v1 .widget_price_filter .ui-slider .ui-slider-range {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	border-radius: 50px;
+	background: var(--g-green) !important;
+}
+
+body.grupsity-design-v1 .widget_price_filter .ui-slider .ui-slider-handle {
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+	width: 18px;
+	height: 18px;
+	margin: -9px 0 0 -9px;
+	border: 2px solid var(--g-paper) !important;
+	border-radius: 50%;
+	background: var(--g-green) !important;
+	box-shadow: 0 0 0 1px var(--g-green-ink), 0 2px 6px rgba(17, 24, 39, 0.2);
+	cursor: grab;
+	outline: none;
+}
+
+body.grupsity-design-v1 .widget_price_filter .ui-slider .ui-slider-handle:focus-visible {
+	box-shadow: 0 0 0 3px var(--g-green-soft, #f1f7dc), 0 0 0 5px var(--g-green-ink);
+}
+
 body.grupsity-design-v1 .widget_price_filter .price_slider_amount {
+	position: static !important;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 10px;
+	height: auto !important;
+	min-height: 0 !important;
 	margin: 0;
 	text-align: left;
+}
+
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount .price_label {
+	position: static !important;
+	grid-column: 1 / -1;
+	grid-row: 1;
+	display: block !important;
+	margin: 10px 0 2px;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	pointer-events: none;
 }
 
 body.grupsity-design-v1 .widget_price_filter .price_slider_amount input[type="text"] {
 	float: none !important;
 	display: block !important;
+	grid-row: 2;
 	width: 100% !important;
 	height: 40px;
 	margin: 0 !important;
@@ -789,12 +850,20 @@ body.grupsity-design-v1 .widget_price_filter .price_slider_amount input[type="te
 	border: 1px solid var(--g-line);
 	border-radius: 8px;
 	background: var(--g-paper);
+	color: var(--g-ink);
 	font-size: 13px;
+}
+
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount input[type="text"]:focus {
+	border-color: var(--g-green);
+	outline: none;
 }
 
 body.grupsity-design-v1 .widget_price_filter .price_slider_amount .button {
 	grid-column: 1 / -1;
+	grid-row: 3;
 	float: none !important;
+	display: block !important;
 	width: 100%;
 	height: 42px;
 	margin: 4px 0 0 !important;
@@ -814,9 +883,8 @@ body.grupsity-design-v1 .widget_price_filter .price_slider_amount .button:hover 
 	color: var(--g-paper) !important;
 }
 
-body.grupsity-design-v1 .widget_price_filter .price_slider_amount .clear,
-body.grupsity-design-v1 .widget_price_filter .price_slider_amount .price_label {
-	grid-column: 1 / -1;
+body.grupsity-design-v1 .widget_price_filter .price_slider_amount .clear {
+	display: none;
 }
 
 /* Botón del plugin PDF Catalog: estaba fuera de la columna, encima del sidebar */
@@ -1836,6 +1904,219 @@ body.grupsity-design-v1 .mf-elementor-icons-list .desc {
 
 body.grupsity-design-v1 .mf-elementor-icons-list .separator {
 	background-color: var(--g-line) !important;
+}
+
+/* ==========================================================================
+   Catálogo (tienda, categorías, marcas, búsqueda): tarjetas como las de TeDotamos
+   y el mismo hover que «Ofertas del día». Martfury, al pasar el ratón, abría una segunda
+   caja (.mf-product-details-hover) desplazada y con borde gris encima de la tarjeta, y una
+   franja blanca que tapaba media foto: se quita la caja y las acciones van en una cápsula.
+   ========================================================================== */
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -8px !important;
+	margin-right: -8px !important;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider)::before,
+body.grupsity-design-v1 ul.products:not(.slick-slider)::after {
+	display: none !important;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product {
+	float: none !important;
+	display: flex;
+	margin: 0 0 16px !important;
+	padding: 0 8px !important;
+	clear: none !important;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: auto;
+	margin: 0 !important;
+	padding: 12px 12px 16px !important;
+	border: 1px solid var(--g-line) !important;
+	border-radius: 12px;
+	background: var(--g-paper);
+	box-shadow: none !important;
+	transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product:hover .product-inner,
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:hover {
+	border-color: #d3dab8 !important;
+	box-shadow: 0 12px 24px rgba(17, 24, 39, 0.12) !important;
+	transform: translateY(-4px);
+}
+
+/* La segunda caja del hover de Martfury: fuera */
+body.grupsity-design-v1 ul.products li.product .mf-product-details-hover {
+	display: none !important;
+}
+
+/* Martfury oculta los detalles al pasar el ratón (para mostrar la otra caja): siempre visibles */
+body.grupsity-design-v1 ul.products li.product .mf-product-details,
+body.grupsity-design-v1 ul.products li.product .product-inner:hover .mf-product-details {
+	display: flex !important;
+	flex: 1 1 auto;
+	flex-direction: column;
+	padding: 0 !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	background: transparent;
+}
+
+/* En el celular Martfury oculta título y precio (y usa la segunda caja, que aquí se quita):
+   se muestran siempre. */
+body.grupsity-design-v1 ul.products li.product .mf-product-content {
+	display: block !important;
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-details .mf-product-price-box {
+	display: block !important;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-price-box {
+	margin-top: auto;
+	padding: 6px 0 0 !important;
+}
+
+body.grupsity-design-v1 ul.products li.product .mf-product-price-box .footer-button {
+	display: none !important;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail {
+	position: relative;
+	margin: 0 0 14px !important;
+	padding: 10px;
+	border-radius: 10px;
+	background: var(--g-thumb);
+	overflow: hidden;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	border: 0 !important;
+	transition: transform 0.3s;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:hover .mf-product-thumbnail img {
+	transform: scale(1.04);
+}
+
+/* Acciones: cápsula flotante (como en «Ofertas del día») */
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button {
+	position: absolute;
+	left: 50% !important;
+	right: auto !important;
+	bottom: 4px !important;
+	z-index: 3;
+	display: flex;
+	gap: 2px;
+	width: auto;
+	padding: 4px !important;
+	border-radius: 50px;
+	background: rgba(255, 255, 255, 0.96) !important;
+	box-shadow: 0 6px 16px rgba(17, 24, 39, 0.16);
+	opacity: 0;
+	transform: translateX(-50%);
+	transition: opacity 0.2s, bottom 0.2s;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:hover .mf-product-thumbnail .footer-button,
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:focus-within .mf-product-thumbnail .footer-button {
+	bottom: 12px !important;
+	opacity: 1;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button > a,
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .mf-compare-button a,
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .added_to_cart {
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 36px !important;
+	height: 36px !important;
+	min-height: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 50% !important;
+	background: transparent !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button a .p-icon {
+	display: flex !important;
+	height: 36px;
+	font-size: 17px;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .add-to-cart-text,
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .wcboost-wishlist-button__text,
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .wcboost-products-compare-button__text {
+	display: none !important;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button > a:hover,
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button .mf-compare-button a:hover {
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button svg {
+	width: 16px;
+	height: 16px;
+}
+
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .woo-loop-product__title {
+	margin: 0 0 8px !important;
+}
+
+/* Etiquetas sobre la foto, dentro del marco */
+body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .ribbons {
+	top: 10px;
+	left: 10px;
+}
+
+@media (max-width: 767px) {
+	body.grupsity-design-v1 ul.products:not(.slick-slider) li.product {
+		padding: 0 5px !important;
+	}
+
+	body.grupsity-design-v1 ul.products:not(.slick-slider) {
+		margin-left: -5px !important;
+		margin-right: -5px !important;
+	}
+
+	body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner {
+		padding: 10px !important;
+	}
+
+	/* Sin hover en el celular: ni cápsula ni subida */
+	body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .mf-product-thumbnail .footer-button {
+		display: none !important;
+	}
+
+	body.grupsity-design-v1 ul.products:not(.slick-slider) li.product .product-inner:hover {
+		transform: none;
+	}
+}
+
+/* Vista de lista: sin el ancho de columna del flex */
+body.grupsity-design-v1 .shop-view-list ul.products:not(.slick-slider) li.product {
+	width: 100%;
 }
 
 /* ==========================================================================
