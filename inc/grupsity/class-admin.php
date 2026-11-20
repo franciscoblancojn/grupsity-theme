@@ -25,6 +25,7 @@ class Grupsity_Admin {
 		'v1_topbar'     => '', // diseño V1: vacío = Grupsity_Design_V1::DEFAULTS
 		'v1_nav'        => '',
 		'v1_hotline'    => '',
+		'v1_whatsapp'   => '',
 		'catalog_nav'   => 'infinite', // ver Grupsity_Catalog::NAV_CHOICES
 	);
 
@@ -73,6 +74,7 @@ class Grupsity_Admin {
 			'v1_topbar'     => isset( $input['v1_topbar'] ) ? sanitize_textarea_field( $input['v1_topbar'] ) : '',
 			'v1_nav'        => isset( $input['v1_nav'] ) ? sanitize_textarea_field( $input['v1_nav'] ) : '',
 			'v1_hotline'    => isset( $input['v1_hotline'] ) ? sanitize_text_field( $input['v1_hotline'] ) : '',
+			'v1_whatsapp'   => isset( $input['v1_whatsapp'] ) ? preg_replace( '/\D/', '', (string) $input['v1_whatsapp'] ) : '',
 			'catalog_nav'   => isset( $input['catalog_nav'], Grupsity_Catalog::NAV_CHOICES[ $input['catalog_nav'] ] ) ? $input['catalog_nav'] : '',
 		);
 
@@ -319,6 +321,9 @@ class Grupsity_Admin {
 						<textarea id="grupsity-v1-nav" name="<?php echo esc_attr( $name ); ?>[v1_nav]" rows="5" class="large-text code" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_nav'] ); ?>"><?php echo esc_textarea( self::get_option( 'v1_nav' ) ); ?></textarea>
 						<p><label for="grupsity-v1-hotline"><strong>Teléfono</strong> (al final de la barra)</label></p>
 						<input type="text" id="grupsity-v1-hotline" name="<?php echo esc_attr( $name ); ?>[v1_hotline]" value="<?php echo esc_attr( self::get_option( 'v1_hotline' ) ); ?>" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_hotline'] ); ?>" class="regular-text">
+						<p><label for="grupsity-v1-whatsapp"><strong>WhatsApp de la ficha de producto</strong> (con indicativo, solo números)</label></p>
+						<input type="text" id="grupsity-v1-whatsapp" name="<?php echo esc_attr( $name ); ?>[v1_whatsapp]" value="<?php echo esc_attr( self::get_option( 'v1_whatsapp' ) ); ?>" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_whatsapp'] ); ?>" class="regular-text">
+						<p class="description">Botón «Comprar por WhatsApp» (o «Preguntar disponibilidad» si está agotado) bajo el botón de compra.</p>
 						<p class="description">Solo se usan con el diseño V1. El desplegable «Categorías» se arma solo con las categorías de producto.</p>
 					</td>
 				</tr>

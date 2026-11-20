@@ -4,6 +4,21 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.10] - 2026-11-19
+
+### ✨ Añadido
+- Diseño V1, **ficha de producto como la de TeDotamos** (plantilla de Elementor «Producto»):
+  - **Disposición:** galería fija a la izquierda, con las miniaturas debajo (la activa con borde verde). A la derecha, en este orden: título, precio grande con el anterior tachado y el **% de descuento**, descripción corta, bloque de compra, garantía, envíos/pagos y SKU/categorías/marca. El orden se cambia con CSS, sin tocar la plantilla.
+  - **Compra:** cantidad + «Añadir al carrito» en verde y botón **«Comprar por WhatsApp»** (si está agotado, «Preguntar disponibilidad por WhatsApp», con el nombre y el enlace del producto en el mensaje). El número se configura en Apariencia → Grupsity → General.
+  - **Pestañas y FAQ:** pestañas con subrayado verde; títulos de la descripción más moderados y tablas con bordes suaves; preguntas frecuentes como tarjetas.
+  - Todo alineado con el container de 1320 px; en el celular, en una columna.
+
+### 🐛 Corregido
+- **Ficha de producto sin stock** (cualquier diseño): el bloque de compra salía vacío, porque la plantilla de Martfury (`woocommerce/single-product/add-to-cart/simple.php`) no imprime el estado de stock. Ahora muestra «Agotado» y el gancho `grupsity_add_to_cart_unavailable`.
+- Ficha de producto (cualquier diseño): pestañas «Description» / «Specification» → «Descripción» / «Especificaciones»; «Brand:» → «Marca:»; «Related products» → «Productos relacionados».
+- El bloque «See It Styled On Instagram» de Martfury estaba activo sin token e imprimía «No access token» en todas las fichas: se oculta mientras no haya token.
+- Diseño V1: las etiquetas del widget «Meta del producto» (la del SKU mostraba el propio código y «Categorías;» llevaba punto y coma) se muestran como «SKU» y «Categorías». También se pueden corregir en el widget de Elementor.
+
 ## [1.0.9] - 2026-11-19
 
 ### ✨ Añadido

@@ -26,6 +26,7 @@ class Grupsity_Design_V1 {
 		'v1_topbar'  => "truck|Entrega gratuita en todas tus compras|\nshield|Productos 100% originales|\ncard|Pago seguro: transferencias, TC y créditos|",
 		'v1_nav'     => "Relojes de Hombre|/hombre/\nRelojes de Mujer|/mujer/\nOfertas del Día|/ofertas-del-dia/\nSeguimiento de pedidos|/seguimiento-de-pedidos/\nTedotamos.com|https://tedotamos.com/",
 		'v1_hotline' => '+57 318 888 0385',
+		'v1_whatsapp' => '573188880385',
 	);
 
 	public static function init() {

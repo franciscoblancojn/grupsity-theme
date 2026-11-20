@@ -29,6 +29,8 @@ Se actualiza solo desde nuestro repo: `https://github.com/franciscoblancojn/grup
 | `inc/grupsity/class-catalog.php` | Navegación del catálogo (`catalog_nav`: scroll infinito / números / Customizer) vía `martfury_get_option`, y script que sincroniza los campos del filtro de precios con el slider |
 | `woocommerce/loop/pagination.php` | Scroll infinito: solo el enlace a la página siguiente (`nav` vacío en la última) y `%_%` de WooCommerce 11 expandido. Mismo arreglo que TeDotamos |
 | `css/grupsity.css` | Botón «Cargando más productos» del scroll infinito (con cualquier diseño) |
+| `inc/grupsity/class-product.php` | Ficha de producto: pestañas y «Marca:» en español, oculta Instagram sin token, «Productos relacionados»; con V1, botón de WhatsApp y % de descuento junto al precio |
+| `woocommerce/single-product/add-to-cart/simple.php` | Sin stock imprime «Agotado» (`wc_get_stock_html`) y lanza `grupsity_add_to_cart_unavailable` (antes el bloque salía vacío en la plantilla de Elementor) |
 | `inc/grupsity/class-migration.php` | Copia la configuración del Customizer de Martfury al activar y botones con nonce en la pestaña Migración |
 | `.github/workflows/release.yml` | Construye `grupsity.zip` y crea la release al subir un tag |
 | `CHANGELOG.md` | Registro de cambios (Keep a Changelog) |

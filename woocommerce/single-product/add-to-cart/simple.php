@@ -65,4 +65,13 @@ if ( $product->is_in_stock() ) : ?>
 
 	<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
 
+<?php else : ?>
+
+	<?php
+	// Grupsity: sin stock la plantilla de Martfury no imprimía nada (Martfury muestra el stock
+	// en su propio layout). En la ficha de Elementor el bloque de compra quedaba vacío.
+	echo wc_get_stock_html( $product ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	do_action( 'grupsity_add_to_cart_unavailable' );
+	?>
+
 <?php endif; ?>

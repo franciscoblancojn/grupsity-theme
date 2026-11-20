@@ -2120,6 +2120,635 @@ body.grupsity-design-v1 .shop-view-list ul.products:not(.slick-slider) li.produc
 }
 
 /* ==========================================================================
+   Ficha de producto (plantilla de Elementor «Producto»: galería + meta | título,
+   descripción corta, 2 bloques HTML, precio, añadir al carrito; pestañas; FAQ).
+   Como la ficha de TeDotamos: galería fija a la izquierda y, a la derecha, en este orden:
+   título, precio grande con el % de descuento, descripción, compra (o «Agotado») +
+   WhatsApp, garantía, envíos/pagos y SKU/categorías/marca. El orden se cambia con CSS
+   (grid + display: contents), sin tocar la plantilla de Elementor.
+   ========================================================================== */
+
+/* La plantilla va dentro de .container > .row (margen de −15 px): cada sección recupera
+   esos 15 px para alinearse con las migas y el header. */
+body.grupsity-design-v1.single-product .elementor-location-single > .e-con.e-parent {
+	display: flex !important;
+	flex-direction: column;
+	width: 100%;
+	max-width: none;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single > .e-con-boxed > .e-con-inner {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single > .e-con.e-parent:first-child {
+	padding-top: 12px;
+	padding-bottom: 36px;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single > .e-con.e-parent:first-child > .e-con-inner {
+	display: grid !important;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+	align-items: start;
+	column-gap: 48px;
+	row-gap: 0;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single > .e-con.e-parent:first-child > .e-con-inner > .e-con {
+	display: contents;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single > .e-con.e-parent:first-child .elementor-widget {
+	grid-column: 2;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 0 18px;
+}
+
+/* Galería: columna izquierda, fija al hacer scroll */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-images {
+	grid-column: 1 !important;
+	grid-row: 1 / span 9;
+	position: sticky;
+	top: 90px;
+	margin: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-title { order: 1; }
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price { order: 2; }
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-short-description { order: 3; }
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-add-to-cart { order: 4; }
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-html:has(.grupsity-guarantee-badge) { order: 5; }
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-html:has(.td-premium-trust) { order: 6; }
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta { order: 7; }
+
+/* Galería */
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery {
+	position: relative;
+	margin: 0 !important;
+	opacity: 1 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery .flex-viewport,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery__wrapper {
+	border: 1px solid var(--g-line);
+	border-radius: 14px;
+	background: var(--g-thumb);
+	overflow: hidden;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery .flex-viewport .woocommerce-product-gallery__wrapper {
+	border: 0;
+	border-radius: 0;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery__image img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	mix-blend-mode: multiply;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery .flex-control-thumbs {
+	position: static !important;
+	width: auto !important;
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 10px;
+	margin: 12px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery .flex-control-thumbs li {
+	width: auto !important;
+	margin: 0 !important;
+	float: none !important;
+}
+
+/* El JS de WooCommerce les pone width/height del tamaño natural al cargar */
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery .flex-control-thumbs img {
+	display: block;
+	width: 100% !important;
+	height: auto !important;
+	aspect-ratio: 1 / 1;
+	object-fit: contain;
+	padding: 4px;
+	border: 2px solid var(--g-line);
+	border-radius: 10px;
+	background: var(--g-thumb);
+	opacity: 1 !important;
+	cursor: pointer;
+	transition: border-color 0.2s;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery .flex-control-thumbs img:hover,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery .flex-control-thumbs img.flex-active {
+	border-color: var(--g-green);
+}
+
+/* Aviso «Roll over image to zoom in» de Martfury (sin estilo en esta plantilla) */
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery .product-image-ms {
+	display: none !important;
+}
+
+/* La línea de debajo de las pestañas ya la pone ul.tabs */
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel {
+	border-top: 0 !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-gallery__trigger {
+	top: 14px !important;
+	right: 14px !important;
+	z-index: 3;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: var(--g-paper) !important;
+	box-shadow: 0 4px 12px rgba(17, 24, 39, 0.12);
+}
+
+/* Título */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-title .product_title {
+	margin: 0;
+	color: var(--g-ink) !important;
+	font-size: 28px !important;
+	font-weight: 700 !important;
+	line-height: 1.25 !important;
+	letter-spacing: -0.01em;
+}
+
+/* Precio */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price {
+	margin-bottom: 14px !important;
+	padding-bottom: 16px;
+	border-bottom: 1px solid var(--g-line);
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 6px 0; /* sin hueco horizontal: el &nbsp; entre <del> e <ins> también es un elemento */
+	margin: 0;
+	font-size: 0 !important;
+	line-height: 1.2;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price ins,
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price > .amount {
+	order: 1;
+	color: var(--g-ink) !important;
+	font-size: 32px !important;
+	font-weight: 800 !important;
+	text-decoration: none;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price del {
+	order: 2;
+	margin-left: 12px;
+	color: var(--g-gray) !important;
+	font-size: 17px !important;
+	font-weight: 400 !important;
+	opacity: 1;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .gv1-discount {
+	order: 3;
+	margin-left: 12px;
+	padding: 3px 10px;
+	border-radius: 50px;
+	background: var(--g-green);
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 800;
+}
+
+/* Descripción corta */
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-details__short-description,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-product-details__short-description p {
+	margin: 0;
+	color: var(--g-muted);
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+/* Compra */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-add-to-cart {
+	padding: 16px;
+	border: 1px solid var(--g-line);
+	border-radius: 12px;
+	background: var(--g-surface);
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart {
+	display: flex !important;
+	flex-wrap: wrap;
+	align-items: stretch;
+	gap: 10px;
+	margin: 0 !important;
+}
+
+/* El clearfix (::before/::after) de form.cart cuenta como elemento del flex y mete el hueco */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart::before,
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart::after {
+	display: none !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty {
+	margin: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty {
+	width: 72px;
+	height: 52px;
+	border: 1px solid var(--g-line);
+	border-radius: 10px;
+	background: var(--g-paper);
+	font-size: 16px;
+	font-weight: 600;
+	text-align: center;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .single_add_to_cart_button {
+	flex: 1 1 200px;
+	min-height: 52px !important;
+	margin: 0 !important;
+	border-radius: 10px !important;
+	font-size: 16px !important;
+}
+
+/* «Agotado» (simple.php ya lo imprime; antes el bloque salía vacío) */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .stock {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 12px;
+	padding: 6px 14px;
+	border-radius: 50px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .stock.out-of-stock {
+	background: #fdecec;
+	color: #a61b1b;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .stock.in-stock {
+	background: var(--g-green-soft);
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .stock::before {
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: currentColor;
+}
+
+/* Botón de WhatsApp (inc/grupsity/class-product.php). Verde oscuro de WhatsApp: el claro
+   (#25d366) con texto blanco no llega al contraste mínimo. */
+body.grupsity-design-v1 .gv1-whatsapp {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	width: 100%;
+	min-height: 52px;
+	margin-top: 10px;
+	padding: 12px 18px;
+	border-radius: 10px;
+	background: #128c4b;
+	color: #fff !important;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.2;
+	text-align: center;
+	transition: background 0.2s;
+}
+
+body.grupsity-design-v1 .gv1-whatsapp:hover {
+	background: #0e7a40;
+	color: #fff !important;
+}
+
+body.grupsity-design-v1 .gv1-whatsapp .gv1-icon {
+	width: 22px;
+	height: 22px;
+}
+
+body.grupsity-design-v1 .gv1-whatsapp--ask {
+	margin-top: 0;
+}
+
+/* Bloques HTML propios (envíos/pagos y garantía): misma fuente y aire que el resto */
+body.grupsity-design-v1.single-product .elementor-location-single .td-premium-trust,
+body.grupsity-design-v1.single-product .elementor-location-single .grupsity-guarantee-badge {
+	margin: 0 !important;
+	font-family: inherit !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .grupsity-guarantee-badge {
+	justify-content: flex-start !important;
+	border-radius: 12px !important;
+}
+
+/* SKU / Categorías / Marca. La plantilla tiene la etiqueta del SKU con el propio código y
+   «Categorías;» con punto y coma: se reescriben las etiquetas (se pueden corregir también
+   en el widget «Meta del producto» de Elementor). */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta .product_meta {
+	display: grid;
+	gap: 0;
+	padding: 4px 16px;
+	border: 1px solid var(--g-line);
+	border-radius: 12px;
+	font-size: 14px;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta .product_meta > span {
+	display: flex !important;
+	flex-wrap: wrap;
+	gap: 4px 10px;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--g-line);
+	color: var(--g-ink);
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta .product_meta > span:last-child {
+	border-bottom: 0;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta .detail-label {
+	min-width: 90px;
+	color: var(--g-gray);
+	font-weight: 500;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta .sku_wrapper .detail-label,
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta .posted_in.detail-container > .detail-label {
+	font-size: 0;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta .sku_wrapper .detail-label::before {
+	content: "SKU";
+	font-size: 14px;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta .posted_in.detail-container > .detail-label::before {
+	content: "Categorías";
+	font-size: 14px;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta a {
+	color: var(--g-green-ink) !important;
+	font-weight: 600;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-meta a:hover {
+	text-decoration: underline;
+}
+
+/* Pestañas */
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs {
+	margin-top: 8px;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 28px;
+	margin: 0 0 24px !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-bottom: 1px solid var(--g-line) !important;
+	text-align: left !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs::before,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li::before,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li::after {
+	display: none !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li a {
+	display: block;
+	padding: 12px 0 !important;
+	color: var(--g-gray) !important;
+	font-size: 17px !important;
+	font-weight: 600 !important;
+	box-shadow: inset 0 -3px 0 transparent;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li.active a,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li a:hover {
+	color: var(--g-ink) !important;
+	box-shadow: inset 0 -3px 0 var(--g-green);
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel {
+	color: var(--g-muted);
+	font-size: 15px;
+	line-height: 1.7;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel h2,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel h3 {
+	margin: 28px 0 12px;
+	color: var(--g-ink);
+	font-size: 22px !important;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel ul {
+	padding-left: 20px;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel table {
+	width: 100%;
+	border: 1px solid var(--g-line) !important;
+	border-collapse: separate !important;
+	border-spacing: 0;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel table th,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel table td {
+	padding: 12px 14px !important;
+	border: 0 !important;
+	border-bottom: 1px solid var(--g-line) !important;
+	text-align: left;
+	vertical-align: top;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel table tr:last-child th,
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel table tr:last-child td {
+	border-bottom: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel table tr:first-child th {
+	background: var(--g-surface);
+	color: var(--g-ink);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs .panel table td:first-child {
+	color: var(--g-ink);
+	font-weight: 500;
+}
+
+/* Preguntas frecuentes (acordeón de Elementor) */
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion {
+	display: grid;
+	gap: 10px;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item {
+	border: 1px solid var(--g-line) !important;
+	border-radius: 12px;
+	background: var(--g-paper);
+	overflow: hidden;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item-title {
+	display: flex !important;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 16px 18px !important;
+	border: 0 !important;
+	background: transparent !important;
+	cursor: pointer;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item-title-header {
+	order: 1;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item-title-icon {
+	order: 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background: var(--g-green-soft);
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item-title-icon svg {
+	width: 12px;
+	height: 12px;
+	fill: var(--g-green-ink) !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item-title-text {
+	color: var(--g-ink) !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item[open] {
+	border-color: #d3dab8 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item > .e-con {
+	padding: 0 18px 16px !important;
+	border: 0 !important;
+}
+
+body.grupsity-design-v1.single-product .elementor-location-single .e-n-accordion-item .elementor-widget-text-editor {
+	color: var(--g-muted);
+	font-size: 15px;
+}
+
+/* Productos relacionados (sección de Martfury bajo la plantilla): título como el resto de V1 */
+body.grupsity-design-v1.single-product section.related.products {
+	padding: 32px 0 16px;
+}
+
+body.grupsity-design-v1.single-product section.related.products .related-title {
+	margin: 0 0 8px !important;
+	padding: 0 0 14px !important;
+	border: 0 !important;
+	border-bottom: 1px solid var(--g-line) !important;
+	background: transparent !important;
+	color: var(--g-ink) !important;
+	font-size: 24px !important;
+	font-weight: 700 !important;
+	text-align: left !important;
+}
+
+@media (max-width: 991px) {
+	body.grupsity-design-v1.single-product .elementor-location-single > .e-con.e-parent:first-child > .e-con-inner {
+		grid-template-columns: minmax(0, 1fr);
+		column-gap: 0;
+	}
+
+	body.grupsity-design-v1.single-product .elementor-location-single > .e-con.e-parent:first-child .elementor-widget {
+		grid-column: 1;
+	}
+
+	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-images {
+		grid-row: auto;
+		position: static;
+		order: 0;
+		margin-bottom: 20px !important;
+	}
+}
+
+@media (max-width: 767px) {
+	body.grupsity-design-v1.single-product .elementor-location-single > .e-con-boxed > .e-con-inner {
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+
+	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-title .product_title {
+		font-size: 22px !important;
+	}
+
+	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price ins,
+	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price > .amount {
+		font-size: 26px !important;
+	}
+
+	body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li a {
+		font-size: 15px !important;
+	}
+}
+
+/* ==========================================================================
    Móvil y tablet
    ========================================================================== */
 
