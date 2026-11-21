@@ -1137,9 +1137,9 @@ body.grupsity-design-v1 .mf-product-deals-day .price {
 	line-height: 1.25;
 }
 
-body.grupsity-design-v1 ul.products li.product .price ins,
+body.grupsity-design-v1 ul.products li.product .price > ins,
 body.grupsity-design-v1 ul.products li.product .price > .amount,
-body.grupsity-design-v1 .mf-product-deals-day .price ins {
+body.grupsity-design-v1 .mf-product-deals-day .price > ins {
 	order: 1;
 	margin: 0 !important;
 	color: var(--g-ink) !important;
@@ -1155,6 +1155,14 @@ body.grupsity-design-v1 ul.products li.product .price del {
 	font-size: 13px !important;
 	font-weight: 400 !important;
 	opacity: 1;
+}
+
+/* El precio anterior puede traer su propio <ins> dentro del <del>: pequeño, gris y tachado */
+body.grupsity-design-v1 ul.products li.product .price del * {
+	color: inherit !important;
+	font-size: inherit !important;
+	font-weight: inherit !important;
+	text-decoration: line-through !important;
 }
 
 body.grupsity-design-v1 ul.products li.product .price .sale,
@@ -2538,7 +2546,9 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-wid
 	line-height: 1.2;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price ins,
+/* Solo el precio final (hijo directo): el precio anterior puede traer su propio <ins> dentro
+   del <del> (otro filtro de precio reutiliza el HTML) y no debe verse grande ni sin tachar. */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price > ins,
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price > .amount {
 	order: 1;
 	color: var(--g-ink) !important;
@@ -2550,10 +2560,21 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-wid
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price del {
 	order: 2;
 	margin-left: 12px;
-	color: var(--g-gray) !important;
-	font-size: 17px !important;
-	font-weight: 400 !important;
+	color: #d92d20 !important;
+	font-size: 18px !important;
+	font-weight: 500 !important;
+	text-decoration: line-through !important;
+	text-decoration-thickness: 1.5px !important;
 	opacity: 1;
+}
+
+/* Lo que venga dentro del <del> (un <ins>, el importe): mismo tamaño, rojo y tachado */
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price del * {
+	color: inherit !important;
+	font-size: inherit !important;
+	font-weight: inherit !important;
+	text-decoration: inherit !important;
+	background: none !important;
 }
 
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .gv1-discount {
@@ -3189,9 +3210,13 @@ body.grupsity-design-v1.single-product section.related.products .slick-next-arro
 		font-size: 22px !important;
 	}
 
-	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price ins,
+	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price > ins,
 	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price > .amount {
 		font-size: 26px !important;
+	}
+
+	body.grupsity-design-v1.single-product .elementor-location-single .elementor-widget-woocommerce-product-price .price del {
+		font-size: 16px !important;
 	}
 
 	body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li a {
@@ -3326,7 +3351,7 @@ body.grupsity-design-v1.single-product section.related.products .slick-next-arro
 		font-size: 20px !important;
 	}
 
-	body.grupsity-design-v1 ul.products li.product .price ins,
+	body.grupsity-design-v1 ul.products li.product .price > ins,
 	body.grupsity-design-v1 ul.products li.product .price > .amount {
 		font-size: 16px !important;
 	}

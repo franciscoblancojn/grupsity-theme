@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.15] - 2026-11-20
+
+### 🐛 Corregido
+- Diseño V1, **precio anterior**: el precio anterior viene con su propio `<ins>` dentro del `<del>`, y la regla del precio final (grande, negro, sin tachar) también lo alcanzaba. Por eso, en la ficha, salía igual de grande que el precio final y sin tachar. Ahora en la ficha sale **rojo, tachado y más pequeño** (18 px; 16 px en el celular) junto al precio final. En las tarjetas de la tienda y de relacionados vuelve a verse pequeño, gris y tachado (antes salía en negrita).
+
 ## [1.0.14] - 2026-11-20
 
 ### ✨ Añadido
