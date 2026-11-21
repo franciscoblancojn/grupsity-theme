@@ -4,6 +4,17 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.18] - 2026-11-20
+
+### 🐛 Corregido
+- Diseño V1, **desplegable del carrito** (header y panel del celular), como en TeDotamos:
+  - Caja redondeada con sombra y miniaturas de ancho fijo.
+  - Nombre del producto en 2 líneas como máximo.
+  - Precio actual en negrita, sin el subrayado que le ponía el plugin de descuentos, con el anterior en rojo tachado.
+  - Subtotal en negro, más grande (antes en rojo).
+  - Botones a todo el ancho, uno debajo del otro: «Finalizar compra» en verde y primero, «Ver carrito» con borde. Antes «Finalizar compra» salía naranja, más corto y desalineado.
+  - La X para quitar el producto se pone roja al pasar el ratón.
+
 ## [1.0.17] - 2026-11-20
 
 ### ✨ Añadido
