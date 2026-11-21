@@ -1490,9 +1490,41 @@ body.grupsity-design-v1 .gv1-fin__list {
 
 body.grupsity-design-v1 .gv1-fin__list li {
 	display: flex;
-	flex: 1 1 130px;
+	flex: 1 1 110px;
 	margin: 0;
 	padding: 0;
+}
+
+body.grupsity-design-v1 .gv1-fin__list li:has(.gv1-fin--bancolombia) {
+	flex: 1.6 1 190px;
+}
+
+/* La franja va sola en la sección del slider (que se oculta): al ancho del container, sin el
+   relleno ni el ancho «en caja» de Elementor, alineada con el header y las demás secciones */
+body.grupsity-design-v1 .e-con.e-parent:has(> .e-con-inner > .gv1-fin),
+body.grupsity-design-v1 .elementor-top-section:has(.gv1-fin) {
+	--padding-left: 0px;
+	--padding-right: 0px;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+body.grupsity-design-v1 .e-con.e-parent > .e-con-inner:has(> .gv1-fin),
+body.grupsity-design-v1 .elementor-top-section:has(.gv1-fin) > .elementor-container {
+	width: 100%;
+	max-width: 100% !important;
+}
+
+body.grupsity-design-v1 .elementor-top-section:has(.gv1-fin) .elementor-widget-wrap {
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1 :is(.e-con-inner, .elementor-widget-wrap) > .gv1-fin:first-child {
+	margin-top: 0;
+}
+
+body.grupsity-design-v1 :is(.e-con-inner, .elementor-widget-wrap) > .gv1-fin:last-child {
+	margin-bottom: 0;
 }
 
 body.grupsity-design-v1 .gv1-fin__item {
@@ -1533,6 +1565,19 @@ body.grupsity-design-v1 .gv1-fin--supay span:nth-child(1),
 body.grupsity-design-v1 .gv1-fin--supay span:nth-child(3) { color: #e07800; }
 body.grupsity-design-v1 .gv1-fin--supay span:nth-child(2) { color: #ef3340; }
 body.grupsity-design-v1 .gv1-fin--nequi { color: #da0081; }
+body.grupsity-design-v1 .gv1-fin--pse { color: #0a4ea2; letter-spacing: 0.04em; }
+
+body.grupsity-design-v1 .gv1-fin--cards {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+}
+
+body.grupsity-design-v1 .gv1-fin--cards .gv1-icon {
+	width: 20px;
+	height: 20px;
+	color: var(--g-green-ink);
+}
 
 body.grupsity-design-v1 .gv1-fin--bancolombia {
 	display: flex;
@@ -1558,6 +1603,26 @@ body.grupsity-design-v1 .gv1-fin--bancolombia > span {
 	font-size: 14px;
 }
 
+/* Pantallas medianas: el título arriba y las opciones en una fila entera debajo */
+@media (max-width: 1279px) {
+	body.grupsity-design-v1 .gv1-fin__list {
+		flex-basis: 100%;
+	}
+}
+
+/* Tablet: 4 por fila (Bancolombia ocupa 2, al final para no dejar huecos) */
+@media (min-width: 768px) and (max-width: 991px) {
+	body.grupsity-design-v1 .gv1-fin__list {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	body.grupsity-design-v1 .gv1-fin__list li:has(.gv1-fin--bancolombia) {
+		grid-column: span 2;
+		order: 1;
+	}
+}
+
 @media (max-width: 767px) {
 	body.grupsity-design-v1 .gv1-fin {
 		margin-top: 12px;
@@ -1575,7 +1640,7 @@ body.grupsity-design-v1 .gv1-fin--bancolombia > span {
 
 	/* Bancolombia (texto más largo): fila entera, al final para no dejar otra sola */
 	body.grupsity-design-v1 .gv1-fin__list li:has(.gv1-fin--bancolombia) {
-		flex-basis: 100%;
+		flex: 1 1 100%;
 		order: 1;
 	}
 }

@@ -4,6 +4,14 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.20] - 2026-11-21
+
+### ✨ Añadido
+- Diseño V1, portada, franja **«Compra ahora, paga después»**: se suman **PSE** y **Tarjetas** (con ícono de tarjeta), y el texto pasa a «Financiación y medios de pago:».
+
+### 🐛 Corregido
+- Diseño V1, portada: la franja de financiación ahora ocupa el **100 % del container**, alineada con el header y las demás secciones. Antes quedaba más angosta por el ancho «en caja» y el relleno de la sección de Elementor. En pantallas medianas el título va arriba y las opciones en una fila. En tablet van 4 por fila y en celular 2, con Bancolombia al final para no dejar huecos.
+
 ## [1.0.19] - 2026-11-21
 
 ### ✨ Añadido

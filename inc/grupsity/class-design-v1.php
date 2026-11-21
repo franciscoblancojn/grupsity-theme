@@ -33,7 +33,7 @@ class Grupsity_Design_V1 {
 		'v1_nav'     => "Relojes de Hombre|/hombre/\nRelojes de Mujer|/mujer/\nOfertas del Día|/ofertas-del-dia/\nSeguimiento de pedidos|/seguimiento-de-pedidos/\nTedotamos.com|https://tedotamos.com/",
 		'v1_hotline' => '+57 318 888 0385',
 		'v1_whatsapp' => '573188880385',
-		'v1_financing' => "Addi\nSistecrédito\nsu+Pay\nCompra y paga después Bancolombia\nNequi",
+		'v1_financing' => "Addi\nSistecrédito\nsu+Pay\nCompra y paga después Bancolombia\nNequi\nPSE\nTarjetas",
 		'v1_hide_home_slider' => 1,
 	);
 
@@ -255,7 +255,7 @@ class Grupsity_Design_V1 {
 		echo '<section class="gv1-fin" aria-labelledby="gv1-fin-title"><div class="gv1-fin__head">';
 		echo self::icon( 'card', 'gv1-icon gv1-fin__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '<div><h2 id="gv1-fin-title" class="gv1-fin__title">Compra ahora, paga después</h2>';
-		echo '<p class="gv1-fin__text">Financia tu compra con:</p></div></div><ul class="gv1-fin__list">';
+		echo '<p class="gv1-fin__text">Financiación y medios de pago:</p></div></div><ul class="gv1-fin__list">';
 		foreach ( $items as $item ) {
 			list( $name, $url ) = $item;
 			if ( '' === $name ) {
@@ -289,7 +289,10 @@ class Grupsity_Design_V1 {
 			$lead = trim( preg_replace( '/\s*\(?\s*bancolombia\s*\)?\s*/iu', ' ', $name ) );
 			return '<span class="gv1-fin__brand gv1-fin--bancolombia">' . ( '' !== $lead ? '<small>' . esc_html( $lead ) . '</small>' : '' ) . '<span>Bancolombia</span></span>';
 		}
-		foreach ( array( 'addi', 'nequi' ) as $brand ) {
+		if ( 'tarjetas' === $key || 0 === strpos( $key, 'tarjeta' ) ) {
+			return '<span class="gv1-fin__brand gv1-fin--cards">' . self::icon( 'card', 'gv1-icon' ) . '<span>' . esc_html( $name ) . '</span></span>';
+		}
+		foreach ( array( 'addi', 'nequi', 'pse' ) as $brand ) {
 			if ( false !== strpos( $key, $brand ) ) {
 				return '<span class="gv1-fin__brand gv1-fin--' . $brand . '">' . esc_html( $name ) . '</span>';
 			}
