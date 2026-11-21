@@ -44,6 +44,12 @@ class Grupsity_Product {
 				return $value && '' === trim( (string) martfury_get_option( 'api_instagram_token' ) ) ? 0 : $value;
 			case 'product_related_title':
 				return ! $value || 'Related products' === $value ? 'Productos relacionados' : $value;
+			case 'product_thumbnail_numbers':
+				// V1 muestra las miniaturas en cuadrícula debajo de la foto (css/design-v1.css).
+				// Con más fotos que este número, Martfury (js/scripts.js, productThumbnail) las
+				// convertía en un slider vertical y quedaban apiladas en una columna: solo en los
+				// productos con más fotos de la cuenta. Con un tope alto nunca arma el slider.
+				return 'v1' === Grupsity_Designs::current() ? 100 : $value;
 		}
 
 		return $value;

@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.23] - 2026-11-21
+
+### 🐛 Corregido
+- Diseño V1, ficha del producto: **miniaturas de la galería apiladas en una columna** debajo de la foto. Pasaba solo en los productos con más fotos que «Product Thumbnail Numbers» de Martfury (5 en el sitio). En esos productos el JS de Martfury armaba un slider vertical, que chocaba con la cuadrícula del diseño. Ahora en V1 ese número es 100, así que el slider no se arma y las miniaturas van siempre en la cuadrícula de 5 por fila; con más fotos, en varias filas.
+
 ## [1.0.22] - 2026-11-21
 
 ### ✨ Añadido
