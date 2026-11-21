@@ -12,6 +12,9 @@
  * - Portada: franja «Compra ahora, paga después» (Addi, Sistecrédito, su+Pay, Bancolombia,
  *   Nequi) justo después del primer slider de Elementor (el de los banners de Sistecrédito/Addi),
  *   con el gancho elementor/frontend/widget/after_render. Sin slider en la portada no sale.
+ *   Ese slider se oculta (opción v1_hide_home_slider, activa por defecto) con
+ *   elementor/frontend/widget/should_render: no se imprime, pero after_render sigue
+ *   disparándose y la franja queda en su lugar. Sin tocar la página de Elementor.
  * No escribe opciones del Customizer: todo es en tiempo de ejecución (filtro martfury_get_option).
  *
  * Textos y enlaces: Apariencia → Grupsity → General (sección "Diseño V1").
@@ -30,7 +33,8 @@ class Grupsity_Design_V1 {
 		'v1_nav'     => "Relojes de Hombre|/hombre/\nRelojes de Mujer|/mujer/\nOfertas del Día|/ofertas-del-dia/\nSeguimiento de pedidos|/seguimiento-de-pedidos/\nTedotamos.com|https://tedotamos.com/",
 		'v1_hotline' => '+57 318 888 0385',
 		'v1_whatsapp' => '573188880385',
-		'v1_financing' => "Addi|\nSistecrédito|\nsu+Pay|https://sumas.co/\nCompra y paga después Bancolombia|https://wompi.com/es/co/planes-tarifas/bnpl-bancolombia.html\nNequi|https://www.nequi.com.co/personas/creditos",
+		'v1_financing' => "Addi\nSistecrédito\nsu+Pay\nCompra y paga después Bancolombia\nNequi",
+		'v1_hide_home_slider' => 1,
 	);
 
 	/** Ya se pintó la franja de financiación (solo una vez por página). */
@@ -44,6 +48,7 @@ class Grupsity_Design_V1 {
 		add_action( 'martfury_before_header', array( __CLASS__, 'render_topbar' ), 1 );
 		add_action( 'grupsity_header_nav', array( __CLASS__, 'render_nav' ) );
 		add_filter( 'grupsity_department_menu', array( __CLASS__, 'department_menu' ) );
+		add_filter( 'elementor/frontend/widget/should_render', array( __CLASS__, 'hide_home_slider' ), 10, 2 );
 		add_action( 'elementor/frontend/widget/after_render', array( __CLASS__, 'financing_after_slider' ) );
 	}
 
@@ -176,14 +181,32 @@ class Grupsity_Design_V1 {
 	 * @param \Elementor\Widget_Base $widget
 	 */
 	public static function financing_after_slider( $widget ) {
-		if ( self::$financing_done || ! is_front_page() || ! is_object( $widget ) || ! method_exists( $widget, 'get_name' ) ) {
-			return;
-		}
-		if ( ! in_array( $widget->get_name(), array( 'slides', 'image-carousel', 'media-carousel' ), true ) ) {
+		if ( ! self::is_home_slider( $widget ) ) {
 			return;
 		}
 		self::$financing_done = true;
 		self::render_financing();
+	}
+
+	/** No imprime el primer slider de la portada (la franja sale igual en su lugar). */
+	public static function hide_home_slider( $should_render, $widget ) {
+		if ( ! $should_render || ! intval( self::get( 'v1_hide_home_slider' ) ) || ! self::is_home_slider( $widget ) ) {
+			return $should_render;
+		}
+		if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->editor ) && \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
+			return $should_render; // en el editor se sigue viendo para poder editarlo
+		}
+
+		return false;
+	}
+
+	/** Primer slider/carrusel de Elementor de la portada que aún no lleva la franja. */
+	private static function is_home_slider( $widget ) {
+		return ! self::$financing_done
+			&& is_front_page()
+			&& is_object( $widget )
+			&& method_exists( $widget, 'get_name' )
+			&& in_array( $widget->get_name(), array( 'slides', 'image-carousel', 'media-carousel' ), true );
 	}
 
 	public static function render_financing() {

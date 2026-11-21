@@ -4,6 +4,12 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.13] - 2026-11-20
+
+### 🔄 Cambiado
+- Diseño V1, portada: la franja «Compra ahora, paga después» ya no lleva enlaces (Addi, Sistecrédito, su+Pay, Bancolombia y Nequi son solo etiquetas con sus colores). Se pueden añadir en Apariencia → Grupsity → General (`nombre|enlace`).
+- Diseño V1, portada: se oculta el **slider de banners** (Sistecrédito/Addi) que quedaba encima de la franja, y la franja ocupa su lugar debajo del menú. Se hace desde el tema, sin borrarlo de Elementor: casilla «Ocultar el slider de banners de la portada» en Apariencia → Grupsity → General (activa por defecto; al desmarcarla vuelve a salir). En el editor de Elementor se sigue viendo.
+
 ## [1.0.12] - 2026-11-20
 
 ### ✨ Añadido

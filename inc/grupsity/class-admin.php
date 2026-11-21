@@ -27,6 +27,7 @@ class Grupsity_Admin {
 		'v1_hotline'    => '',
 		'v1_whatsapp'   => '',
 		'v1_financing'  => '',
+		'v1_hide_home_slider' => 1, // diseño V1: ocultar el slider de banners de la portada
 		'catalog_nav'   => 'infinite', // ver Grupsity_Catalog::NAV_CHOICES
 	);
 
@@ -77,6 +78,7 @@ class Grupsity_Admin {
 			'v1_hotline'    => isset( $input['v1_hotline'] ) ? sanitize_text_field( $input['v1_hotline'] ) : '',
 			'v1_whatsapp'   => isset( $input['v1_whatsapp'] ) ? preg_replace( '/\D/', '', (string) $input['v1_whatsapp'] ) : '',
 			'v1_financing'  => isset( $input['v1_financing'] ) ? sanitize_textarea_field( $input['v1_financing'] ) : '',
+			'v1_hide_home_slider' => empty( $input['v1_hide_home_slider'] ) ? 0 : 1,
 			'catalog_nav'   => isset( $input['catalog_nav'], Grupsity_Catalog::NAV_CHOICES[ $input['catalog_nav'] ] ) ? $input['catalog_nav'] : '',
 		);
 
@@ -329,6 +331,8 @@ class Grupsity_Admin {
 						<p><label for="grupsity-v1-financing"><strong>Compra ahora, paga después</strong> (portada, debajo del slider) — una línea por opción: <code>nombre|enlace</code> (el enlace es opcional)</label></p>
 						<textarea id="grupsity-v1-financing" name="<?php echo esc_attr( $name ); ?>[v1_financing]" rows="5" class="large-text code" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_financing'] ); ?>"><?php echo esc_textarea( self::get_option( 'v1_financing' ) ); ?></textarea>
 						<p class="description">Addi, Sistecrédito, su+Pay, Bancolombia y Nequi salen con sus colores. Vacío = la lista de ejemplo.</p>
+						<p><label><input type="checkbox" name="<?php echo esc_attr( $name ); ?>[v1_hide_home_slider]" value="1" <?php checked( 1, (int) self::get_option( 'v1_hide_home_slider' ) ); ?>> <strong>Ocultar el slider de banners de la portada</strong> (el primero, encima de la franja)</label></p>
+						<p class="description">No se borra de Elementor: al desmarcar vuelve a salir. En el editor de Elementor se sigue viendo.</p>
 						<p class="description">Solo se usan con el diseño V1. El desplegable «Categorías» se arma solo con las categorías de producto.</p>
 					</td>
 				</tr>
