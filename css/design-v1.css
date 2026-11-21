@@ -3479,6 +3479,714 @@ body.grupsity-design-v1 .widget_shopping_cart_content .woocommerce-mini-cart__em
 }
 
 /* ==========================================================================
+   Carrito (página), como el checkout: productos en una tarjeta a la izquierda y el resumen
+   (subtotal, envío, total y «Finalizar compra») en otra a la derecha que acompaña el scroll.
+   Precio rebajado como en la ficha (actual en negro, anterior en rojo tachado), cantidad en
+   una caja redondeada, cupón en línea y la calculadora de envío plegada en su tarjeta.
+   Solo el carrito clásico de WooCommerce (form.woocommerce-cart-form).
+   ========================================================================== */
+
+body.grupsity-design-v1.woocommerce-cart .entry-content > .woocommerce {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 380px;
+	column-gap: 28px;
+	align-items: start;
+	margin-top: 8px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .entry-content > .woocommerce > * {
+	grid-column: 1 / -1;
+	min-width: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .entry-content > .woocommerce > form.woocommerce-cart-form {
+	grid-column: 1;
+}
+
+body.grupsity-design-v1.woocommerce-cart .entry-content > .woocommerce > .cart-collaterals {
+	grid-column: 2;
+}
+
+/* Tarjeta de productos */
+body.grupsity-design-v1.woocommerce-cart form.woocommerce-cart-form {
+	padding: 6px 24px 22px;
+	border: 1px solid var(--g-line);
+	border-radius: 14px;
+	background: var(--g-paper);
+	box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart {
+	width: 100%;
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	border-collapse: collapse;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart thead th {
+	padding: 14px 10px;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	background: transparent;
+	color: var(--g-gray);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td {
+	width: auto;
+	padding: 20px 10px;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	color: var(--g-ink);
+	font-size: 15px;
+	vertical-align: middle;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-thumbnail {
+	width: 104px;
+	padding-left: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-thumbnail a {
+	display: block;
+	width: 88px;
+	height: 88px;
+	padding: 6px;
+	border: 1px solid var(--g-line);
+	border-radius: 10px;
+	background: var(--g-thumb);
+	overflow: hidden;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-thumbnail img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	object-fit: contain;
+	mix-blend-mode: multiply;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-name a {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	color: var(--g-ink);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-name a:hover {
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-price,
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-quantity,
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-subtotal {
+	width: 1%;
+	white-space: nowrap;
+}
+
+/* Precio: el actual arriba y el anterior en rojo tachado debajo (sin el subrayado de <ins>) */
+body.grupsity-design-v1.woocommerce-cart table.shop_table.cart .awdr_cart_strikeout_line {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-start;
+	gap: 2px;
+	font-size: 0;
+	line-height: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart table.shop_table.cart .awdr_cart_strikeout_line > * {
+	line-height: 1.35;
+}
+
+body.grupsity-design-v1.woocommerce-cart table.shop_table.cart td del {
+	color: #d92d20;
+	font-size: 13px;
+	text-decoration: line-through;
+}
+
+body.grupsity-design-v1.woocommerce-cart table.shop_table.cart td del * {
+	color: inherit;
+}
+
+body.grupsity-design-v1.woocommerce-cart table.shop_table.cart td ins,
+body.grupsity-design-v1.woocommerce-cart table.shop_table.cart td.product-price > .amount {
+	color: var(--g-ink);
+	font-size: 15px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+body.grupsity-design-v1.woocommerce-cart table.shop_table.cart td.product-subtotal {
+	font-size: 16px;
+	font-weight: 800;
+}
+
+/* Cantidad: una caja con − y + */
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity {
+	position: static;
+	width: auto;
+	border: 0;
+	line-height: normal;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity .qty-box {
+	display: inline-flex;
+	align-items: center;
+	height: 44px;
+	margin: 0;
+	border: 1px solid #d6dae1;
+	border-radius: 10px;
+	background: var(--g-paper);
+	overflow: hidden;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity .decrease,
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity .increase {
+	position: static;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 100%;
+	color: var(--g-ink);
+	font-size: 13px;
+	line-height: 1;
+	transform: none;
+	transition: background-color 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity .decrease:hover,
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity .increase:hover {
+	background: var(--g-surface);
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity .qty {
+	width: 40px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--g-ink);
+	font-size: 15px;
+	font-weight: 700;
+	text-align: center;
+	-moz-appearance: textfield;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity .qty::-webkit-inner-spin-button,
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td .quantity .qty::-webkit-outer-spin-button {
+	margin: 0;
+	-webkit-appearance: none;
+}
+
+/* Quitar: círculo que se pone rojo */
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-remove {
+	width: 50px;
+	padding-right: 0;
+	text-align: right;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart .mf-remove {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background: var(--g-surface);
+	color: var(--g-muted);
+	font-size: 13px;
+	line-height: 1;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart .mf-remove:hover {
+	background: #fde8e7;
+	color: #d92d20;
+}
+
+/* Seguir comprando / Actualizar carrito */
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions {
+	padding: 18px 0 0;
+	border: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-update {
+	float: right;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-shop,
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-update {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	width: auto;
+	height: 46px;
+	margin: 0;
+	padding: 0 18px;
+	border: 1px solid #d6dae1;
+	border-radius: 10px;
+	background: var(--g-paper);
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1;
+	transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-shop i {
+	padding: 0;
+	transform: none;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-update::before {
+	position: static;
+	color: inherit;
+	font-size: 15px;
+	transform: none;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-shop:hover,
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-update:not(:disabled):hover {
+	border-color: var(--g-ink);
+	background: var(--g-ink);
+	color: #fff;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-update:disabled {
+	opacity: 0.45;
+	cursor: default;
+}
+
+/* Cupón en línea */
+body.grupsity-design-v1.woocommerce-cart form.woocommerce-cart-form > .row {
+	margin: 18px 0 0;
+	padding-top: 18px;
+	border-top: 1px dashed var(--g-line);
+}
+
+body.grupsity-design-v1.woocommerce-cart form.woocommerce-cart-form .col-coupon {
+	float: none;
+	width: 100%;
+	padding: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .coupon {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	max-width: 520px;
+	margin: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .coupon label {
+	flex: 1 0 100%;
+	margin: 0;
+	color: var(--g-ink);
+	font-size: 15px;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .coupon label::after {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .coupon .input-text {
+	flex: 1 1 200px;
+	width: auto;
+	height: 48px;
+	margin: 0;
+	padding: 0 14px;
+	border: 1px solid #d6dae1;
+	border-radius: 10px;
+	color: var(--g-ink);
+	font-size: 15px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .coupon .button {
+	height: 48px;
+	padding: 0 22px;
+	border: 0;
+	border-radius: 10px;
+	background: var(--g-ink);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 48px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .coupon .input-text:focus,
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .woocommerce-shipping-calculator .input-text:focus {
+	border-color: var(--g-green);
+	outline: 0;
+	box-shadow: 0 0 0 3px rgba(147, 183, 0, 0.2);
+}
+
+/* Columna derecha: resumen primero y la calculadora de envío debajo */
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals > .row {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .col-colla {
+	float: none;
+	width: 100%;
+	padding: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .col-colla:not(:has(*)) {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .col-colla:has(.cart_totals) {
+	order: -1;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .cart_totals,
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .woocommerce-shipping-calculator {
+	width: 100%;
+	float: none;
+	border: 1px solid var(--g-line);
+	border-radius: 14px;
+	background: var(--g-paper);
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .cart_totals {
+	padding: 22px 24px 24px;
+	box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals > h2 {
+	display: block;
+	margin: 0 0 8px;
+	color: var(--g-ink);
+	font-size: 20px;
+	font-weight: 800;
+	line-height: 1.25;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table {
+	width: 100%;
+	margin: 0 0 18px;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	font-size: 15px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table th,
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table td {
+	padding: 14px 0;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	background: transparent;
+	color: var(--g-ink);
+	font-size: 15px;
+	vertical-align: middle;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table th {
+	color: var(--g-muted);
+	font-weight: 500;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table td {
+	font-weight: 700;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table .shipping td {
+	font-weight: 400;
+	text-align: left;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table .shipping .shipping-title {
+	margin: 0 0 10px;
+	color: var(--g-muted);
+	font-size: 15px;
+	font-weight: 500;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals .woocommerce-shipping-destination {
+	margin: 8px 0 0;
+	color: var(--g-gray);
+	font-size: 13px;
+	line-height: 1.45;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table .order-total th,
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table .order-total td {
+	padding-top: 18px;
+	padding-bottom: 0;
+	border-bottom: 0;
+	color: var(--g-ink);
+	font-size: 18px;
+	font-weight: 800;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table .order-total .woocommerce-Price-amount {
+	color: var(--g-ink);
+	font-size: 24px;
+	font-weight: 800;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .cart_totals table.shop_table .order-total small {
+	display: block;
+	color: var(--g-gray);
+	font-size: 12px;
+	font-weight: 400;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart_totals .wc-proceed-to-checkout {
+	margin: 0;
+	padding: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart_totals .wc-proceed-to-checkout .checkout-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 56px;
+	margin: 0;
+	padding: 0 20px;
+	border: 0;
+	border-radius: 10px;
+	background: var(--g-green);
+	color: var(--g-ink);
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 1;
+	transition: background-color 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart_totals .wc-proceed-to-checkout .checkout-button:hover {
+	background: var(--g-green-hover);
+	color: var(--g-ink);
+}
+
+/* Calculadora de envío: plegada, se abre con «Calcular envío» (Martfury la dejaba siempre abierta) */
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .woocommerce-shipping-calculator {
+	margin: 0;
+	padding: 0 20px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .woocommerce-shipping-calculator .shipping-calculator-button {
+	display: block;
+	margin: 0;
+	padding: 16px 24px 16px 0;
+	color: var(--g-ink);
+	font-size: 15px;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .woocommerce-shipping-calculator .shipping-calculator-button::after {
+	transition: transform 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .woocommerce-shipping-calculator .shipping-calculator-button[aria-expanded="true"]::after {
+	transform: translateY(-50%) rotate(180deg);
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .woocommerce-shipping-calculator .shipping-calculator-form {
+	display: none !important;
+	padding-bottom: 18px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .woocommerce-shipping-calculator .shipping-calculator-form[style*="block"] {
+	display: block !important;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .woocommerce-shipping-calculator .form-row {
+	margin: 0 0 12px;
+	padding: 0;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .woocommerce-shipping-calculator label {
+	margin: 0 0 6px;
+	color: var(--g-ink);
+	font-size: 13.5px;
+	font-weight: 600;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .woocommerce-shipping-calculator .input-text,
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .woocommerce-shipping-calculator select:not(.select2-hidden-accessible),
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .woocommerce-shipping-calculator .select2-container .select2-selection--single {
+	height: 46px;
+	padding: 0 14px;
+	border: 1px solid #d6dae1;
+	border-radius: 10px;
+	background: var(--g-paper);
+	color: var(--g-ink);
+	font-size: 14px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .woocommerce-shipping-calculator .select2-container .select2-selection--single .select2-selection__rendered {
+	padding: 0;
+	color: var(--g-ink);
+	line-height: 44px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .cart-collaterals .woocommerce-shipping-calculator .select2-container .select2-selection--single .select2-selection__arrow {
+	top: 0;
+	right: 10px;
+	height: 44px;
+}
+
+body.grupsity-design-v1.woocommerce-cart .woocommerce .cart-collaterals .woocommerce-shipping-calculator .button {
+	width: 100%;
+	height: 46px;
+	margin: 4px 0 0;
+	border: 0;
+	border-radius: 10px;
+	background: var(--g-ink);
+	color: #fff;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 46px;
+}
+
+/* Escritorio: el resumen acompaña el scroll (debajo de la fila fija del buscador) */
+@media (min-width: 992px) {
+	body.grupsity-design-v1.woocommerce-cart .entry-content > .woocommerce > .cart-collaterals {
+		position: sticky;
+		top: 120px;
+	}
+
+	body.admin-bar.grupsity-design-v1.woocommerce-cart .entry-content > .woocommerce > .cart-collaterals {
+		top: 152px;
+	}
+}
+
+/* Tablet: una sola columna */
+@media (max-width: 991px) {
+	body.grupsity-design-v1.woocommerce-cart .entry-content > .woocommerce {
+		display: block;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart form.woocommerce-cart-form {
+		margin-bottom: 20px;
+	}
+}
+
+/* Celular: cada producto en una fila con la foto a la izquierda (estructura de Martfury) */
+@media (max-width: 767px) {
+	body.grupsity-design-v1.woocommerce-cart form.woocommerce-cart-form {
+		padding: 4px 16px 18px;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart tr {
+		padding: 0;
+		border: 0;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart tr.cart_item {
+		min-height: 118px;
+		padding: 16px 0 12px 98px;
+		border-bottom: 1px solid var(--g-line);
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td {
+		width: auto;
+		padding: 0 0 8px !important;
+		border: 0;
+		font-size: 14px;
+		white-space: normal;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-thumbnail {
+		padding: 0 !important;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-thumbnail > a {
+		top: 16px;
+		width: 84px;
+		height: 84px;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-name a {
+		font-size: 14px;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-price,
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-subtotal {
+		display: flex;
+		align-items: baseline;
+		gap: 6px;
+		font-size: 14px;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-price::before,
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-subtotal::before {
+		color: var(--g-gray);
+		font-weight: 400;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart table.shop_table.cart .awdr_cart_strikeout_line {
+		flex-direction: row-reverse;
+		align-items: baseline;
+		gap: 8px;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-quantity {
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-quantity .quantity {
+		width: auto;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-quantity .quantity .qty {
+		width: 40px;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-quantity .product-remove {
+		padding: 0;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.product-quantity .product-remove .mf-remove {
+		width: 36px;
+		height: 36px;
+		line-height: 1;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding-top: 16px !important;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-update {
+		float: none;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-shop,
+	body.grupsity-design-v1.woocommerce-cart .woocommerce table.shop_table.cart td.actions .btn-update {
+		justify-content: center;
+		width: 100%;
+	}
+
+	body.grupsity-design-v1.woocommerce-cart .cart-collaterals .cart_totals {
+		padding: 18px 18px 20px;
+	}
+}
+
+/* ==========================================================================
    Checkout (Finalizar compra), como el de TeDotamos: datos y pedido en tarjetas, campos
    redondeados, envío y medios de pago como tarjetas con su círculo de selección (Martfury
    lo dibujaba con la fuente ElegantIcons), total en negro y botón verde a todo el ancho.

@@ -4,6 +4,20 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.19] - 2026-11-21
+
+### ✨ Añadido
+- Diseño V1, **página del carrito** como el checkout:
+  - Productos en una tarjeta. Miniatura en caja redondeada, nombre en negro, precio actual en negrita con el anterior en rojo tachado, cantidad en una caja con − y +, y la X para quitar en un círculo que se pone rojo.
+  - «Seguir comprando» y «Actualizar carrito» con borde redondeado. El cupón va en una línea, con su botón oscuro.
+  - A la derecha, el resumen en otra tarjeta que acompaña el scroll en escritorio. El total va en negro (antes en rojo) y «Finalizar compra» en verde a todo el ancho.
+  - La calculadora de envío queda plegada en su tarjeta y se abre con «Calcular envío» (Martfury la dejaba siempre abierta).
+  - En tablet y celular va todo en una columna.
+
+### 🐛 Corregido
+- **Textos en inglés del carrito**: «Product», «Price», «Quantity», «Back To Shop», «Coupon Discount», «Shipping to…», «Remove this item» y los avisos de envío de las plantillas de Martfury.
+- **Shortcodes de WPBakery como texto** (`[vc_row][vc_column]…`) en páginas armadas con ese plugin, que ya no está activo (p. ej. el carrito). Ahora se quitan al mostrar la página (`inc/grupsity/class-content.php`). Si WPBakery se vuelve a activar, no se tocan.
+
 ## [1.0.18] - 2026-11-20
 
 ### 🐛 Corregido
