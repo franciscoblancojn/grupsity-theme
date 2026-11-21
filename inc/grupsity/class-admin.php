@@ -26,6 +26,7 @@ class Grupsity_Admin {
 		'v1_nav'        => '',
 		'v1_hotline'    => '',
 		'v1_whatsapp'   => '',
+		'v1_financing'  => '',
 		'catalog_nav'   => 'infinite', // ver Grupsity_Catalog::NAV_CHOICES
 	);
 
@@ -75,6 +76,7 @@ class Grupsity_Admin {
 			'v1_nav'        => isset( $input['v1_nav'] ) ? sanitize_textarea_field( $input['v1_nav'] ) : '',
 			'v1_hotline'    => isset( $input['v1_hotline'] ) ? sanitize_text_field( $input['v1_hotline'] ) : '',
 			'v1_whatsapp'   => isset( $input['v1_whatsapp'] ) ? preg_replace( '/\D/', '', (string) $input['v1_whatsapp'] ) : '',
+			'v1_financing'  => isset( $input['v1_financing'] ) ? sanitize_textarea_field( $input['v1_financing'] ) : '',
 			'catalog_nav'   => isset( $input['catalog_nav'], Grupsity_Catalog::NAV_CHOICES[ $input['catalog_nav'] ] ) ? $input['catalog_nav'] : '',
 		);
 
@@ -324,6 +326,9 @@ class Grupsity_Admin {
 						<p><label for="grupsity-v1-whatsapp"><strong>WhatsApp de la ficha de producto</strong> (con indicativo, solo números)</label></p>
 						<input type="text" id="grupsity-v1-whatsapp" name="<?php echo esc_attr( $name ); ?>[v1_whatsapp]" value="<?php echo esc_attr( self::get_option( 'v1_whatsapp' ) ); ?>" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_whatsapp'] ); ?>" class="regular-text">
 						<p class="description">Botón «Comprar por WhatsApp» (o «Preguntar disponibilidad» si está agotado) bajo el botón de compra.</p>
+						<p><label for="grupsity-v1-financing"><strong>Compra ahora, paga después</strong> (portada, debajo del slider) — una línea por opción: <code>nombre|enlace</code> (el enlace es opcional)</label></p>
+						<textarea id="grupsity-v1-financing" name="<?php echo esc_attr( $name ); ?>[v1_financing]" rows="5" class="large-text code" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_financing'] ); ?>"><?php echo esc_textarea( self::get_option( 'v1_financing' ) ); ?></textarea>
+						<p class="description">Addi, Sistecrédito, su+Pay, Bancolombia y Nequi salen con sus colores. Vacío = la lista de ejemplo.</p>
 						<p class="description">Solo se usan con el diseño V1. El desplegable «Categorías» se arma solo con las categorías de producto.</p>
 					</td>
 				</tr>

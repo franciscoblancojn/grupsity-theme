@@ -180,7 +180,7 @@ body.grupsity-design-v1 #site-header .header-row {
 
 body.grupsity-design-v1 #site-header .header-logo .logo img {
 	max-height: 64px;
-	width: auto;
+	width: 160px;
 }
 
 /* Logo genérico de Martfury (sale cuando faltan los theme_mods): nombre del sitio en su lugar. */
@@ -563,6 +563,53 @@ body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__links a:hov
 body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__count {
 	color: #9aa0a6;
 	font-size: 12px;
+}
+
+/* Fila del logo y el buscador fija al hacer scroll (franja superior y barra de menú se van).
+   Un sticky solo se mueve dentro de su padre: #site-header pasa a display: contents para que
+   .header-main se pegue respecto a la página. En el celular el buscador va en .mobile-menu,
+   debajo del logo, así que se fija el header entero (logo + buscador; el menú ya está oculto).
+   El header fijo de Martfury (sticky_header) lo apaga Grupsity_Design_V1; si aun así llega
+   body.sticky-header, manda el suyo. */
+@media (min-width: 992px) {
+	body.grupsity-design-v1:not(.sticky-header) #site-header {
+		display: contents;
+	}
+
+	body.grupsity-design-v1:not(.sticky-header) #site-header .header-main {
+		position: sticky;
+		top: 0;
+		z-index: 999;
+	}
+
+	body.admin-bar.grupsity-design-v1:not(.sticky-header) #site-header .header-main {
+		top: 32px;
+	}
+}
+
+@media (max-width: 991px) {
+	body.grupsity-design-v1:not(.sticky-header) #site-header {
+		position: sticky;
+		top: 0;
+		z-index: 999;
+	}
+
+	body.admin-bar.grupsity-design-v1:not(.sticky-header) #site-header {
+		top: 32px;
+	}
+}
+
+/* Barra de admin: 46 px por debajo de 783 px y sin fijar por debajo de 600 px */
+@media (max-width: 782px) {
+	body.admin-bar.grupsity-design-v1:not(.sticky-header) #site-header {
+		top: 46px;
+	}
+}
+
+@media (max-width: 600px) {
+	body.admin-bar.grupsity-design-v1:not(.sticky-header) #site-header {
+		top: 0;
+	}
 }
 
 /* Header fijo (sticky): mismo fondo blanco */
@@ -1372,6 +1419,159 @@ body.grupsity-design-v1 .back-to-top {
 	color: var(--g-green) !important;
 }
 
+
+/* ==========================================================================
+   Portada: franja «Compra ahora, paga después» debajo del slider de banners
+   (Grupsity_Design_V1::render_financing). Cada opción, un botón con los colores de su marca.
+   ========================================================================== */
+
+body.grupsity-design-v1 .gv1-fin {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 14px 28px;
+	width: 100%;
+	margin: 18px 0 8px;
+	padding: 16px 20px;
+	border: 1px solid var(--g-line);
+	border-radius: 12px;
+	background: var(--g-surface);
+}
+
+body.grupsity-design-v1 .gv1-fin__head {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex: 0 0 auto;
+}
+
+body.grupsity-design-v1 .gv1-fin__icon {
+	flex: 0 0 auto;
+	width: 40px;
+	height: 40px;
+	padding: 9px;
+	border-radius: 50%;
+	background: var(--g-green);
+	color: var(--g-ink);
+}
+
+body.grupsity-design-v1 .gv1-fin__title {
+	margin: 0 !important;
+	padding: 0 !important;
+	color: var(--g-ink) !important;
+	font-size: 17px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+}
+
+body.grupsity-design-v1 .gv1-fin__text {
+	margin: 2px 0 0 !important;
+	color: var(--g-muted);
+	font-size: 13px;
+	line-height: 1.3;
+}
+
+body.grupsity-design-v1 .gv1-fin__list {
+	display: flex;
+	flex: 1 1 480px;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none;
+}
+
+body.grupsity-design-v1 .gv1-fin__list li {
+	display: flex;
+	flex: 1 1 130px;
+	margin: 0;
+	padding: 0;
+}
+
+body.grupsity-design-v1 .gv1-fin__item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 52px;
+	padding: 8px 14px;
+	border: 1px solid var(--g-line);
+	border-radius: 10px;
+	background: var(--g-paper);
+	text-align: center;
+	text-decoration: none !important;
+	transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+body.grupsity-design-v1 a.gv1-fin__item:hover,
+body.grupsity-design-v1 a.gv1-fin__item:focus-visible {
+	border-color: var(--g-green);
+	box-shadow: 0 8px 18px rgba(17, 24, 39, 0.1);
+	transform: translateY(-2px);
+}
+
+body.grupsity-design-v1 .gv1-fin__brand {
+	color: var(--g-ink);
+	font-size: 15px;
+	font-weight: 900;
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1 .gv1-fin--addi { color: #1f6feb; }
+body.grupsity-design-v1 .gv1-fin--siste span:first-child { color: #0057b8; }
+body.grupsity-design-v1 .gv1-fin--siste span:last-child { color: #5fa82f; }
+body.grupsity-design-v1 .gv1-fin--supay span:nth-child(1),
+body.grupsity-design-v1 .gv1-fin--supay span:nth-child(3) { color: #e07800; }
+body.grupsity-design-v1 .gv1-fin--supay span:nth-child(2) { color: #ef3340; }
+body.grupsity-design-v1 .gv1-fin--nequi { color: #da0081; }
+
+body.grupsity-design-v1 .gv1-fin--bancolombia {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3px;
+	white-space: normal;
+}
+
+body.grupsity-design-v1 .gv1-fin--bancolombia small {
+	color: var(--g-muted);
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1 .gv1-fin--bancolombia > span {
+	padding: 2px 8px;
+	border-radius: 4px;
+	background: #fdda24;
+	color: #000;
+	font-size: 14px;
+}
+
+@media (max-width: 767px) {
+	body.grupsity-design-v1 .gv1-fin {
+		margin-top: 12px;
+		padding: 14px;
+	}
+
+	body.grupsity-design-v1 .gv1-fin__list {
+		flex-basis: 100%;
+		gap: 8px;
+	}
+
+	body.grupsity-design-v1 .gv1-fin__list li {
+		flex: 1 1 calc(50% - 4px);
+	}
+
+	/* Bancolombia (texto más largo): fila entera, al final para no dejar otra sola */
+	body.grupsity-design-v1 .gv1-fin__list li:has(.gv1-fin--bancolombia) {
+		flex-basis: 100%;
+		order: 1;
+	}
+}
 
 /* ==========================================================================
    Portada: carrusel «Ofertas del día» (widget Product Deals Carousel de Martfury,

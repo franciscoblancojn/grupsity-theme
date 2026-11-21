@@ -23,13 +23,14 @@ Se actualiza solo desde nuestro repo: `https://github.com/franciscoblancojn/grup
 | `inc/grupsity/class-admin.php` | Página Apariencia → Grupsity: actualizaciones, diseño, migración, información y avisos |
 | `inc/grupsity/class-designs.php` | Registro del selector de diseño, `body_class`, carga condicional del CSS y purga de caché |
 | `css/design-jomashop.css` | Diseño con la forma de JomaShop y los colores de Grupsity (verde `#93b700`, tinta, blanco; Inter; footer oscuro) |
-| `inc/grupsity/class-design-v1.php` + `css/design-v1.css` | Diseño V1: estructura de TeDotamos V1 (franja, header, buscador, barra de menú, desplegable de categorías, container de 1320 px) con colores y fuentes de Grupsity |
+| `inc/grupsity/class-design-v1.php` + `css/design-v1.css` | Diseño V1: estructura de TeDotamos V1 (franja, header, buscador, barra de menú, desplegable de categorías, container de 1320 px) con colores y fuentes de Grupsity; header fijo solo en la fila del buscador; en la portada, franja «Compra ahora, paga después» tras el slider (gancho `elementor/frontend/widget/after_render`) |
 | `template-parts/headers/layout-1.php` | Gancho `grupsity_header_nav`: un diseño (V1) puede reemplazar el menú y el Header Bar |
 | `inc/functions/header.php` | Filtro `grupsity_department_menu` en `martfury_extra_department()`: un diseño (V1) puede reemplazar la lista del desplegable «Categorías» |
 | `inc/grupsity/class-catalog.php` | Navegación del catálogo (`catalog_nav`: scroll infinito / números / Customizer) vía `martfury_get_option`, y script que sincroniza los campos del filtro de precios con el slider |
 | `woocommerce/loop/pagination.php` | Scroll infinito: solo el enlace a la página siguiente (`nav` vacío en la última) y `%_%` de WooCommerce 11 expandido. Mismo arreglo que TeDotamos |
 | `css/grupsity.css` | Botón «Cargando más productos» del scroll infinito (con cualquier diseño) |
 | `inc/grupsity/class-product.php` | Ficha de producto: pestañas y «Marca:» en español, oculta Instagram sin token, «Productos relacionados»; con V1, botón de WhatsApp y % de descuento junto al precio |
+| `inc/grupsity/class-seo.php` | Portada: título «Home - Grupsity.Com» (Rank Math o WordPress) → nombre del sitio (+ eslogan si tiene uno propio). Un título SEO personalizado no se toca |
 | `woocommerce/single-product/add-to-cart/simple.php` | Sin stock imprime «Agotado» (`wc_get_stock_html`) y lanza `grupsity_add_to_cart_unavailable` (antes el bloque salía vacío en la plantilla de Elementor) |
 | `inc/grupsity/class-migration.php` | Copia la configuración del Customizer de Martfury al activar y botones con nonce en la pestaña Migración |
 | `.github/workflows/release.yml` | Construye `grupsity.zip` y crea la release al subir un tag |

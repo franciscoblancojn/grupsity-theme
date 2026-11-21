@@ -9,6 +9,9 @@
  *   grupsity_header_nav de template-parts/headers/layout-1.php).
  * - Reemplaza la lista del desplegable "Categorías" por las categorías de producto con ícono y
  *   panel de subcategorías (filtro grupsity_department_menu de martfury_extra_department()).
+ * - Portada: franja «Compra ahora, paga después» (Addi, Sistecrédito, su+Pay, Bancolombia,
+ *   Nequi) justo después del primer slider de Elementor (el de los banners de Sistecrédito/Addi),
+ *   con el gancho elementor/frontend/widget/after_render. Sin slider en la portada no sale.
  * No escribe opciones del Customizer: todo es en tiempo de ejecución (filtro martfury_get_option).
  *
  * Textos y enlaces: Apariencia → Grupsity → General (sección "Diseño V1").
@@ -27,7 +30,11 @@ class Grupsity_Design_V1 {
 		'v1_nav'     => "Relojes de Hombre|/hombre/\nRelojes de Mujer|/mujer/\nOfertas del Día|/ofertas-del-dia/\nSeguimiento de pedidos|/seguimiento-de-pedidos/\nTedotamos.com|https://tedotamos.com/",
 		'v1_hotline' => '+57 318 888 0385',
 		'v1_whatsapp' => '573188880385',
+		'v1_financing' => "Addi|\nSistecrédito|\nsu+Pay|https://sumas.co/\nCompra y paga después Bancolombia|https://wompi.com/es/co/planes-tarifas/bnpl-bancolombia.html\nNequi|https://www.nequi.com.co/personas/creditos",
 	);
+
+	/** Ya se pintó la franja de financiación (solo una vez por página). */
+	private static $financing_done = false;
 
 	public static function init() {
 		if ( 'v1' !== Grupsity_Designs::current() ) {
@@ -37,6 +44,7 @@ class Grupsity_Design_V1 {
 		add_action( 'martfury_before_header', array( __CLASS__, 'render_topbar' ), 1 );
 		add_action( 'grupsity_header_nav', array( __CLASS__, 'render_nav' ) );
 		add_filter( 'grupsity_department_menu', array( __CLASS__, 'department_menu' ) );
+		add_action( 'elementor/frontend/widget/after_render', array( __CLASS__, 'financing_after_slider' ) );
 	}
 
 	public static function get( $key ) {
@@ -76,6 +84,10 @@ class Grupsity_Design_V1 {
 		switch ( $name ) {
 			case 'header_layout':
 				return '1';
+			case 'sticky_header':
+				// El header fijo de Martfury fija el header entero (franja + menú). V1 fija solo
+				// la fila del buscador con CSS (design-v1.css, «Fila del logo y el buscador fija»).
+				return 0;
 			case 'topbar':
 			case 'promotion':
 			case 'header_hot_words_enable':
@@ -156,6 +168,73 @@ class Grupsity_Design_V1 {
 			);
 		}
 		echo '</ul></nav>';
+	}
+
+	/**
+	 * Franja de financiación después del primer slider de Elementor de la portada.
+	 *
+	 * @param \Elementor\Widget_Base $widget
+	 */
+	public static function financing_after_slider( $widget ) {
+		if ( self::$financing_done || ! is_front_page() || ! is_object( $widget ) || ! method_exists( $widget, 'get_name' ) ) {
+			return;
+		}
+		if ( ! in_array( $widget->get_name(), array( 'slides', 'image-carousel', 'media-carousel' ), true ) ) {
+			return;
+		}
+		self::$financing_done = true;
+		self::render_financing();
+	}
+
+	public static function render_financing() {
+		$items = self::lines( 'v1_financing', 2 );
+		if ( ! $items ) {
+			return;
+		}
+		echo '<section class="gv1-fin" aria-labelledby="gv1-fin-title"><div class="gv1-fin__head">';
+		echo self::icon( 'card', 'gv1-icon gv1-fin__icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<div><h2 id="gv1-fin-title" class="gv1-fin__title">Compra ahora, paga después</h2>';
+		echo '<p class="gv1-fin__text">Financia tu compra con:</p></div></div><ul class="gv1-fin__list">';
+		foreach ( $items as $item ) {
+			list( $name, $url ) = $item;
+			if ( '' === $name ) {
+				continue;
+			}
+			$inner = self::financing_label( $name );
+			$url   = self::url( $url );
+			if ( $url ) {
+				printf(
+					'<li><a class="gv1-fin__item" href="%s" target="_blank" rel="noopener">%s</a></li>',
+					esc_url( $url ),
+					$inner // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				);
+			} else {
+				printf( '<li><span class="gv1-fin__item">%s</span></li>', $inner ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+		}
+		echo '</ul></section>';
+	}
+
+	/** Nombre con los colores de la marca cuando se reconoce; si no, el texto tal cual. */
+	private static function financing_label( $name ) {
+		$key = sanitize_title( $name );
+		if ( false !== strpos( $key, 'sistecredito' ) ) {
+			return '<span class="gv1-fin__brand gv1-fin--siste"><span>Siste</span><span>crédito</span></span>';
+		}
+		if ( false !== strpos( $key, 'supay' ) || false !== strpos( $key, 'su-pay' ) ) {
+			return '<span class="gv1-fin__brand gv1-fin--supay"><span>su</span><span>+</span><span>Pay</span></span>';
+		}
+		if ( false !== strpos( $key, 'bancolombia' ) ) {
+			$lead = trim( preg_replace( '/\s*\(?\s*bancolombia\s*\)?\s*/iu', ' ', $name ) );
+			return '<span class="gv1-fin__brand gv1-fin--bancolombia">' . ( '' !== $lead ? '<small>' . esc_html( $lead ) . '</small>' : '' ) . '<span>Bancolombia</span></span>';
+		}
+		foreach ( array( 'addi', 'nequi' ) as $brand ) {
+			if ( false !== strpos( $key, $brand ) ) {
+				return '<span class="gv1-fin__brand gv1-fin--' . $brand . '">' . esc_html( $name ) . '</span>';
+			}
+		}
+
+		return '<span class="gv1-fin__brand">' . esc_html( $name ) . '</span>';
 	}
 
 	/**

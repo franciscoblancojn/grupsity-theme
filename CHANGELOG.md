@@ -4,6 +4,15 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.12] - 2026-11-20
+
+### ✨ Añadido
+- Diseño V1, **header fijo solo en la fila del buscador**: al hacer scroll, la fila del logo, el buscador y los íconos (cuenta, wishlist, carrito) se queda arriba; la franja superior y la barra de menú se van con la página. En el celular se queda el logo con el buscador. Tiene en cuenta la barra de administración. El header fijo de Martfury (activo en el Personalizador, fijaba el header entero en la portada y el catálogo) se desactiva con V1.
+- Diseño V1, **portada: franja «Compra ahora, paga después»** justo debajo del slider de banners (Sistecrédito/Addi): Addi, Sistecrédito, su+Pay (sumas.co), Compra y paga después Bancolombia (Wompi) y Nequi (créditos), cada una con los colores de su marca; las que tienen enlace abren en otra pestaña. Se edita en Apariencia → Grupsity → General (`nombre|enlace`, una por línea).
+
+### 🐛 Corregido
+- **Título de la portada** (cualquier diseño): la pestaña, Google y las redes mostraban «Home - Grupsity.Com» porque la página de inicio se llama «Home». Ahora sale solo «Grupsity.Com» (o «Grupsity.Com - eslogan», si el sitio tiene uno propio en Ajustes → Generales). Si en Rank Math se pone un título SEO personalizado a la portada, se respeta.
+
 ## [1.0.11] - 2026-11-20
 
 ### 🐛 Corregido
