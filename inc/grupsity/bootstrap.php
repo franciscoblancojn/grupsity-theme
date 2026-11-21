@@ -17,6 +17,7 @@ require_once __DIR__ . '/class-design-v1.php';
 require_once __DIR__ . '/class-catalog.php';
 require_once __DIR__ . '/class-product.php';
 require_once __DIR__ . '/class-seo.php';
+require_once __DIR__ . '/class-translations.php';
 require_once __DIR__ . '/class-migration.php';
 
 Grupsity_Assets::init();
@@ -26,6 +27,7 @@ Grupsity_Design_V1::init();
 Grupsity_Catalog::init();
 Grupsity_Product::init();
 Grupsity_Seo::init();
+Grupsity_Translations::init();
 
 // Fuera de is_admin(): "after_switch_theme" puede dispararse en la primera visita al front.
 Grupsity_Migration::init();

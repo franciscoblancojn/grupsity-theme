@@ -4,6 +4,19 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.17] - 2026-11-20
+
+### ✨ Añadido
+- Diseño V1, **checkout como el de TeDotamos**: datos de facturación y «Tu pedido» en tarjetas, con campos redondeados y borde verde al escribir. El aviso del cupón va en verde suave. Envío y medios de pago son tarjetas con su círculo de selección (Martfury lo dibujaba con una fuente de íconos) y el logo a la derecha. El elegido lleva borde verde. Subtotal y total van en negro (antes en rojo), con casillas dibujadas con CSS y el botón «Realizar el pedido» verde a todo el ancho. En escritorio, el pedido acompaña el scroll.
+- Diseño V1, **página «Pedido recibido»** como la de TeDotamos: tarjeta centrada con el aviso «Gracias…» en verde y el resumen (número, fecha, email, total y medio de pago) en cuadrícula. Las instrucciones del pago van destacadas, y los datos bancarios (si los hay), el detalle del pedido y las direcciones de facturación y envío, en cajas. En el celular, todo en una columna.
+
+### 🐛 Corregido
+- **Textos en inglés** (cualquier diseño), con la clase de traducciones de TeDotamos (`inc/grupsity/class-translations.php`; solo actúa si la cadena no tiene traducción):
+  - Checkout: «Your order», «Have a coupon? Click here to enter your code», «Coupon code», «Apply coupon».
+  - Otras cadenas de Martfury y WCBoost: favoritos, comparar, visor de fotos, mi cuenta…
+  - Valores guardados en inglés: el título del envío «Shipment» → «Envío», la casilla «I have read and agree to the website términos y condiciones» → «He leído y acepto los términos y condiciones», y la descripción de Wompi «Pay via Wompi gateway.» → «Paga de forma segura a través de Wompi.».
+  - Si en sus ajustes se pone otro texto, se respeta.
+
 ## [1.0.16] - 2026-11-20
 
 ### ✨ Añadido

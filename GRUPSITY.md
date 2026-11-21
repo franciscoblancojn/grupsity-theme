@@ -31,6 +31,8 @@ Se actualiza solo desde nuestro repo: `https://github.com/franciscoblancojn/grup
 | `css/grupsity.css` | Botón «Cargando más productos» del scroll infinito (con cualquier diseño) |
 | `inc/grupsity/class-product.php` | Ficha de producto: pestañas y «Marca:» en español, oculta Instagram sin token, «Productos relacionados»; con V1, botón de WhatsApp y % de descuento junto al precio |
 | `inc/grupsity/class-seo.php` | Portada: título «Home - Grupsity.Com» (Rank Math o WordPress) → nombre del sitio (+ eslogan si tiene uno propio). Un título SEO personalizado no se toca |
+| `inc/grupsity/class-translations.php` | Textos en inglés → español (gettext solo si la cadena no tiene traducción; como en TeDotamos) + «Shipment», casilla de términos y descripción de Wompi guardados en inglés |
+| `css/design-v1.css` (bloques «Checkout» y «Pedido recibido») | Checkout y gracias por tu compra como en TeDotamos, con los colores de Grupsity |
 | `woocommerce/single-product/add-to-cart/simple.php` | Sin stock imprime «Agotado» (`wc_get_stock_html`) y lanza `grupsity_add_to_cart_unavailable` (antes el bloque salía vacío en la plantilla de Elementor) |
 | `inc/grupsity/class-migration.php` | Copia la configuración del Customizer de Martfury al activar y botones con nonce en la pestaña Migración |
 | `.github/workflows/release.yml` | Construye `grupsity.zip` y crea la release al subir un tag |

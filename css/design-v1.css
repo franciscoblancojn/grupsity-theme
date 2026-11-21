@@ -671,6 +671,7 @@ body.grupsity-design-v1 .mf-category-box .cat-header .cat-name {
 
 body.grupsity-design-v1 .site-content {
 	padding-top: 16px;
+	padding-bottom: 16px;
 }
 
 body.grupsity-design-v1 #mf-catalog-toolbar.shop-toolbar {
@@ -3219,6 +3220,1058 @@ body.grupsity-design-v1.single-product section.related.products .slick-next-arro
 
 	body.grupsity-design-v1.single-product .elementor-location-single .woocommerce-tabs ul.tabs li a {
 		font-size: 15px !important;
+	}
+}
+
+/* ==========================================================================
+   Checkout (Finalizar compra), como el de TeDotamos: datos y pedido en tarjetas, campos
+   redondeados, envío y medios de pago como tarjetas con su círculo de selección (Martfury
+   lo dibujaba con la fuente ElegantIcons), total en negro y botón verde a todo el ancho.
+   Solo el formulario clásico de WooCommerce (form.checkout).
+   ========================================================================== */
+
+/* «¿Tienes un cupón?» */
+body.grupsity-design-v1.woocommerce-checkout .woocommerce-form-coupon-toggle .woocommerce-info {
+	margin: 0 0 16px;
+	padding: 14px 18px 14px 48px;
+	border: 1px dashed #cfd6bd;
+	border-radius: 12px;
+	background: var(--g-green-soft);
+	color: var(--g-ink);
+	font-size: 14px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout .woocommerce-form-coupon-toggle .woocommerce-info::before {
+	top: 50%;
+	left: 18px;
+	color: var(--g-green-ink);
+	transform: translateY(-50%);
+}
+
+body.grupsity-design-v1.woocommerce-checkout .woocommerce-info .showcoupon,
+body.grupsity-design-v1.woocommerce-checkout .woocommerce-info .showlogin {
+	color: var(--g-green-ink) !important;
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout_coupon {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 10px;
+	margin: 0 0 20px !important;
+	padding: 16px 18px !important;
+	border: 1px solid var(--g-line) !important;
+	border-radius: 12px !important;
+	background: var(--g-paper);
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout_coupon > p:not(.form-row) {
+	flex: 1 0 100%;
+	margin: 0;
+	color: var(--g-muted);
+	font-size: 13.5px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout_coupon .form-row {
+	float: none;
+	width: auto;
+	margin: 0 !important;
+	padding: 0;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout_coupon .form-row-first {
+	flex: 1 1 220px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout_coupon .button {
+	height: 50px;
+	padding: 0 22px;
+	border-radius: 10px;
+	background: var(--g-ink);
+	color: #fff;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout_coupon .clear {
+	display: none;
+}
+
+/* Las dos columnas como tarjetas */
+body.grupsity-design-v1.woocommerce-checkout form.checkout {
+	margin-top: 8px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout #customer_details,
+body.grupsity-design-v1.woocommerce-checkout form.checkout #order_review {
+	padding: 24px 26px;
+	border: 1px solid var(--g-line);
+	border-radius: 14px;
+	background: var(--g-paper);
+	box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout h3,
+body.grupsity-design-v1.woocommerce-checkout form.checkout #order_review_heading {
+	margin: 0 0 18px;
+	padding: 0;
+	border: 0;
+	color: var(--g-ink);
+	font-size: 20px;
+	font-weight: 800;
+	line-height: 1.25;
+	text-transform: none;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout #order_review_heading {
+	margin-bottom: 14px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-shipping-fields,
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-additional-fields {
+	margin-top: 22px;
+	padding-top: 22px;
+	border-top: 1px solid var(--g-line);
+}
+
+/* El título «¿Enviar a una dirección diferente?» es una casilla: tamaño de texto normal */
+body.grupsity-design-v1.woocommerce-checkout form.checkout #ship-to-different-address {
+	margin: 0;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+/* Campos */
+body.grupsity-design-v1.woocommerce-checkout form.checkout .form-row {
+	margin: 0 0 16px;
+	padding: 0;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .form-row label {
+	margin: 0 0 6px;
+	color: var(--g-ink);
+	font-size: 13.5px;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .form-row label .optional {
+	color: var(--g-gray);
+	font-weight: 400;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .form-row .required {
+	color: #d92d20;
+	text-decoration: none;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form .form-row .input-text,
+body.grupsity-design-v1.woocommerce-checkout form .form-row select,
+body.grupsity-design-v1.woocommerce-checkout form .form-row .select2-container .select2-selection--single {
+	height: 50px;
+	padding: 0 14px;
+	border: 1px solid #d6dae1;
+	border-radius: 10px;
+	background: var(--g-paper);
+	box-shadow: none;
+	color: var(--g-ink);
+	font-size: 15px;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form .form-row textarea.input-text {
+	height: auto;
+	min-height: 96px;
+	padding: 12px 14px;
+	line-height: 1.5;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form .form-row .input-text:focus,
+body.grupsity-design-v1.woocommerce-checkout form .form-row select:focus,
+body.grupsity-design-v1.woocommerce-checkout form .form-row .select2-container--focus .select2-selection--single,
+body.grupsity-design-v1.woocommerce-checkout form .form-row .select2-container--open .select2-selection--single {
+	border-color: var(--g-green);
+	outline: 0;
+	box-shadow: 0 0 0 3px rgba(147, 183, 0, 0.2);
+}
+
+body.grupsity-design-v1.woocommerce-checkout form .form-row.woocommerce-invalid .input-text,
+body.grupsity-design-v1.woocommerce-checkout form .form-row.woocommerce-invalid .select2-selection--single {
+	border-color: #d92d20;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form .form-row .select2-container .select2-selection--single .select2-selection__rendered {
+	padding: 0;
+	color: var(--g-ink);
+	line-height: 48px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form .form-row .select2-container .select2-selection--single .select2-selection__arrow {
+	top: 0;
+	right: 10px;
+	height: 48px;
+}
+
+/* Casillas (términos, otra dirección): cuadro dibujado con CSS en lugar del ícono de fuente */
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-form__label-for-checkbox {
+	display: inline-flex;
+	align-items: flex-start;
+	margin: 0;
+	cursor: pointer;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-form__label-for-checkbox > span {
+	position: relative;
+	padding-left: 30px;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.45;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-form__label-for-checkbox > span::before,
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-form__label-for-checkbox > .input-checkbox:checked + span::before {
+	content: "";
+	position: absolute;
+	top: 1px;
+	left: 0;
+	width: 20px;
+	height: 20px;
+	box-sizing: border-box;
+	border: 2px solid #bdc3cb;
+	border-radius: 6px;
+	background: var(--g-paper) center / 12px 12px no-repeat;
+	font-family: inherit;
+	transition: border-color 0.2s, background-color 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-form__label-for-checkbox > .input-checkbox:checked + span::before {
+	border-color: var(--g-green);
+	background-color: var(--g-green);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231f2329' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M3.2 8.4l3.1 3.1 6.5-6.6'/%3E%3C/svg%3E");
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-form__label-for-checkbox > .input-checkbox:focus-visible + span::before {
+	box-shadow: 0 0 0 3px rgba(147, 183, 0, 0.3);
+}
+
+/* «Tu pedido»: tabla sin la caja gris de Martfury */
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table {
+	width: 100%;
+	margin: 0 0 18px;
+	padding: 0;
+	border: 0;
+	border-collapse: collapse;
+	background: transparent;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table th,
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table td {
+	padding: 12px 0;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	background: transparent;
+	color: var(--g-ink);
+	font-size: 14.5px;
+	vertical-align: middle;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table thead th {
+	padding-top: 0;
+	color: var(--g-gray);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .cart_item td,
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .cart_item:first-child td {
+	padding: 12px 0;
+	border-bottom: 1px solid var(--g-line);
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .cart_item .product-name {
+	padding-right: 12px;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .product-quantity {
+	color: var(--g-gray);
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table td:last-child,
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table th:last-child {
+	text-align: right;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table tfoot th {
+	color: var(--g-muted);
+	font-weight: 500;
+	text-align: left;
+}
+
+/* Subtotal y total en tinta (Martfury los ponía en rojo) */
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .cart-subtotal .woocommerce-Price-amount,
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .order-total .woocommerce-Price-amount {
+	color: var(--g-ink);
+	font-weight: 700;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .order-total th,
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .order-total td {
+	padding-top: 16px;
+	border-bottom: 0;
+	color: var(--g-ink);
+	font-size: 18px;
+	font-weight: 800;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .order-total .woocommerce-Price-amount {
+	font-size: 22px;
+	font-weight: 800;
+}
+
+/* Envío: título y tarjetas */
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .shipping td {
+	text-align: left;
+	white-space: normal;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #order_review table.shop_table .shipping .shipping-title {
+	margin: 0 0 10px;
+	color: var(--g-ink);
+	font-size: 14.5px;
+	font-weight: 700;
+}
+
+/* Medios de pago */
+body.grupsity-design-v1.woocommerce-checkout #payment {
+	border-radius: 0;
+	background: transparent;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods {
+	margin: 0;
+	padding: 0 !important;
+	border: 0;
+	background: transparent;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods::before,
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods::after {
+	display: none;
+}
+
+/* Algunas plantillas de pago dejan un <b> sin cerrar y los medios siguientes quedan dentro */
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods > b {
+	display: contents;
+	font-weight: inherit;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method {
+	margin: 0 0 10px !important;
+	padding: 0;
+	border: 1px solid var(--g-line);
+	border-radius: 12px;
+	background: var(--g-paper);
+	list-style: none;
+	transition: border-color 0.2s, background-color 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method:has(> .input-radio:checked) {
+	border-color: var(--g-green);
+	background: #fafdf0;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > .input-radio {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label {
+	position: relative;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	gap: 12px;
+	min-height: 56px;
+	margin: 0;
+	padding: 10px 16px 10px 46px;
+	color: var(--g-ink);
+	font-size: 14.5px;
+	font-weight: 600;
+	line-height: 1.35;
+	cursor: pointer;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label::before,
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > .input-radio:checked + label::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 16px;
+	width: 18px;
+	height: 18px;
+	box-sizing: border-box;
+	border: 2px solid #bdc3cb;
+	border-radius: 50%;
+	background: var(--g-paper);
+	font-family: inherit;
+	transform: translateY(-50%);
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > .input-radio:checked + label::before {
+	border-color: var(--g-green);
+	background: var(--g-green);
+	box-shadow: inset 0 0 0 3px var(--g-paper);
+}
+
+/* Logos a la derecha, todos a la misma altura */
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label img {
+	display: block;
+	float: none;
+	flex: none;
+	width: auto !important;
+	height: 24px !important;
+	max-width: 120px !important;
+	margin: 0 0 0 auto !important;
+	object-fit: contain;
+}
+
+/* Descripción y campos del medio elegido, dentro de la tarjeta */
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > div.payment_box {
+	margin: 0;
+	padding: 0 16px 14px 46px;
+	background: transparent;
+	color: var(--g-muted);
+	font-size: 13.5px;
+	line-height: 1.5;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > div.payment_box::before {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > div.payment_box p:last-child {
+	margin-bottom: 0;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment div.payment_box hr {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment div.payment_box fieldset {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 0;
+	padding: 4px 0 0;
+	border: 0;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment div.payment_box fieldset .form-row {
+	flex: 1 1 160px;
+	float: none;
+	width: auto;
+	margin: 0;
+	padding: 0;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment div.payment_box fieldset .form-row input,
+body.grupsity-design-v1.woocommerce-checkout #payment div.payment_box fieldset .form-row select {
+	width: 100%;
+	height: 46px;
+	padding: 0 12px;
+	border: 1px solid #d6dae1;
+	border-radius: 10px;
+	background: var(--g-paper);
+	color: var(--g-ink);
+	font-size: 14.5px;
+}
+
+/* Términos y botón */
+body.grupsity-design-v1.woocommerce-checkout #payment .form-row.place-order {
+	margin: 0;
+	padding: 6px 0 0;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-terms-and-conditions-wrapper {
+	margin: 6px 0 16px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-terms-and-conditions-wrapper .form-row {
+	margin: 0;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-terms-and-conditions-wrapper a {
+	color: var(--g-green-ink);
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+body.grupsity-design-v1.woocommerce-checkout form.checkout .woocommerce-terms-and-conditions-wrapper .woocommerce-privacy-policy-text:empty {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment #place_order {
+	width: 100%;
+	height: 56px;
+	margin: 0;
+	border: 0;
+	border-radius: 12px;
+	background: var(--g-green);
+	color: var(--g-ink);
+	font-size: 17px;
+	font-weight: 800;
+	line-height: 56px;
+	transition: background 0.2s, color 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-checkout #payment #place_order:hover {
+	background: var(--g-ink);
+	color: #fff;
+}
+
+/* Escritorio: el pedido acompaña el scroll (debajo de la fila fija del buscador) */
+@media (min-width: 992px) {
+	body.grupsity-design-v1.woocommerce-checkout form.checkout > .row > .col-md-5 {
+		position: sticky;
+		top: 120px;
+	}
+
+	body.admin-bar.grupsity-design-v1.woocommerce-checkout form.checkout > .row > .col-md-5 {
+		top: 152px;
+	}
+}
+
+@media (max-width: 991px) {
+	body.grupsity-design-v1.woocommerce-checkout form.checkout #customer_details {
+		margin-bottom: 24px;
+	}
+}
+
+@media (max-width: 767px) {
+	body.grupsity-design-v1.woocommerce-checkout form.checkout #customer_details,
+	body.grupsity-design-v1.woocommerce-checkout form.checkout #order_review {
+		padding: 18px 16px;
+		border-radius: 12px;
+	}
+
+	body.grupsity-design-v1.woocommerce-checkout form.checkout h3,
+	body.grupsity-design-v1.woocommerce-checkout form.checkout #order_review_heading {
+		font-size: 18px;
+	}
+
+	body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label img {
+		height: 20px !important;
+	}
+
+	body.grupsity-design-v1.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method > label {
+		font-size: 14px;
+	}
+}
+
+/* ==========================================================================
+   Envío (carrito y checkout): tarjetas como los medios de pago, nombre a la izquierda y
+   precio a la derecha. Con un solo método WooCommerce usa un input hidden: sin círculo.
+   ========================================================================== */
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods {
+	width: 100%;
+	margin: 0 0 6px;
+	padding: 0;
+	list-style: none;
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li {
+	margin: 0 0 8px;
+	padding: 0;
+	border: 1px solid var(--g-line);
+	border-radius: 10px;
+	background: var(--g-paper);
+	text-align: left;
+	transition: border-color 0.2s, background-color 0.2s;
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li:has(> .shipping_method:checked) {
+	border-color: var(--g-green);
+	background: #fafdf0;
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li > .shipping_method[type="radio"] {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li > label {
+	position: relative;
+	display: flex !important;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	min-height: 46px;
+	margin: 0;
+	padding: 8px 14px 8px 42px;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.3;
+	text-transform: none;
+	cursor: pointer;
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li > label::before,
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li > .shipping_method:checked + label::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 14px;
+	width: 18px;
+	height: 18px;
+	box-sizing: border-box;
+	border: 2px solid #bdc3cb;
+	border-radius: 50%;
+	background: var(--g-paper);
+	font-family: inherit;
+	transform: translateY(-50%);
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li > .shipping_method:checked + label::before {
+	border-color: var(--g-green);
+	background: var(--g-green);
+	box-shadow: inset 0 0 0 3px var(--g-paper);
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li > input[type="hidden"] + label {
+	padding-left: 14px;
+	cursor: default;
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li > input[type="hidden"] + label::before {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods li > label .woocommerce-Price-amount {
+	float: none;
+	flex: none;
+	margin-left: auto;
+	padding: 0;
+	color: var(--g-ink);
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1.woocommerce-page ul#shipping_method.woocommerce-shipping-methods + .woocommerce-shipping-destination {
+	margin: 0 0 8px;
+	color: var(--g-gray);
+	font-size: 13px;
+	text-align: left;
+}
+
+/* ==========================================================================
+   Pedido recibido (gracias por tu compra), como el de TeDotamos: tarjeta centrada, aviso en
+   verde, resumen en cuadrícula (número, fecha, email, total y medio de pago), instrucciones
+   del pago destacadas, datos bancarios, detalle del pedido y direcciones en cajas.
+   ========================================================================== */
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 880px;
+	margin: 8px auto 40px;
+	padding: 28px 32px 32px;
+	border: 1px solid var(--g-line);
+	border-radius: 14px;
+	background: var(--g-paper);
+	box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+}
+
+/* <p> que solo envuelve un script (gtag) y <p> vacíos de wpautop */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order > p:has(> script),
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order > p:empty {
+	display: none;
+}
+
+/* «Gracias. Tu pedido ha sido recibido.» */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order > p.woocommerce-notice--success {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin: 0 0 22px;
+	padding: 14px 16px;
+	border: 1px solid #d9e8a6;
+	border-radius: 10px;
+	background: var(--g-green-soft);
+	color: var(--g-green-ink);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order > p.woocommerce-notice--success::before {
+	content: "";
+	flex: none;
+	width: 22px;
+	height: 22px;
+	margin-top: 1px;
+	border-radius: 50%;
+	background: var(--g-green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231f2329' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' d='M3.2 8.4l3.1 3.1 6.5-6.6'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
+}
+
+/* Resumen del pedido */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-overview {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1px;
+	margin: 0 0 22px;
+	padding: 0;
+	border: 1px solid var(--g-line);
+	border-radius: 12px;
+	background: var(--g-line);
+	list-style: none;
+	overflow: hidden;
+}
+
+/* El clearfix del tema (::before/::after) contaría como celdas de la cuadrícula */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-overview::before,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-overview::after {
+	content: none;
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-overview li {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	float: none;
+	width: auto;
+	margin: 0;
+	padding: 12px 16px;
+	border: 0;
+	background: var(--g-paper);
+	color: var(--g-gray);
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	line-height: 1.4;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-overview li strong {
+	color: var(--g-ink);
+	font-size: 14.5px;
+	font-weight: 700;
+	letter-spacing: 0;
+	line-height: 1.35;
+	text-transform: none;
+	overflow-wrap: anywhere;
+}
+
+/* Con 5 datos en 3 columnas, el último ocupa el hueco de la 2.ª fila */
+@media (min-width: 768px) {
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-overview li:last-child:nth-child(3n+1) {
+		grid-column: span 3;
+	}
+
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-overview li:last-child:nth-child(3n+2) {
+		grid-column: span 2;
+	}
+}
+
+/* Instrucciones del medio de pago (p. ej. transferencia) */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order > p:not(.woocommerce-notice) {
+	margin: 0 0 22px;
+	padding: 14px 16px;
+	border: 1px solid #d9e8a6;
+	border-left: 4px solid var(--g-green);
+	border-radius: 10px;
+	background: #fafdf0;
+	color: var(--g-ink);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.55;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order > p:not(.woocommerce-notice) a {
+	color: var(--g-green-ink);
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+/* Datos bancarios (transferencia) */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-bacs-bank-details {
+	margin: 0 0 22px;
+	padding: 18px 20px;
+	border: 1px solid var(--g-line);
+	border-radius: 12px;
+	background: var(--g-surface);
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .wc-bacs-bank-details-heading {
+	margin: 0 0 2px;
+	color: var(--g-ink);
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .wc-bacs-bank-details-account-name {
+	margin: 0 0 12px;
+	color: var(--g-gray);
+	font-size: 12.5px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order ul.wc-bacs-bank-details {
+	display: grid;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order ul.wc-bacs-bank-details::before,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order ul.wc-bacs-bank-details::after {
+	content: none;
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order ul.wc-bacs-bank-details li {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 0;
+	padding: 10px 14px;
+	border: 1px solid var(--g-line);
+	border-radius: 8px;
+	background: var(--g-paper);
+	color: var(--g-gray);
+	font-size: 13.5px;
+	line-height: 1.45;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order ul.wc-bacs-bank-details li strong {
+	color: var(--g-ink);
+	font-size: 14.5px;
+	font-weight: 700;
+	text-align: right;
+	user-select: all;
+}
+
+/* Detalles del pedido */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-details {
+	margin: 0 0 22px;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-details__title,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-column__title {
+	margin: 0 0 12px;
+	padding: 0;
+	border: 0;
+	color: var(--g-ink);
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details {
+	width: 100%;
+	margin: 0;
+	border: 0;
+	border-collapse: collapse;
+	background: transparent;
+	font-size: 14.5px;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details th,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details td {
+	padding: 12px 0;
+	border: 0;
+	border-bottom: 1px solid var(--g-line);
+	background: transparent;
+	color: var(--g-ink);
+	font-size: inherit; /* Martfury: 16px en los th */
+	text-transform: none;
+	vertical-align: middle;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details thead th {
+	padding-top: 0;
+	color: var(--g-gray);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+/* Sin productos en el pedido, la cabecera sobra (no se usa :empty: trae espacios dentro) */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details:not(:has(> tbody > tr)) > thead,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details > tbody:not(:has(> tr)) {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details th:last-child,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details td:last-child {
+	text-align: right;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details .product-name a {
+	color: var(--g-ink);
+	font-weight: 600;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details .product-name a:hover {
+	color: var(--g-green-ink);
+	text-decoration: underline;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details .product-quantity {
+	color: var(--g-gray);
+	font-weight: 600;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details tfoot th {
+	color: var(--g-muted);
+	font-weight: 500;
+	text-align: left;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details tfoot td {
+	font-weight: 600;
+}
+
+/* Martfury pone los importes en rojo: en tinta */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details .woocommerce-Price-amount {
+	color: inherit !important;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details tfoot tr:last-child th,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details tfoot tr:last-child td {
+	padding-bottom: 0;
+	border-bottom: 0;
+	color: var(--g-ink);
+	font-size: 18px;
+	font-weight: 800;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-details > p {
+	margin: 16px 0 0;
+	padding: 12px 14px;
+	border-radius: 10px;
+	background: var(--g-surface);
+	color: var(--g-muted);
+	font-size: 13.5px;
+	line-height: 1.5;
+}
+
+/* Direcciones: cada una en su caja, lado a lado */
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details {
+	margin: 0;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details .col2-set {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px;
+	width: 100%;
+	margin: 0;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details .col2-set::before,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details .col2-set::after {
+	content: none;
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details .woocommerce-column,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details > address {
+	float: none;
+	width: auto;
+	max-width: none;
+	margin: 0;
+	padding: 18px 20px;
+	border: 1px solid var(--g-line);
+	border-radius: 12px;
+	background: var(--g-surface);
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details address {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	color: var(--g-muted);
+	font-size: 14px;
+	font-style: normal;
+	line-height: 1.7;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details address p {
+	margin: 10px 0 0;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details address p + p {
+	margin-top: 2px;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details address p:empty {
+	display: none;
+}
+
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details--phone,
+body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details--email {
+	color: var(--g-ink);
+	font-weight: 600;
+	overflow-wrap: anywhere;
+}
+
+@media (max-width: 767px) {
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order {
+		margin: 4px auto 28px;
+		padding: 18px 16px 22px;
+		border-radius: 12px;
+	}
+
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-order-overview,
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details .col2-set {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order > p.woocommerce-notice--success {
+		font-size: 15px;
+	}
+
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-bacs-bank-details,
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommerce-customer-details .woocommerce-column {
+		padding: 16px 14px;
+	}
+
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order ul.wc-bacs-bank-details li {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 2px;
+	}
+
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order ul.wc-bacs-bank-details li strong {
+		text-align: left;
+	}
+
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details {
+		font-size: 13.5px;
+	}
+
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details tfoot tr:last-child th,
+	body.grupsity-design-v1.woocommerce-order-received .woocommerce-order table.woocommerce-table--order-details tfoot tr:last-child td {
+		font-size: 16px;
 	}
 }
 
