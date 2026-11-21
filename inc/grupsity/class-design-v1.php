@@ -142,7 +142,8 @@ class Grupsity_Design_V1 {
 		if ( ! $items ) {
 			return;
 		}
-		echo '<div class="gv1-topbar"><div class="gv1-container"><ul class="gv1-topbar__items">';
+		$rotate = count( $items ) > 1;
+		echo '<div class="gv1-topbar' . ( $rotate ? ' gv1-topbar--rotate' : '' ) . '"><div class="gv1-container"><ul class="gv1-topbar__items">';
 		foreach ( $items as $item ) {
 			list( $icon, $text, $url ) = $item;
 			$inner = self::icon( $icon ) . '<span>' . esc_html( $text ) . '</span>';
@@ -153,6 +154,43 @@ class Grupsity_Design_V1 {
 			);
 		}
 		echo '</ul></div></div>';
+		if ( $rotate ) {
+			self::topbar_rotate_script();
+		}
+	}
+
+	/**
+	 * En el celular los avisos de la franja van rotando (uno cada 3,5 s). Sin JavaScript, o con
+	 * «reducir movimiento», se queda el primero. En escritorio se ven todos y no hace nada.
+	 */
+	private static function topbar_rotate_script() {
+		?>
+<script>
+(function () {
+	var bar = document.querySelector('.gv1-topbar--rotate');
+	var list = bar && bar.querySelector('.gv1-topbar__items');
+	if (!list || list.children.length < 2 || !window.matchMedia) {
+		return;
+	}
+	var items = list.children, i = 0;
+	var mobile = window.matchMedia('(max-width: 767px)');
+	var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+	bar.classList.add('gv1-topbar--js');
+	items[0].classList.add('is-active');
+	setInterval(function () {
+		if (!mobile.matches || still.matches || document.hidden) {
+			return;
+		}
+		var current = items[i];
+		i = (i + 1) % items.length;
+		current.classList.remove('is-active');
+		current.classList.add('is-leaving');
+		items[i].classList.add('is-active');
+		setTimeout(function () { current.classList.remove('is-leaving'); }, 500);
+	}, 3500);
+})();
+</script>
+		<?php
 	}
 
 	public static function render_nav() {

@@ -3269,9 +3269,49 @@ body.grupsity-design-v1.single-product section.related.products .slick-next-arro
 }
 
 @media (max-width: 767px) {
-	/* Franja superior: solo el primer aviso */
+	/* Franja superior: un aviso a la vez. Sin JS, el primero; con JS (gv1-topbar--js, ver
+	   Grupsity_Design_V1::topbar_rotate_script) van rotando y suben al cambiar. */
 	body.grupsity-design-v1 .gv1-topbar__items li + li {
 		display: none;
+	}
+
+	body.grupsity-design-v1 .gv1-topbar--js .gv1-topbar__items {
+		position: relative;
+		display: block;
+		height: 38px;
+		overflow: hidden;
+	}
+
+	body.grupsity-design-v1 .gv1-topbar--js .gv1-topbar__items li {
+		position: absolute;
+		inset: 0;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		padding: 0 12px;
+		border: 0 !important;
+		opacity: 0;
+		transform: translateY(100%);
+		transition: transform 0.45s ease, opacity 0.45s ease;
+	}
+
+	body.grupsity-design-v1 .gv1-topbar--js .gv1-topbar__items li.is-active {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	body.grupsity-design-v1 .gv1-topbar--js .gv1-topbar__items li.is-leaving {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+
+	body.grupsity-design-v1 .gv1-topbar--js .gv1-topbar__item {
+		max-width: 100%;
+	}
+
+	body.grupsity-design-v1 .gv1-topbar--js .gv1-topbar__item span {
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	body.grupsity-design-v1 #site-header .header-main {

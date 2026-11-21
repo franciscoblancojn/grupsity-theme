@@ -4,6 +4,14 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.14] - 2026-11-20
+
+### ✨ Añadido
+- Diseño V1, **franja superior en el celular como slider**: los avisos («Entrega gratuita…», «Productos 100% originales», «Pago seguro…») van rotando uno a uno cada 3,5 s, deslizándose hacia arriba. Antes solo se veía el primero. En escritorio se siguen viendo todos a la vez. Sin JavaScript o con «reducir movimiento» activado en el teléfono, se queda el primero.
+
+### 🐛 Corregido
+- Diseño V1, ficha de producto: **el descuento salía doble y tachado** («-23%» de Grupsity y «(-23%)» de Martfury, metidos dentro del precio anterior porque otro filtro de precio reutiliza el HTML ya filtrado). Ahora sale una sola etiqueta «-23%», después de los precios y sin tachar.
+
 ## [1.0.13] - 2026-11-20
 
 ### 🔄 Cambiado

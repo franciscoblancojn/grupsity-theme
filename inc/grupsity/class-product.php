@@ -34,7 +34,7 @@ class Grupsity_Product {
 		if ( 'v1' === Grupsity_Designs::current() ) {
 			add_action( 'woocommerce_after_add_to_cart_form', array( __CLASS__, 'whatsapp_button' ) );
 			add_action( 'grupsity_add_to_cart_unavailable', array( __CLASS__, 'whatsapp_button' ) );
-			add_filter( 'woocommerce_get_price_html', array( __CLASS__, 'discount_badge' ), 20, 2 );
+			add_filter( 'woocommerce_get_price_html', array( __CLASS__, 'discount_badge' ), PHP_INT_MAX, 2 );
 		}
 	}
 
@@ -108,6 +108,14 @@ class Grupsity_Product {
 	/**
 	 * «-25 %» junto al precio del producto principal de la ficha (no en listados ni relacionados).
 	 */
+	/**
+	 * Un solo «-23%» después del precio del producto principal.
+	 *
+	 * Martfury añade en la ficha su propio «(-23%)» (span.sale), y otro filtro de precio vuelve a
+	 * llamar a get_price_html() y mete ese resultado como precio anterior dentro del <del>: las
+	 * etiquetas salían dobles y tachadas. Este filtro corre el último (PHP_INT_MAX): quita las
+	 * etiquetas que haya en cualquier parte del HTML y deja una sola al final, fuera del <del>.
+	 */
 	public static function discount_badge( $html, $product ) {
 		if ( ! is_product() || ! $product instanceof WC_Product || $product->get_id() !== get_queried_object_id() ) {
 			return $html;
@@ -121,7 +129,12 @@ class Grupsity_Product {
 			return $html;
 		}
 		$pct = (int) round( ( $regular - $sale ) / $regular * 100 );
+		if ( $pct <= 0 ) {
+			return $html;
+		}
 
-		return $pct > 0 ? $html . ' <span class="gv1-discount">-' . $pct . '%</span>' : $html;
+		$html = preg_replace( '#\s*<span class="(?:gv1-discount|sale)">[^<]*</span>#', '', (string) $html );
+
+		return $html . ' <span class="gv1-discount">-' . $pct . '%</span>';
 	}
 }
