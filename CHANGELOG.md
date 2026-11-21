@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.16] - 2026-11-20
+
+### ✨ Añadido
+- **Portada: espacio entre secciones configurable** (Apariencia → Grupsity → General → «Portada: espacio entre secciones»), un valor para escritorio y otro para celular (por defecto 24 y 16 px). Antes cada sección de Elementor traía sus propios márgenes y rellenos, y en el celular quedaba mucho hueco desigual. Ahora se quitan los de arriba y abajo de cada sección (salvo las que tienen fondo, que conservan su relleno) y queda solo ese espacio. Funciona con cualquier diseño.
+
 ## [1.0.15] - 2026-11-20
 
 ### 🐛 Corregido

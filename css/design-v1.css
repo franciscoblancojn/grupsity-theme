@@ -102,10 +102,8 @@ body.grupsity-design-v1.home .elementor > .elementor-section {
 	max-width: 100%;
 }
 
-body.grupsity-design-v1.home .elementor > .e-con,
-body.grupsity-design-v1.home .elementor > .elementor-section {
-	margin-bottom: 24px;
-}
+/* El espacio entre secciones de la portada se configura en Apariencia → Grupsity → General
+   (Grupsity_Assets::home_gap_css). */
 
 /* Imágenes y sliders de la portada con las esquinas del container */
 body.grupsity-design-v1.home .elementor-widget-image img,

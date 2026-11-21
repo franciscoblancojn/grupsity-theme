@@ -29,6 +29,8 @@ class Grupsity_Admin {
 		'v1_financing'  => '',
 		'v1_hide_home_slider' => 1, // diseño V1: ocultar el slider de banners de la portada
 		'catalog_nav'   => 'infinite', // ver Grupsity_Catalog::NAV_CHOICES
+		'home_gap'        => 24, // portada: espacio entre secciones (px), escritorio
+		'home_gap_mobile' => 16, // y celular
 	);
 
 	public static function init() {
@@ -80,6 +82,8 @@ class Grupsity_Admin {
 			'v1_financing'  => isset( $input['v1_financing'] ) ? sanitize_textarea_field( $input['v1_financing'] ) : '',
 			'v1_hide_home_slider' => empty( $input['v1_hide_home_slider'] ) ? 0 : 1,
 			'catalog_nav'   => isset( $input['catalog_nav'], Grupsity_Catalog::NAV_CHOICES[ $input['catalog_nav'] ] ) ? $input['catalog_nav'] : '',
+			'home_gap'        => self::sanitize_px( $input, 'home_gap' ),
+			'home_gap_mobile' => self::sanitize_px( $input, 'home_gap_mobile' ),
 		);
 
 		// Si cambia la frecuencia, que la próxima consulta use el nuevo valor.
@@ -88,6 +92,15 @@ class Grupsity_Admin {
 		}
 
 		return $clean;
+	}
+
+	/** Píxeles entre 0 y 120; vacío o no numérico = valor por defecto. */
+	private static function sanitize_px( $input, $key ) {
+		if ( ! isset( $input[ $key ] ) || '' === trim( (string) $input[ $key ] ) || ! is_numeric( $input[ $key ] ) ) {
+			return self::DEFAULTS[ $key ];
+		}
+
+		return min( 120, max( 0, (int) $input[ $key ] ) );
 	}
 
 	public static function handle_check_updates() {
@@ -313,6 +326,15 @@ class Grupsity_Admin {
 							<?php endforeach; ?>
 						</select>
 						<p class="description">Tienda, categorías, marcas y búsqueda. Con scroll infinito, al llegar al final se cargan los productos de la página siguiente (sin JavaScript, o para los buscadores, es un enlace normal).</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Portada: espacio entre secciones</th>
+					<td>
+						<label>Escritorio <input type="number" min="0" max="120" step="1" name="<?php echo esc_attr( $name ); ?>[home_gap]" value="<?php echo esc_attr( self::get_option( 'home_gap' ) ); ?>" class="small-text"> px</label>
+						&nbsp;&nbsp;
+						<label>Celular <input type="number" min="0" max="120" step="1" name="<?php echo esc_attr( $name ); ?>[home_gap_mobile]" value="<?php echo esc_attr( self::get_option( 'home_gap_mobile' ) ); ?>" class="small-text"> px</label>
+						<p class="description">Distancia entre las secciones de Elementor de la portada. Se quitan los márgenes y rellenos de arriba y abajo de cada sección (salvo las que tienen fondo) y se deja solo este espacio. Celular: menos de 768 px. Vacío = 24 / 16 px.</p>
 					</td>
 				</tr>
 				<tr>
