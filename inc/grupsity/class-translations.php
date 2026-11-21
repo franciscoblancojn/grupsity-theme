@@ -40,6 +40,10 @@ class Grupsity_Translations {
 		'Proceed to checkout'             => 'Finalizar compra',
 		'Continue Shopping'               => 'Seguir comprando',
 		'Returning customer?'             => '¿Ya eres cliente?',
+		// Aviso «añadido al carrito» (Personalizar → WooCommerce → Product Notifications).
+		'has been added to your cart.'    => 'se ha añadido a tu carrito.',
+		'have been added to your cart.'   => 'se han añadido a tu carrito.',
+		'View Cart'                       => 'Ver carrito',
 		// Página del carrito (plantillas de Martfury).
 		'Product'                         => 'Producto',
 		'Price'                           => 'Precio',

@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.22] - 2026-11-21
+
+### ✨ Añadido
+- Diseño V1, **aviso «añadido al carrito»** (el de Martfury, arriba a la derecha) con el estilo del sitio: tarjeta blanca con borde verde a la izquierda, ícono verde y botón «Ver carrito». Textos en español: «se ha añadido a tu carrito.» y «Ver carrito». El aviso se activa en Personalizar → WooCommerce → Product Notifications → «Added to Cart Notification», que viene apagado.
+
 ## [1.0.21] - 2026-11-21
 
 ### 🐛 Corregido

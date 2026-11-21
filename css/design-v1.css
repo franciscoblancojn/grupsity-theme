@@ -3575,6 +3575,68 @@ body.grupsity-design-v1 .widget_shopping_cart_content .woocommerce-mini-cart__em
 }
 
 /* ==========================================================================
+   Aviso «añadido al carrito» de Martfury (notify.js, arriba a la derecha). Se activa en
+   Personalizar → WooCommerce → Product Notifications → Added to Cart Notification.
+   Tarjeta blanca con borde verde a la izquierda, ícono verde y «Ver carrito» en botón.
+   ========================================================================== */
+
+body.grupsity-design-v1 .notifyjs-martfury-base {
+	max-width: 420px;
+	padding: 16px 44px 16px 56px;
+	border: 1px solid var(--g-line);
+	border-left: 4px solid var(--g-green);
+	border-radius: 12px;
+	background: var(--g-paper);
+	box-shadow: 0 16px 40px rgba(17, 24, 39, 0.16);
+	color: var(--g-ink);
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+body.grupsity-design-v1 .notifyjs-martfury-base .message-icon {
+	top: 16px;
+	left: 18px;
+	color: var(--g-green-ink);
+	font-size: 22px;
+}
+
+body.grupsity-design-v1 .notifyjs-martfury-error {
+	border-left-color: #d92d20;
+}
+
+body.grupsity-design-v1 .notifyjs-martfury-error .message-icon {
+	color: #d92d20;
+}
+
+body.grupsity-design-v1 .notifyjs-martfury-base .btn-button {
+	display: table;
+	margin: 10px 0 0;
+	padding: 6px 14px;
+	border-radius: 8px;
+	background: var(--g-green);
+	color: var(--g-ink);
+	font-size: 13px;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+body.grupsity-design-v1 .notifyjs-martfury-base .btn-button:hover {
+	background: var(--g-ink);
+	color: #fff;
+}
+
+body.grupsity-design-v1 .notifyjs-martfury-base .close {
+	top: 14px;
+	right: 14px;
+	color: var(--g-gray);
+	cursor: pointer;
+}
+
+body.grupsity-design-v1 .notifyjs-martfury-base .close:hover {
+	color: var(--g-ink);
+}
+
+/* ==========================================================================
    Carrito (página), como el checkout: productos en una tarjeta a la izquierda y el resumen
    (subtotal, envío, total y «Finalizar compra») en otra a la derecha que acompaña el scroll.
    Precio rebajado como en la ficha (actual en negro, anterior en rojo tachado), cantidad en
