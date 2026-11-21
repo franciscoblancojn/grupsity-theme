@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.21] - 2026-11-21
+
+### 🐛 Corregido
+- Diseño V1, portada, franja **«Compra ahora, paga después»**: en escritorio (1280 px o más) las 7 opciones van **en una sola línea** al lado del título. Antes «Tarjetas» bajaba sola a una segunda fila. Las cajas se reparten el ancho, y Bancolombia, con su texto más largo, ocupa un poco más. Entre 992 y 1279 px, el título va arriba y las opciones en una línea debajo.
+
 ## [1.0.20] - 2026-11-21
 
 ### ✨ Añadido

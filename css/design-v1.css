@@ -1603,8 +1603,39 @@ body.grupsity-design-v1 .gv1-fin--bancolombia > span {
 	font-size: 14px;
 }
 
-/* Pantallas medianas: el título arriba y las opciones en una fila entera debajo */
-@media (max-width: 1279px) {
+/* Escritorio: todas las opciones en una sola línea, al lado del título. Las cajas se reparten
+   el ancho (Bancolombia, con su texto más largo, un poco más) en lugar de saltar de fila. */
+@media (min-width: 992px) {
+	body.grupsity-design-v1 .gv1-fin {
+		flex-wrap: nowrap;
+	}
+
+	body.grupsity-design-v1 .gv1-fin__list {
+		flex: 1 1 0;
+		flex-wrap: nowrap;
+		min-width: 0;
+	}
+
+	body.grupsity-design-v1 .gv1-fin__list li {
+		flex: 1 1 0;
+		min-width: 0;
+	}
+
+	body.grupsity-design-v1 .gv1-fin__list li:has(.gv1-fin--bancolombia) {
+		flex: 1.8 1 0;
+	}
+
+	body.grupsity-design-v1 .gv1-fin__item {
+		padding: 8px 6px;
+	}
+}
+
+/* Pantallas medianas: el título arriba y las opciones, también en una línea, debajo */
+@media (min-width: 992px) and (max-width: 1279px) {
+	body.grupsity-design-v1 .gv1-fin {
+		flex-wrap: wrap;
+	}
+
 	body.grupsity-design-v1 .gv1-fin__list {
 		flex-basis: 100%;
 	}
