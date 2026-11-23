@@ -9,12 +9,13 @@
  *   grupsity_header_nav de template-parts/headers/layout-1.php).
  * - Reemplaza la lista del desplegable "Categorías" por las categorías de producto con ícono y
  *   panel de subcategorías (filtro grupsity_department_menu de martfury_extra_department()).
- * - Portada: franja «Compra ahora, paga después» (Addi, Sistecrédito, su+Pay, Bancolombia,
- *   Nequi) justo después del primer slider de Elementor (el de los banners de Sistecrédito/Addi),
- *   con el gancho elementor/frontend/widget/after_render. Sin slider en la portada no sale.
- *   Ese slider se oculta (opción v1_hide_home_slider, activa por defecto) con
- *   elementor/frontend/widget/should_render: no se imprime, pero after_render sigue
- *   disparándose y la franja queda en su lugar. Sin tocar la página de Elementor.
+ * - Portada: el primer slider de Elementor (banners de Sistecrédito/Addi) se oculta (opción
+ *   v1_hide_home_slider, activa por defecto) con elementor/frontend/widget/should_render.
+ *   La franja «Compra ahora, paga después» (Addi, Sistecrédito, su+Pay, Bancolombia, Nequi…)
+ *   sale debajo del banner principal: después del primer slider que sí se imprime (gancho
+ *   elementor/frontend/widget/after_render). Sin slider en la portada no sale.
+ *   Sin tocar la página de Elementor.
+ * - Portada: secciones por categoría (marcas + banners) en Grupsity_Home_Sections.
  * No escribe opciones del Customizer: todo es en tiempo de ejecución (filtro martfury_get_option).
  *
  * Textos y enlaces: Apariencia → Grupsity → General (sección "Diseño V1").
@@ -39,6 +40,12 @@ class Grupsity_Design_V1 {
 
 	/** Ya se pintó la franja de financiación (solo una vez por página). */
 	private static $financing_done = false;
+
+	/** ID del slider de la portada que se ocultó ('' = ninguno). */
+	private static $hidden_slider = '';
+
+	/** Widgets de Elementor que cuentan como slider de banners en la portada. */
+	const SLIDER_WIDGETS = array( 'slides', 'martfury-slides', 'image-carousel', 'media-carousel' );
 
 	public static function init() {
 		if ( 'v1' !== Grupsity_Designs::current() ) {
@@ -214,21 +221,28 @@ class Grupsity_Design_V1 {
 	}
 
 	/**
-	 * Franja de financiación después del primer slider de Elementor de la portada.
+	 * Franja de financiación debajo del banner principal: después del primer slider de la
+	 * portada que se imprime (el que se oculta no cuenta: after_render se dispara igual).
 	 *
 	 * @param \Elementor\Widget_Base $widget
 	 */
 	public static function financing_after_slider( $widget ) {
-		if ( ! self::is_home_slider( $widget ) ) {
+		if ( self::$financing_done || ! self::is_front_slider( $widget ) || $widget->get_id() === self::$hidden_slider ) {
 			return;
 		}
 		self::$financing_done = true;
 		self::render_financing();
 	}
 
-	/** No imprime el primer slider de la portada (la franja sale igual en su lugar). */
+	/** No imprime el primer slider de la portada (banners de Sistecrédito/Addi). */
 	public static function hide_home_slider( $should_render, $widget ) {
-		if ( ! $should_render || ! intval( self::get( 'v1_hide_home_slider' ) ) || ! self::is_home_slider( $widget ) ) {
+		if ( ! intval( self::get( 'v1_hide_home_slider' ) ) || ! self::is_front_slider( $widget ) ) {
+			return $should_render;
+		}
+		if ( '' === self::$hidden_slider ) {
+			self::$hidden_slider = (string) $widget->get_id(); // solo el primero de la página
+		}
+		if ( ! $should_render || (string) $widget->get_id() !== self::$hidden_slider ) {
 			return $should_render;
 		}
 		if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->editor ) && \Elementor\Plugin::$instance->editor->is_edit_mode() ) {
@@ -238,13 +252,13 @@ class Grupsity_Design_V1 {
 		return false;
 	}
 
-	/** Primer slider/carrusel de Elementor de la portada que aún no lleva la franja. */
-	private static function is_home_slider( $widget ) {
-		return ! self::$financing_done
-			&& is_front_page()
+	/** Slider/carrusel de Elementor en la portada. */
+	private static function is_front_slider( $widget ) {
+		return is_front_page()
 			&& is_object( $widget )
 			&& method_exists( $widget, 'get_name' )
-			&& in_array( $widget->get_name(), array( 'slides', 'image-carousel', 'media-carousel' ), true );
+			&& method_exists( $widget, 'get_id' )
+			&& in_array( $widget->get_name(), self::SLIDER_WIDGETS, true );
 	}
 
 	public static function render_financing() {

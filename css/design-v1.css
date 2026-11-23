@@ -532,6 +532,7 @@ body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__panel-title
 	color: var(--g-green-ink);
 	font-size: 13px;
 	font-weight: 600;
+	text-decoration: none !important;
 	white-space: nowrap;
 }
 
@@ -1428,7 +1429,7 @@ body.grupsity-design-v1 .back-to-top {
 
 
 /* ==========================================================================
-   Portada: franja «Compra ahora, paga después» debajo del slider de banners
+   Portada: franja «Compra ahora, paga después» debajo del banner principal
    (Grupsity_Design_V1::render_financing). Cada opción, un botón con los colores de su marca.
    ========================================================================== */
 
@@ -2171,13 +2172,232 @@ body.grupsity-design-v1.home .mf-images-gallery .slick-list {
 	padding: 8px 0 18px !important;
 }
 
+/* Logos de marcas un poco más pequeños (~30 % menos que los 200×100 originales), centrados */
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper img,
+body.grupsity-design-v1.home .gv1-rail--brands img {
+	width: auto !important;
+	max-width: 140px !important;
+	max-height: 70px;
+	margin: 0 auto;
+	object-fit: contain;
+}
+
+@media (max-width: 767px) {
+	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper img,
+	body.grupsity-design-v1.home .gv1-rail--brands img {
+		max-width: 100px !important;
+		max-height: 50px;
+	}
+}
+
+/* ==========================================================================
+   Portada: secciones por categoría (Grupsity_Home_Sections), antes de «Ofertas del día».
+   Repiten lo de los relojes: título, carrusel de marcas y carrusel de banners.
+   Carriles con scroll-snap; las flechas (círculo oscuro, como las del sitio) las pone el JS.
+   ========================================================================== */
+
+body.grupsity-design-v1 .gv1-hsec {
+	width: 100%;
+	margin: 0 0 var(--g-home-gap, 24px);
+}
+
+body.grupsity-design-v1 .gv1-hsec__head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	margin-bottom: 8px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid var(--g-line);
+}
+
+body.grupsity-design-v1 .gv1-hsec__title {
+	margin: 0 !important;
+	padding: 0 !important;
+	color: var(--g-ink) !important;
+	font-size: 24px !important;
+	font-weight: 800 !important;
+	line-height: 1.2 !important;
+}
+
+body.grupsity-design-v1 .gv1-hsec__more {
+	flex: 0 0 auto;
+	color: var(--g-ink);
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+body.grupsity-design-v1 .gv1-hsec__more:hover {
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 .gv1-rail {
+	position: relative;
+}
+
+body.grupsity-design-v1 .gv1-rail + .gv1-rail {
+	margin-top: 8px;
+}
+
+body.grupsity-design-v1 .gv1-rail__track {
+	--gv1-per: 6;
+	--gv1-gap: 16px;
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: calc((100% - (var(--gv1-per) - 1) * var(--gv1-gap)) / var(--gv1-per));
+	gap: var(--gv1-gap);
+	margin: 0 !important;
+	padding: 8px 0 18px !important;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	list-style: none;
+}
+
+body.grupsity-design-v1 .gv1-rail__track::-webkit-scrollbar {
+	display: none;
+}
+
+body.grupsity-design-v1 .gv1-rail--banners .gv1-rail__track {
+	--gv1-per: 2;
+	--gv1-gap: 24px;
+}
+
+body.grupsity-design-v1 .gv1-rail__item {
+	margin: 0;
+	padding: 0;
+	scroll-snap-align: start;
+}
+
+body.grupsity-design-v1 .gv1-rail__link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	border-radius: var(--g-radius);
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+body.grupsity-design-v1 .gv1-rail--brands .gv1-rail__link {
+	min-height: 90px;
+	padding: 8px;
+}
+
+body.grupsity-design-v1 .gv1-rail--banners img {
+	display: block;
+	width: 100%;
+	height: auto;
+	transition: transform 0.5s ease;
+}
+
+body.grupsity-design-v1 a.gv1-rail__link:hover,
+body.grupsity-design-v1 a.gv1-rail__link:focus-visible {
+	background-color: var(--g-paper);
+	box-shadow: 0 10px 22px rgba(17, 24, 39, 0.12);
+	transform: translateY(-3px);
+}
+
+body.grupsity-design-v1 .gv1-rail--banners a.gv1-rail__link:hover img {
+	transform: scale(1.04);
+}
+
+body.grupsity-design-v1 .gv1-rail__btn {
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(31, 35, 41, 0.85);
+	color: #fff;
+	cursor: pointer;
+	transform: translateY(-60%);
+	transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+body.grupsity-design-v1 .gv1-rail__btn[hidden] {
+	display: none;
+}
+
+body.grupsity-design-v1 .gv1-rail__btn:hover {
+	background: var(--g-ink);
+	color: var(--g-green);
+}
+
+body.grupsity-design-v1 .gv1-rail__btn:disabled {
+	opacity: 0.35;
+	cursor: default;
+}
+
+body.grupsity-design-v1 .gv1-rail__btn--prev {
+	left: -8px;
+}
+
+body.grupsity-design-v1 .gv1-rail__btn--next {
+	right: -8px;
+}
+
+@media (max-width: 1024px) {
+	body.grupsity-design-v1 .gv1-rail--brands .gv1-rail__track {
+		--gv1-per: 4;
+	}
+}
+
+@media (max-width: 767px) {
+	body.grupsity-design-v1 .gv1-hsec__title {
+		font-size: 19px !important;
+	}
+
+	body.grupsity-design-v1 .gv1-rail--brands .gv1-rail__track {
+		--gv1-per: 3;
+		--gv1-gap: 8px;
+	}
+
+	body.grupsity-design-v1 .gv1-rail--brands .gv1-rail__link {
+		min-height: 70px;
+		padding: 6px;
+	}
+
+	body.grupsity-design-v1 .gv1-rail--banners .gv1-rail__track {
+		--gv1-per: 1.15; /* asoma el siguiente: invita a deslizar */
+		--gv1-gap: 12px;
+	}
+
+	body.grupsity-design-v1 .gv1-rail__btn {
+		width: 32px;
+		height: 32px;
+	}
+
+	body.grupsity-design-v1 .gv1-rail__btn--prev {
+		left: 2px;
+	}
+
+	body.grupsity-design-v1 .gv1-rail__btn--next {
+		right: 2px;
+	}
+}
+
 /* Sin animaciones si el visitante las tiene desactivadas en su sistema */
 @media (prefers-reduced-motion: reduce) {
 	body.grupsity-design-v1.home .elementor-widget-image a,
 	body.grupsity-design-v1.home .elementor-widget-image a img,
 	body.grupsity-design-v1.home .elementor-widget-image .widget-image-caption,
 	body.grupsity-design-v1.home .mf-images-gallery a.img-link,
-	body.grupsity-design-v1.home .mf-images-gallery a.img-link img {
+	body.grupsity-design-v1.home .mf-images-gallery a.img-link img,
+	body.grupsity-design-v1 .gv1-rail__link,
+	body.grupsity-design-v1 .gv1-rail__link img {
 		transition: none;
 		transform: none !important;
 	}

@@ -28,6 +28,7 @@ class Grupsity_Admin {
 		'v1_whatsapp'   => '',
 		'v1_financing'  => '',
 		'v1_hide_home_slider' => 1, // diseño V1: ocultar el slider de banners de la portada
+		'v1_home_sections' => '', // diseño V1: secciones por categoría de la portada (Grupsity_Home_Sections)
 		'catalog_nav'   => 'infinite', // ver Grupsity_Catalog::NAV_CHOICES
 		'home_gap'        => 24, // portada: espacio entre secciones (px), escritorio
 		'home_gap_mobile' => 16, // y celular
@@ -81,6 +82,7 @@ class Grupsity_Admin {
 			'v1_whatsapp'   => isset( $input['v1_whatsapp'] ) ? preg_replace( '/\D/', '', (string) $input['v1_whatsapp'] ) : '',
 			'v1_financing'  => isset( $input['v1_financing'] ) ? sanitize_textarea_field( $input['v1_financing'] ) : '',
 			'v1_hide_home_slider' => empty( $input['v1_hide_home_slider'] ) ? 0 : 1,
+			'v1_home_sections' => isset( $input['v1_home_sections'] ) ? sanitize_textarea_field( $input['v1_home_sections'] ) : '',
 			'catalog_nav'   => isset( $input['catalog_nav'], Grupsity_Catalog::NAV_CHOICES[ $input['catalog_nav'] ] ) ? $input['catalog_nav'] : '',
 			'home_gap'        => self::sanitize_px( $input, 'home_gap' ),
 			'home_gap_mobile' => self::sanitize_px( $input, 'home_gap_mobile' ),
@@ -350,11 +352,14 @@ class Grupsity_Admin {
 						<p><label for="grupsity-v1-whatsapp"><strong>WhatsApp de la ficha de producto</strong> (con indicativo, solo números)</label></p>
 						<input type="text" id="grupsity-v1-whatsapp" name="<?php echo esc_attr( $name ); ?>[v1_whatsapp]" value="<?php echo esc_attr( self::get_option( 'v1_whatsapp' ) ); ?>" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_whatsapp'] ); ?>" class="regular-text">
 						<p class="description">Botón «Comprar por WhatsApp» (o «Preguntar disponibilidad» si está agotado) bajo el botón de compra.</p>
-						<p><label for="grupsity-v1-financing"><strong>Compra ahora, paga después</strong> (portada, debajo del slider) — una línea por opción: <code>nombre|enlace</code> (el enlace es opcional)</label></p>
+						<p><label for="grupsity-v1-financing"><strong>Compra ahora, paga después</strong> (portada, debajo del banner principal) — una línea por opción: <code>nombre|enlace</code> (el enlace es opcional)</label></p>
 						<textarea id="grupsity-v1-financing" name="<?php echo esc_attr( $name ); ?>[v1_financing]" rows="5" class="large-text code" placeholder="<?php echo esc_attr( Grupsity_Design_V1::DEFAULTS['v1_financing'] ); ?>"><?php echo esc_textarea( self::get_option( 'v1_financing' ) ); ?></textarea>
 						<p class="description">Addi, Sistecrédito, su+Pay, Bancolombia y Nequi salen con sus colores. Vacío = la lista de ejemplo.</p>
-						<p><label><input type="checkbox" name="<?php echo esc_attr( $name ); ?>[v1_hide_home_slider]" value="1" <?php checked( 1, (int) self::get_option( 'v1_hide_home_slider' ) ); ?>> <strong>Ocultar el slider de banners de la portada</strong> (el primero, encima de la franja)</label></p>
+						<p><label><input type="checkbox" name="<?php echo esc_attr( $name ); ?>[v1_hide_home_slider]" value="1" <?php checked( 1, (int) self::get_option( 'v1_hide_home_slider' ) ); ?>> <strong>Ocultar el slider de banners de la portada</strong> (el primero, el de Sistecrédito/Addi)</label></p>
 						<p class="description">No se borra de Elementor: al desmarcar vuelve a salir. En el editor de Elementor se sigue viendo.</p>
+						<p><label for="grupsity-v1-home-sections"><strong>Secciones de la portada</strong> (antes de «Ofertas del día») — un bloque por categoría, como el de relojes: título, carrusel de marcas y carrusel de banners</label></p>
+						<textarea id="grupsity-v1-home-sections" name="<?php echo esc_attr( $name ); ?>[v1_home_sections]" rows="10" class="large-text code" placeholder="# Perfumería|/perfumeria/&#10;marca|1234|/Marca/carolina-herrera/&#10;marca|https://grupsity.com/wp-content/uploads/…/logo.png|/Marca/lacoste/&#10;banner|5678|/perfumeria/"><?php echo esc_textarea( self::get_option( 'v1_home_sections' ) ); ?></textarea>
+						<p class="description"><code># Título|enlace</code> empieza una sección (el enlace «Ver todo» es opcional). Debajo, una línea por imagen: <code>marca|imagen|enlace</code> o <code>banner|imagen|enlace</code>. La imagen es el ID de la biblioteca de medios (Medios → la imagen → número en la URL, <code>post=1234</code>) o su URL. Logos de 200×100 px como los de relojes; banners de 960×600. Vacío = sin secciones.</p>
 						<p class="description">Solo se usan con el diseño V1. El desplegable «Categorías» se arma solo con las categorías de producto.</p>
 					</td>
 				</tr>
