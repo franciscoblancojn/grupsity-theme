@@ -4,7 +4,7 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
-## [Sin publicar]
+## [1.0.25] - 2026-11-23
 
 ### 🔄 Cambiado
 - Diseño V1, portada: la franja **«Compra ahora, paga después»** vuelve a salir **después del primer slider**, como hasta la 1.0.23. El orden de la portada se ajusta en Elementor.
