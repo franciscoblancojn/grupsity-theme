@@ -4,7 +4,7 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
-## [Sin publicar]
+## [1.0.24] - 2026-11-23
 
 ### ✨ Añadido
 - Diseño V1, portada: **secciones por categoría** (p. ej. Perfumería y, más adelante, Accesorios). Cada una repite lo de los relojes: título con «Ver todo», carrusel de logos de marcas y carrusel de banners. Van antes de «Ofertas del día». Se configuran en Apariencia → Grupsity → General → «Secciones de la portada»: `# Título|enlace` y, debajo, `marca|imagen|enlace` o `banner|imagen|enlace`. La imagen es el ID de la biblioteca de medios o su URL. Los carruseles tienen flechas y se deslizan con el dedo, y los logos avanzan solos.
