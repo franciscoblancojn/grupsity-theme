@@ -532,7 +532,6 @@ body.grupsity-design-v1 .site-header .products-cats-menu .gv1-dcats__panel-title
 	color: var(--g-green-ink);
 	font-size: 13px;
 	font-weight: 600;
-	text-decoration: none !important;
 	white-space: nowrap;
 }
 
@@ -2229,6 +2228,7 @@ body.grupsity-design-v1 .gv1-hsec__more {
 	flex: 0 0 auto;
 	color: var(--g-ink);
 	font-weight: 600;
+	text-decoration: none !important;
 	white-space: nowrap;
 }
 
@@ -2386,6 +2386,60 @@ body.grupsity-design-v1 .gv1-rail__btn--next {
 
 	body.grupsity-design-v1 .gv1-rail__btn--next {
 		right: 2px;
+	}
+}
+
+/* Pantallas táctiles (sin hover): cada logo de marca es una tarjeta con borde, sombra y
+   «Ver ›» en verde debajo, para que se entienda que se puede tocar. Al tocarla se hunde un poco.
+   Aplica al carrusel de marcas de Elementor y a las secciones por categoría. */
+@media (hover: none) {
+	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper {
+		padding: 0 4px;
+	}
+
+	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link,
+	body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+		box-sizing: border-box;
+		width: 100%;
+		padding: 10px 6px 8px;
+		border: 1px solid var(--g-line);
+		border-radius: var(--g-radius);
+		background: var(--g-paper);
+		box-shadow: 0 4px 12px rgba(17, 24, 39, 0.08);
+		text-decoration: none !important;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link::after,
+	body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link::after {
+		content: "Ver \203A";
+		color: var(--g-green-ink);
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:active,
+	body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link:active {
+		border-color: var(--g-green);
+		background: var(--g-green-soft);
+		box-shadow: 0 1px 4px rgba(17, 24, 39, 0.08);
+		transform: scale(0.97);
+	}
+
+	/* Sin el «zoom» del hover: en táctil se queda pegado tras tocar */
+	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:hover:not(:active),
+	body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link:hover:not(:active) {
+		transform: none;
+	}
+
+	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:hover img {
+		transform: none;
 	}
 }
 

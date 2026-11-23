@@ -4,6 +4,14 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.26] - 2026-11-23
+
+### 🔄 Cambiado
+- Diseño V1, portada, **logos de marcas en celular y tablet** (pantallas sin hover): cada logo va en una tarjeta con borde y sombra, con «Ver ›» en verde debajo, para que se entienda que se puede tocar. Al tocarla se hunde un poco y se pone verde. En escritorio no cambia nada.
+
+### 🐛 Corregido
+- Diseño V1, portada: el «Ver todo» de las secciones por categoría ya no sale subrayado. En la 1.0.24, esa regla se aplicó por error al panel del menú «Categorías».
+
 ## [1.0.25] - 2026-11-23
 
 ### 🔄 Cambiado
