@@ -2389,9 +2389,59 @@ body.grupsity-design-v1 .gv1-rail__btn--next {
 	}
 }
 
-/* Pantallas táctiles (sin hover): cada logo de marca es una tarjeta con borde, sombra y
-   «Ver ›» en verde debajo, para que se entienda que se puede tocar. Al tocarla se hunde un poco.
+/* Cada logo de marca es una tarjeta con borde, sombra y «Ver ›» en verde debajo, para que se
+   entienda que se puede hacer clic (en celular no hay hover que lo sugiera). En escritorio, al
+   pasar el ratón sube y el borde se pone verde; al tocar/clicar se hunde un poco.
    Aplica al carrusel de marcas de Elementor y a las secciones por categoría. */
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper {
+	padding: 0 6px;
+}
+
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link,
+body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 12px 8px 10px;
+	border: 1px solid var(--g-line);
+	border-radius: var(--g-radius);
+	background: var(--g-paper);
+	box-shadow: 0 4px 12px rgba(17, 24, 39, 0.08);
+	text-decoration: none !important;
+	-webkit-tap-highlight-color: transparent;
+}
+
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link::after,
+body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link::after {
+	content: "Ver \203A";
+	color: var(--g-green-ink);
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1;
+	transition: color 0.2s ease;
+}
+
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:hover,
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:focus-visible,
+body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link:hover,
+body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link:focus-visible {
+	border-color: var(--g-green);
+	box-shadow: 0 10px 22px rgba(17, 24, 39, 0.14);
+}
+
+body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:active,
+body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link:active {
+	border-color: var(--g-green);
+	background: var(--g-green-soft);
+	box-shadow: 0 1px 4px rgba(17, 24, 39, 0.08);
+	transform: scale(0.97);
+}
+
+/* En táctil, sin el «zoom» del hover: se queda pegado tras tocar */
 @media (hover: none) {
 	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper {
 		padding: 0 4px;
@@ -2399,42 +2449,14 @@ body.grupsity-design-v1 .gv1-rail__btn--next {
 
 	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link,
 	body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		gap: 4px;
-		box-sizing: border-box;
-		width: 100%;
 		padding: 10px 6px 8px;
-		border: 1px solid var(--g-line);
-		border-radius: var(--g-radius);
-		background: var(--g-paper);
-		box-shadow: 0 4px 12px rgba(17, 24, 39, 0.08);
-		text-decoration: none !important;
-		-webkit-tap-highlight-color: transparent;
 	}
 
-	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link::after,
-	body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link::after {
-		content: "Ver \203A";
-		color: var(--g-green-ink);
-		font-size: 12px;
-		font-weight: 700;
-		line-height: 1;
-	}
-
-	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:active,
-	body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link:active {
-		border-color: var(--g-green);
-		background: var(--g-green-soft);
-		box-shadow: 0 1px 4px rgba(17, 24, 39, 0.08);
-		transform: scale(0.97);
-	}
-
-	/* Sin el «zoom» del hover: en táctil se queda pegado tras tocar */
 	body.grupsity-design-v1.home .mf-images-gallery .image-item__wrapper a.img-link:hover:not(:active),
 	body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link:hover:not(:active) {
+		border-color: var(--g-line);
+		box-shadow: 0 4px 12px rgba(17, 24, 39, 0.08);
 		transform: none;
 	}
 

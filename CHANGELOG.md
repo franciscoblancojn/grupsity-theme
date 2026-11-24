@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.27] - 2026-11-23
+
+### 🔄 Cambiado
+- Diseño V1, portada: las **tarjetas de los logos de marcas** (borde, sombra y «Ver ›» en verde) ahora también se ven **en computadora**, no solo en celular y tablet. Al pasar el ratón la tarjeta sube, crece un poco y el borde se pone verde.
+
 ## [1.0.26] - 2026-11-23
 
 ### 🔄 Cambiado
