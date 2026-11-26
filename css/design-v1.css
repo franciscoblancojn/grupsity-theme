@@ -2465,6 +2465,34 @@ body.grupsity-design-v1.home .gv1-rail--brands a.gv1-rail__link:active {
 	}
 }
 
+/* Ficha en el celular: los títulos que vienen dentro de la descripción del producto
+   («Beneficios principales», «Especificaciones técnicas»…) salían a 30 px y ocupaban media
+   pantalla. Se reducen a la escala de la página. */
+@media (max-width: 767px) {
+	body.grupsity-design-v1.single-product :is(.mf-Tabs-panel, .woocommerce-Tabs-panel, .tab-content-wrapper) h1,
+	body.grupsity-design-v1.single-product :is(.mf-Tabs-panel, .woocommerce-Tabs-panel, .tab-content-wrapper) h2 {
+		margin: 24px 0 12px !important;
+		font-size: 21px !important;
+		line-height: 1.3 !important;
+	}
+
+	body.grupsity-design-v1.single-product :is(.mf-Tabs-panel, .woocommerce-Tabs-panel, .tab-content-wrapper) h3 {
+		margin: 20px 0 10px !important;
+		font-size: 18px !important;
+		line-height: 1.3 !important;
+	}
+
+	body.grupsity-design-v1.single-product .mf-Tabs-panel .tab-title {
+		margin: 0 0 12px !important;
+		font-size: 18px !important;
+	}
+
+	body.grupsity-design-v1.single-product :is(.mf-Tabs-panel, .woocommerce-Tabs-panel, .tab-content-wrapper) :is(p, li) {
+		font-size: 15px;
+		line-height: 1.6;
+	}
+}
+
 /* Sin animaciones si el visitante las tiene desactivadas en su sistema */
 @media (prefers-reduced-motion: reduce) {
 	body.grupsity-design-v1.home .elementor-widget-image a,
@@ -3173,6 +3201,66 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button .wcboost-wishlist-button__text,
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button .wcboost-products-compare-button__text {
 	display: none !important;
+}
+
+/* «Comprar ahora» (opción product_buy_now de Martfury, activa en V1). Martfury lo imprime dentro
+   de .actions-button, antes de Favoritos/Comparar: con display: contents sus hijos pasan a ser
+   elementos de la fila del formulario y el orden queda: cantidad + «Añadir al carrito», debajo
+   «Comprar ahora» a todo el ancho y debajo Favoritos/Comparar. Vale para la plantilla de Elementor
+   y para la ficha de Martfury (caché de escritorio o productos sin plantilla). */
+body.grupsity-design-v1.single-product div.product form.cart .actions-button {
+	display: contents !important;
+}
+
+body.grupsity-design-v1.single-product div.product form.cart .buy_now_button {
+	display: flex !important;
+	flex: 1 1 100% !important;
+	order: 0;
+	align-items: center;
+	justify-content: center;
+	width: 100% !important;
+	height: 52px !important;
+	min-height: 52px !important;
+	margin: 0 !important;
+	padding: 0 20px !important;
+	border: 0 !important;
+	border-radius: 10px !important;
+	background: var(--g-ink) !important;
+	color: var(--g-paper) !important;
+	font-size: 16px !important;
+	font-weight: 700 !important;
+	line-height: 1.2 !important;
+	text-transform: none !important;
+	transition: background 0.2s, color 0.2s;
+}
+
+body.grupsity-design-v1.single-product div.product form.cart .buy_now_button:hover,
+body.grupsity-design-v1.single-product div.product form.cart .buy_now_button:focus-visible {
+	background: var(--g-green) !important;
+	color: var(--g-ink) !important;
+}
+
+body.grupsity-design-v1.single-product div.product form.cart .buy_now_button.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Celular: cantidad a todo el ancho encima y los dos botones de compra debajo, cada uno en su fila */
+@media (max-width: 767px) {
+	body.grupsity-design-v1.single-product div.product form.cart .quantity {
+		flex: 1 1 100% !important;
+		justify-content: center;
+	}
+
+	body.grupsity-design-v1.single-product div.product form.cart .quantity .qty-box {
+		width: 100% !important;
+		justify-content: space-between;
+	}
+
+	body.grupsity-design-v1.single-product div.product form.cart .single_add_to_cart_button {
+		flex: 1 1 100% !important;
+		width: 100% !important;
+	}
 }
 
 /* «Agotado» (simple.php ya lo imprime; antes el bloque salía vacío) */

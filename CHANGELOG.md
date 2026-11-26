@@ -4,6 +4,18 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [Sin publicar]
+
+### ✨ Añadido
+- Diseño V1, ficha de producto: botón **«Comprar ahora»** debajo de «Añadir al carrito». Añade el producto y lleva directo al checkout. Es el botón de Martfury (Personalizar → WooCommerce → Buy Now), activado y con el texto en español.
+
+### 🔄 Cambiado
+- Diseño V1, ficha de producto en celular: **«Añadir al carrito» ya no flota** al pie de la pantalla. Va dentro del bloque de compra: cantidad, «Añadir al carrito» y «Comprar ahora», cada uno a todo el ancho, y debajo favoritos, comparar y WhatsApp. Se apaga la opción de Martfury «Add to cart fixed».
+- Ficha de producto en celular: los títulos dentro de la descripción («Beneficios principales», «Especificaciones técnicas»…) bajan de 30 a 21 px, y el texto a 15 px.
+
+### 🐛 Corregido
+- Versión móvil: textos en inglés → español. La cabecera de la ficha pasa de «Back to Category» a «Volver a <categoría>». La barra inferior pasa a Inicio, Categorías, Buscar y Carrito. También se traducen los títulos «Description» y «Specification» y el formulario de reseñas («Be the first to review…», «Your rating of this product», «Write your review here…», «Name»).
+
 ## [1.0.27] - 2026-11-23
 
 ### 🔄 Cambiado

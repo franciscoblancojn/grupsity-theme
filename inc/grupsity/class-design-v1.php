@@ -111,6 +111,18 @@ class Grupsity_Design_V1 {
 				return ! $value || 'Shop By Department' === $value ? 'Categorías' : $value;
 			case 'custom_search_text':
 				return ! $value || "I'm shopping for..." === $value ? 'Busca tu marca favorita' : $value;
+			case 'navigation_home_mobile':
+			case 'navigation_cat_mobile':
+			case 'navigation_search_mobile':
+			case 'navigation_cart_mobile':
+				// Barra inferior de la versión móvil: sin theme_mods salen los textos en inglés.
+				$english = array(
+					'navigation_home_mobile'   => array( 'Home', 'Inicio' ),
+					'navigation_cat_mobile'    => array( 'Category', 'Categorías' ),
+					'navigation_search_mobile' => array( 'Search', 'Buscar' ),
+					'navigation_cart_mobile'   => array( 'Cart', 'Carrito' ),
+				);
+				return ! $value || $english[ $name ][0] === $value ? $english[ $name ][1] : $value;
 			case 'custom_search_button':
 				return ! $value || 'Search' === $value ? 'Buscar' : $value;
 			case 'footer_newsletter':

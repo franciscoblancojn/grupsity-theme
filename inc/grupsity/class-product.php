@@ -13,9 +13,15 @@
  *   en todas las fichas. Se oculta mientras no haya token (Customizer → Instagram).
  * - Título «Related products» por defecto → «Productos relacionados».
  *
+ * - Versión móvil de Martfury: la cabecera decía «Back to Category» → «Volver a <categoría>».
+ *
  * Solo con el diseño V1 (como la ficha de TeDotamos):
  * - Botón «Comprar por WhatsApp» (o «Preguntar disponibilidad» si está agotado).
  * - Porcentaje de descuento junto al precio del producto principal.
+ * - «Añadir al carrito» dentro del bloque de compra también en el celular: se apaga la opción
+ *   de Martfury que lo fijaba flotando al pie de la pantalla (product_add_to_cart_fixed_mobile).
+ * - Botón «Comprar ahora» de Martfury (product_buy_now) activo: añade al carrito y lleva al
+ *   checkout (o al enlace de Personalizar → WooCommerce → Buy Now, si tiene uno).
  *
  * @package Grupsity
  */
@@ -30,6 +36,7 @@ class Grupsity_Product {
 		add_filter( 'woocommerce_product_tabs', array( __CLASS__, 'tab_titles' ), 99 );
 		add_filter( 'woocommerce_product_brands_output', array( __CLASS__, 'brand_label' ) );
 		add_filter( 'martfury_get_option', array( __CLASS__, 'override_options' ), 20, 2 );
+		add_filter( 'martfury_get_header_mobile_title', array( __CLASS__, 'mobile_header_title' ) );
 
 		if ( 'v1' === Grupsity_Designs::current() ) {
 			add_action( 'woocommerce_after_add_to_cart_form', array( __CLASS__, 'whatsapp_button' ) );
@@ -50,9 +57,29 @@ class Grupsity_Product {
 				// convertía en un slider vertical y quedaban apiladas en una columna: solo en los
 				// productos con más fotos de la cuenta. Con un tope alto nunca arma el slider.
 				return 'v1' === Grupsity_Designs::current() ? 100 : $value;
+			case 'product_add_to_cart_fixed_mobile':
+				return 'v1' === Grupsity_Designs::current() ? 0 : $value;
+			case 'product_buy_now':
+				return 'v1' === Grupsity_Designs::current() ? 1 : $value;
+			case 'product_buy_now_text':
+				return ! $value || 'Buy Now' === trim( wp_strip_all_tags( (string) $value ) ) ? 'Comprar ahora' : $value;
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Cabecera de la versión móvil en la ficha: «Back to Category» → «Volver a Relojes» (la
+	 * categoría a la que lleva el enlace). Si el título es otro (p. ej. el del producto), no se toca.
+	 */
+	public static function mobile_header_title( $title ) {
+		if ( ! is_singular( 'product' ) || false === strpos( (string) $title, 'Back to' ) ) {
+			return $title;
+		}
+		$terms = wc_get_product_terms( get_the_ID(), 'product_cat', array( 'orderby' => 'parent' ) );
+		$name  = $terms ? end( $terms )->name : 'la tienda';
+
+		return '<label>Volver a</label> ' . esc_html( $name );
 	}
 
 	public static function tab_titles( $tabs ) {
