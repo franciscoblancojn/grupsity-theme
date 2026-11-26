@@ -3034,7 +3034,15 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 
 /* El clearfix (::before/::after) de form.cart cuenta como elemento del flex y mete el hueco */
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart::before,
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart::after {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart::after,
+body.grupsity-design-v1.single-product div.product form.cart .e-atc-qty-button-holder::before,
+body.grupsity-design-v1.single-product div.product form.cart .e-atc-qty-button-holder::after,
+body.grupsity-design-v1.single-product div.product form.cart::before,
+body.grupsity-design-v1.single-product div.product form.cart::after,
+/* .actions-button es display: contents, pero su clearfix sí genera cajas: serían elementos
+   vacíos de la fila que suman un hueco de 10 px y empujan Comparar a otra línea */
+body.grupsity-design-v1.single-product div.product form.cart .actions-button::before,
+body.grupsity-design-v1.single-product div.product form.cart .actions-button::after {
 	display: none !important;
 }
 
@@ -3203,22 +3211,61 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 	display: none !important;
 }
 
-/* «Comprar ahora» (opción product_buy_now de Martfury, activa en V1). Martfury lo imprime dentro
-   de .actions-button, antes de Favoritos/Comparar: con display: contents sus hijos pasan a ser
-   elementos de la fila del formulario y el orden queda: cantidad + «Añadir al carrito», debajo
-   «Comprar ahora» a todo el ancho y debajo Favoritos/Comparar. Vale para la plantilla de Elementor
-   y para la ficha de Martfury (caché de escritorio o productos sin plantilla). */
+/* Bloque de compra en dos filas (con «Comprar ahora», opción product_buy_now de Martfury):
+   1) cantidad (se estira) + Favoritos + Comparar, al 100 %;
+   2) «Añadir al carrito» y «Comprar ahora» al 50/50 (en el celular, cada uno al 100 %).
+   WhatsApp va fuera del formulario, siempre al 100 %.
+   Martfury imprime «Comprar ahora», Favoritos y Comparar dentro de .actions-button: con
+   display: contents sus hijos pasan a la fila del formulario y se ordenan con order.
+   Vale para la plantilla de Elementor (fila .e-atc-qty-button-holder) y para la ficha de
+   Martfury (fila form.cart). */
 body.grupsity-design-v1.single-product div.product form.cart .actions-button {
 	display: contents !important;
 }
 
+/* Base = 100 % menos Favoritos y Comparar (2 × 52 px) y sus dos huecos (2 × 10 px): la
+   primera fila queda llena y «Añadir al carrito» baja siempre a la segunda. */
+body.grupsity-design-v1.single-product div.product form.cart .quantity {
+	order: 1;
+	flex: 1 1 calc(100% - 124px) !important;
+	min-width: 0;
+	width: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body.grupsity-design-v1.single-product div.product form.cart .quantity .label {
+	display: none !important;
+}
+
+body.grupsity-design-v1.single-product div.product form.cart .quantity .qty-box {
+	width: 100% !important;
+	justify-content: space-between;
+}
+
+body.grupsity-design-v1.single-product div.product form.cart .quantity .qty {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+body.grupsity-design-v1.single-product div.product form.cart .actions-button > div {
+	order: 2;
+	flex: 0 0 auto;
+}
+
+body.grupsity-design-v1.single-product div.product form.cart .single_add_to_cart_button {
+	order: 3;
+	flex: 1 1 calc(50% - 5px) !important;
+	width: auto !important;
+}
+
 body.grupsity-design-v1.single-product div.product form.cart .buy_now_button {
+	order: 4;
 	display: flex !important;
-	flex: 1 1 100% !important;
-	order: 0;
+	flex: 1 1 calc(50% - 5px) !important;
 	align-items: center;
 	justify-content: center;
-	width: 100% !important;
+	width: auto !important;
 	height: 52px !important;
 	min-height: 52px !important;
 	margin: 0 !important;
@@ -3245,21 +3292,15 @@ body.grupsity-design-v1.single-product div.product form.cart .buy_now_button.dis
 	cursor: not-allowed;
 }
 
-/* Celular: cantidad a todo el ancho encima y los dos botones de compra debajo, cada uno en su fila */
+/* Sin «Comprar ahora» (p. ej. producto externo): «Añadir al carrito» ocupa toda la fila */
+body.grupsity-design-v1.single-product div.product form.cart:not(:has(.buy_now_button)) .single_add_to_cart_button {
+	flex-basis: 100% !important;
+}
+
 @media (max-width: 767px) {
-	body.grupsity-design-v1.single-product div.product form.cart .quantity {
-		flex: 1 1 100% !important;
-		justify-content: center;
-	}
-
-	body.grupsity-design-v1.single-product div.product form.cart .quantity .qty-box {
-		width: 100% !important;
-		justify-content: space-between;
-	}
-
-	body.grupsity-design-v1.single-product div.product form.cart .single_add_to_cart_button {
-		flex: 1 1 100% !important;
-		width: 100% !important;
+	body.grupsity-design-v1.single-product div.product form.cart .single_add_to_cart_button,
+	body.grupsity-design-v1.single-product div.product form.cart .buy_now_button {
+		flex-basis: 100% !important;
 	}
 }
 

@@ -4,6 +4,17 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [Sin publicar]
+
+### 🔄 Cambiado
+- Diseño V1, ficha de producto: **nuevo orden del bloque de compra**.
+  - Arriba, cantidad, favoritos y comparar en una sola fila al 100 %. La cantidad se estira para llenar la fila.
+  - Debajo, «Añadir al carrito» y «Comprar ahora» al 50/50. En celular va cada uno a todo el ancho.
+  - «Comprar por WhatsApp» siempre a todo el ancho.
+
+### 🐛 Corregido
+- Ficha de producto en celular: la fila de cantidad salía corrida 10 px y «Comparar» bajaba a otra línea. La causa era el clearfix de `.actions-button`, que sumaba un hueco vacío en la fila.
+
 ## [1.0.28] - 2026-11-25
 
 ### ✨ Añadido
