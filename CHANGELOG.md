@@ -4,6 +4,11 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.30] - 2026-11-26
+
+### 🐛 Corregido
+- Diseño V1, ficha de producto: el **bloque de compra salía desordenado** en los productos que no usan la plantilla de Elementor (p. ej. Joyas: «Michael Kors Joyas Aretes MKJ8655040»). En esos productos «Añadir al carrito» salía negro, con «Comprar ahora» al lado y favoritos y comparar sueltos. Ahora llevan el mismo bloque que la plantilla: caja gris, cantidad + favoritos + comparar arriba y los dos botones 50/50 (100 % en celular).
+
 ## [1.0.29] - 2026-11-25
 
 ### 🔄 Cambiado

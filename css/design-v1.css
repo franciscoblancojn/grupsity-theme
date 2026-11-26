@@ -3024,7 +3024,8 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-wid
 	background: var(--g-surface);
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart {
 	display: flex !important;
 	flex-wrap: wrap;
 	align-items: stretch;
@@ -3042,7 +3043,9 @@ body.grupsity-design-v1.single-product div.product form.cart::after,
 /* .actions-button es display: contents, pero su clearfix sí genera cajas: serían elementos
    vacíos de la fila que suman un hueco de 10 px y empujan Comparar a otra línea */
 body.grupsity-design-v1.single-product div.product form.cart .actions-button::before,
-body.grupsity-design-v1.single-product div.product form.cart .actions-button::after {
+body.grupsity-design-v1.single-product div.product form.cart .actions-button::after,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart::before,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart::after {
 	display: none !important;
 }
 
@@ -3059,7 +3062,8 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 	margin: 0 !important;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity {
 	float: none !important;
 	display: flex;
 	width: auto !important; /* Martfury: 100 % en el celular */
@@ -3068,12 +3072,14 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 }
 
 /* «Quantity:» de Martfury: sobra (el label para lectores de pantalla sigue) */
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .label {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .label,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .label {
 	display: none !important;
 }
 
 /* Selector − 1 + en una sola caja, a la altura del botón */
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty-box {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty-box,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .qty-box {
 	display: flex;
 	align-items: stretch;
 	height: 52px;
@@ -3087,12 +3093,16 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 }
 
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty-box:hover,
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty-box:focus-within {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty-box:focus-within,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .qty-box:hover,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .qty-box:focus-within {
 	border-color: var(--g-ink) !important;
 }
 
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .decrease,
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .increase {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .increase,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .decrease,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .increase {
 	position: static !important;
 	display: flex !important;
 	align-items: center;
@@ -3106,11 +3116,14 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 }
 
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .decrease:hover,
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .increase:hover {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .increase:hover,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .decrease:hover,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .increase:hover {
 	background: var(--g-surface);
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .qty {
 	width: 44px !important;
 	height: 100% !important;
 	margin: 0 !important;
@@ -3128,12 +3141,15 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 }
 
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty::-webkit-outer-spin-button,
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty::-webkit-inner-spin-button {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart form.cart .quantity .qty::-webkit-inner-spin-button,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .qty::-webkit-outer-spin-button,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart .quantity .qty::-webkit-inner-spin-button {
 	margin: 0;
 	-webkit-appearance: none;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .single_add_to_cart_button {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .single_add_to_cart_button,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .single_add_to_cart_button {
 	display: flex !important;
 	flex: 1 1 160px;
 	align-items: center;
@@ -3154,13 +3170,15 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 	transition: background 0.2s, color 0.2s;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .single_add_to_cart_button:hover {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .single_add_to_cart_button:hover,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .single_add_to_cart_button:hover {
 	background: var(--g-ink) !important;
 	color: var(--g-paper) !important;
 }
 
 /* Wishlist y Comparar: botones cuadrados con solo el ícono */
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .actions-button {
 	display: flex;
 	width: auto !important;
 	justify-content: flex-start !important;
@@ -3169,13 +3187,15 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 	padding: 0 !important;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button > div {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button > div,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .actions-button > div {
 	display: flex;
 	margin: 0 !important;
 	padding: 0 !important;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .actions-button a {
 	display: inline-flex !important;
 	align-items: center;
 	justify-content: center;
@@ -3192,22 +3212,27 @@ body.grupsity-design-v1.single-product .elementor-location-single .elementor-add
 	transition: border-color 0.2s, background 0.2s;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a::before {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a::before,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .actions-button a::before {
 	display: none !important;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a:hover {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a:hover,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .actions-button a:hover {
 	border-color: var(--g-green) !important;
 	background: var(--g-green) !important;
 }
 
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a svg {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button a svg,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .actions-button a svg {
 	width: 20px;
 	height: 20px;
 }
 
 body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button .wcboost-wishlist-button__text,
-body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button .wcboost-products-compare-button__text {
+body.grupsity-design-v1.single-product .elementor-location-single .elementor-add-to-cart .actions-button .wcboost-products-compare-button__text,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .actions-button .wcboost-wishlist-button__text,
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .actions-button .wcboost-products-compare-button__text {
 	display: none !important;
 }
 
@@ -3302,6 +3327,20 @@ body.grupsity-design-v1.single-product div.product form.cart:not(:has(.buy_now_b
 	body.grupsity-design-v1.single-product div.product form.cart .buy_now_button {
 		flex-basis: 100% !important;
 	}
+}
+
+/* Ficha nativa de Martfury (productos fuera de la plantilla de Elementor, p. ej. otra
+   categoría): las mismas reglas del bloque de compra con .mf-single-product .entry-summary, y la
+   caja gris alrededor del formulario. */
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary form.cart {
+	padding: 16px !important;
+	border: 1px solid var(--g-line);
+	border-radius: 12px;
+	background: var(--g-surface);
+}
+
+body.grupsity-design-v1.single-product .mf-single-product .entry-summary .gv1-whatsapp {
+	margin-top: 10px;
 }
 
 /* «Agotado» (simple.php ya lo imprime; antes el bloque salía vacío) */
