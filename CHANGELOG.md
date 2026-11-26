@@ -4,7 +4,7 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
-## [Sin publicar]
+## [1.0.29] - 2026-11-25
 
 ### 🔄 Cambiado
 - Diseño V1, ficha de producto: **nuevo orden del bloque de compra**.
