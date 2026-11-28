@@ -615,8 +615,18 @@ class Martfury_Mobile {
 
 				<?php
 
+				// Grupsity: un diseño (V1) puede poner su propia lista (las categorías de producto)
+				// en lugar del menú de WordPress. Mismo marcado (ul.menu > li.menu-item-has-children
+				// > ul.sub-menu), así el JS de Martfury sigue abriendo y cerrando los submenús.
+				$grupsity_menu = apply_filters( 'grupsity_mobile_category_menu', '' );
+				if ( $grupsity_menu ) {
+					echo $grupsity_menu; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
+
 				$location = '';
-				if ( has_nav_menu( 'category_mobile' ) ) {
+				if ( $grupsity_menu ) {
+					$location = '';
+				} elseif ( has_nav_menu( 'category_mobile' ) ) {
 					$location = 'category_mobile';
 				} elseif ( has_nav_menu( 'shop_department' ) ) {
 					$location = 'shop_department';

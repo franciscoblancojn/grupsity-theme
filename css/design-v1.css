@@ -5997,3 +5997,41 @@ body.grupsity-design-v1.woocommerce-order-received .woocommerce-order .woocommer
 		padding-right: 12px;
 	}
 }
+
+/* ==========================================================================
+   Versión móvil: panel «Categorías» de la barra inferior con las categorías de producto
+   (Grupsity_Design_V1::mobile_category_menu). Ícono en el primer nivel, «Ver todo …» al
+   principio de cada submenú y «Ver toda la tienda» al final.
+   ========================================================================== */
+
+body.grupsity-design-v1 .gv1-mcats a {
+	display: flex !important;
+	align-items: center;
+	gap: 12px;
+}
+
+body.grupsity-design-v1 .gv1-mcats > li > a {
+	font-weight: 600;
+}
+
+body.grupsity-design-v1 .gv1-mcats .gv1-icon {
+	flex: 0 0 auto;
+	width: 22px;
+	height: 22px;
+	color: var(--g-green-ink);
+}
+
+body.grupsity-design-v1 .gv1-mcats .gv1-mcats__see-all > a {
+	color: var(--g-green-ink) !important;
+	font-weight: 700;
+}
+
+body.grupsity-design-v1 .gv1-mcats .gv1-mcats__all {
+	margin-top: 8px;
+	border-top: 1px solid var(--g-line);
+}
+
+body.grupsity-design-v1 .gv1-mcats .gv1-mcats__all > a {
+	color: var(--g-ink) !important;
+	font-weight: 700;
+}

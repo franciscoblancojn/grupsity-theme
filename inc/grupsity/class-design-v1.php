@@ -49,6 +49,7 @@ class Grupsity_Design_V1 {
 		add_action( 'martfury_before_header', array( __CLASS__, 'render_topbar' ), 1 );
 		add_action( 'grupsity_header_nav', array( __CLASS__, 'render_nav' ) );
 		add_filter( 'grupsity_department_menu', array( __CLASS__, 'department_menu' ) );
+		add_filter( 'grupsity_mobile_category_menu', array( __CLASS__, 'mobile_category_menu' ) );
 		add_filter( 'elementor/frontend/widget/should_render', array( __CLASS__, 'hide_home_slider' ), 10, 2 );
 		add_action( 'elementor/frontend/widget/after_render', array( __CLASS__, 'financing_after_slider' ) );
 	}
@@ -111,6 +112,8 @@ class Grupsity_Design_V1 {
 				return ! $value || 'Shop By Department' === $value ? 'Categorías' : $value;
 			case 'custom_search_text':
 				return ! $value || "I'm shopping for..." === $value ? 'Busca tu marca favorita' : $value;
+			case 'navigation_cat_panel_mobile_title':
+				return ! $value || 'Shop By Departments' === $value ? 'Categorías' : $value;
 			case 'navigation_home_mobile':
 			case 'navigation_cat_mobile':
 			case 'navigation_search_mobile':
@@ -326,7 +329,7 @@ class Grupsity_Design_V1 {
 			'taxonomy'   => 'product_cat',
 			'parent'     => 0,
 			'hide_empty' => true,
-			'exclude'    => array( (int) get_option( 'default_product_cat' ) ),
+			'exclude'    => self::uncategorized_ids(),
 			'menu_order' => 'ASC',
 		);
 		$cats = get_terms( $args );
@@ -343,6 +346,80 @@ class Grupsity_Design_V1 {
 		return $cats;
 	}
 
+	/**
+	 * La categoría por defecto de WooCommerce solo se excluye si es «Sin categorizar». En
+	 * Grupsity la categoría por defecto es Relojes: excluirla siempre dejaba el menú solo con
+	 * Joyas (y, al ser la única, mostraba su hija «Mujer»).
+	 *
+	 * @return int[]
+	 */
+	private static function uncategorized_ids() {
+		$id   = (int) get_option( 'default_product_cat' );
+		$term = $id ? get_term( $id, 'product_cat' ) : null;
+		if ( ! $term || is_wp_error( $term ) ) {
+			return array();
+		}
+		$key = sanitize_title( $term->slug . ' ' . $term->name );
+
+		return preg_match( '/uncategori|sin-categor/', $key ) ? array( $id ) : array();
+	}
+
+	/** Hijas con productos de una categoría, en el orden del admin. */
+	private static function child_categories( $parent_id ) {
+		$children = get_terms(
+			array(
+				'taxonomy'   => 'product_cat',
+				'parent'     => $parent_id,
+				'hide_empty' => true,
+				'menu_order' => 'ASC',
+			)
+		);
+
+		return is_wp_error( $children ) ? array() : $children;
+	}
+
+	/**
+	 * Panel «Categorías» de la barra inferior de la versión móvil: las categorías de producto
+	 * (hasta tres niveles) en lugar del menú de WordPress. Tocar una categoría con hijas abre su
+	 * submenú (JS de Martfury), así que cada submenú empieza con «Ver todo …».
+	 */
+	public static function mobile_category_menu( $html ) {
+		$cats = self::top_categories();
+		if ( ! $cats ) {
+			return $html;
+		}
+		$out = '<ul class="menu gv1-mcats">' . self::mobile_category_items( $cats, 0 );
+		$shop = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
+		$out .= sprintf( '<li class="menu-item gv1-mcats__all"><a href="%s">%s<span>Ver toda la tienda</span></a></li>', esc_url( $shop ), self::icon( 'bag' ) );
+
+		return $out . '</ul>';
+	}
+
+	private static function mobile_category_items( $cats, $depth ) {
+		$out = '';
+		foreach ( $cats as $cat ) {
+			$link     = get_term_link( $cat );
+			$children = $depth < 2 ? self::child_categories( $cat->term_id ) : array();
+			$icon     = 0 === $depth ? self::icon( self::category_icon( $cat ) ) : '';
+			$out     .= sprintf(
+				'<li class="menu-item%s"><a href="%s">%s<span>%s</span></a>',
+				$children ? ' menu-item-has-children' : '',
+				esc_url( $link ),
+				$icon,
+				esc_html( $cat->name )
+			);
+			if ( $children ) {
+				$out .= '<ul class="sub-menu">';
+				$out .= sprintf( '<li class="menu-item gv1-mcats__see-all"><a href="%s"><span>Ver todo %s</span></a></li>', esc_url( $link ), esc_html( $cat->name ) );
+				$out .= self::mobile_category_items( $children, $depth + 1 );
+				$out .= '</ul>';
+			}
+			$out .= '</li>';
+		}
+
+		return $out;
+	}
+
 	public static function department_menu( $menu ) {
 		$cats = self::top_categories();
 		if ( ! $cats ) {
@@ -352,15 +429,7 @@ class Grupsity_Design_V1 {
 		echo '<ul class="menu gv1-dcats">';
 		foreach ( $cats as $cat ) {
 			$link     = get_term_link( $cat );
-			$children = get_terms(
-				array(
-					'taxonomy'   => 'product_cat',
-					'parent'     => $cat->term_id,
-					'hide_empty' => true,
-					'menu_order' => 'ASC',
-				)
-			);
-			$children = is_wp_error( $children ) ? array() : $children;
+			$children = self::child_categories( $cat->term_id );
 			printf(
 				'<li class="menu-item gv1-dcats__item%s"><a href="%s"><span class="gv1-dcats__icon">%s</span><span class="gv1-dcats__name">%s</span>%s</a>',
 				$children ? ' gv1-dcats__item--parent' : '',

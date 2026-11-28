@@ -4,6 +4,14 @@ Todos los cambios importantes del tema Grupsity. Formato basado en [Keep a Chang
 
 > ✍️ Antes de publicar, agrega arriba una sección `## [Sin publicar]` con los cambios. `npm run push-v -- patch|minor|major` la renombra a `## [X.Y.Z] - fecha`, y no publica si esa sección no existe.
 
+## [1.0.31] - 2026-11-27
+
+### ✨ Añadido
+- Diseño V1, versión móvil: el panel **«Categorías»** de la barra inferior muestra las **categorías de producto** (Joyas, Relojes → Mujer/Hombre → Análogo, Casual…), con ícono, «Ver todo …» al inicio de cada submenú y «Ver toda la tienda» al final. Antes salía un menú de WordPress armado a mano con solo Relojes. Título «Shop By Departments» → «Categorías». Gancho nuevo `grupsity_mobile_category_menu` en `inc/mobile/layout.php`.
+
+### 🐛 Corregido
+- Diseño V1, desplegable **«Categorías»** del header: solo mostraba «Mujer» (la de Joyas). Se excluía la categoría por defecto de WooCommerce pensando que era «Sin categorizar», pero en Grupsity es Relojes. Ahora solo se excluye si es «Sin categorizar», y salen Joyas y Relojes con sus subcategorías.
+
 ## [1.0.30] - 2026-11-26
 
 ### 🐛 Corregido
